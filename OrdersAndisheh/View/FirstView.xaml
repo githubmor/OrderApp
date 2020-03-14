@@ -1,0 +1,103 @@
+﻿<Window
+    x:Class="OrdersAndisheh.View.FirstView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:UI="clr-namespace:OrdersAndisheh.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:tb="http://www.hardcodet.net/taskbar"
+    Title="ارسال محصول"
+    DataContext="{Binding First, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <tb:TaskbarIcon IconSource="../OrderAndisheh.ico" ToolTipText="ارسال اندیشه">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="Exit" Header="خروج" />
+                    <MenuItem Click="MaximaizeFirstView" Header="صفحه اصلی" />
+                    <MenuItem Command="{Binding NewSefareshCommand}" Header="سفارش جدید" />
+                    <MenuItem Command="{Binding TodaySefareshCommand}" Header="{Binding Today}" />
+                    <MenuItem Command="{Binding YesterDaySefareshCommand}" Header="{Binding YesterDay}" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+        <dxb:BarManager
+            Grid.Row="0" AllowCustomization="False"
+            AllowHotCustomization="False" AllowQuickCustomization="False"
+            FlowDirection="RightToLeft" ToolbarGlyphSize="Small">
+            <dxb:BarManager.Bars>
+                <dxb:Bar Caption="Tools">
+                    <dxb:BarButtonItem
+                        BarItemDisplayMode="Content"
+                        Command="{Binding TodaySefareshCommand, Mode=OneWay}"
+                        Content="{Binding Today}" />
+                    <dxb:BarItemSeparator />
+                    <dxb:BarButtonItem
+                        BarItemDisplayMode="Content"
+                        Command="{Binding TommorowSefareshCommand, Mode=OneWay}"
+                        Content="{Binding Tommorow}" />
+                    <dxb:BarItemSeparator />
+                    <dxb:BarButtonItem
+                        x:Name="biBasicData" BarItemDisplayMode="Content"
+                        Command="{Binding BasicDataCommand, Mode=OneWay}"
+                        Content="اطلاعات اوليه" />
+                    <dxb:BarItemSeparator />
+                </dxb:Bar>
+            </dxb:BarManager.Bars>
+        </dxb:BarManager>
+        <dxlc:LayoutControl Grid.Row="1" Margin="10">
+            <dxlc:LayoutGroup
+                Margin="0" HorizontalAlignment="Right"
+                Orientation="Vertical">
+                <dxe:CheckEdit
+                    Margin="0,0,0,8" VerticalAlignment="Top"
+                    Content="سفارشات تثبيت شده" FlowDirection="RightToLeft"
+                    IsChecked="{Binding IsShowAcceptedSefaresh}" />
+                <dxe:ListBoxEdit
+                    HorizontalContentAlignment="Center"
+                    ItemsSource="{Binding Sefareshat}"
+                    SelectedItem="{Binding SelectedSefareshTarikh}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand Command="{Binding OpenSefareshCommand}" EventName="PreviewMouseDoubleClick" />
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxe:ListBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <TextBlock
+                                    Name="Tarikh" Margin="5"
+                                    FontFamily="Tahoma" FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="{Binding TarikhSefaresh}"
+                                    TextDecorations="{x:Null}" />
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsEveryThingOk, Mode=OneWay}" Value="False">
+                                    <Setter TargetName="Tarikh" Property="Foreground" Value="Red" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </dxe:ListBoxEdit.ItemTemplate>
+                </dxe:ListBoxEdit>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem
+                HorizontalAlignment="Left" VerticalAlignment="Top"
+                FlowDirection="RightToLeft" Label="سال مالي :">
+                <dxe:ComboBoxEdit
+                    Width="100" IsSynchronizedWithCurrentItem="True"
+                    ItemsSource="{Binding SaleMali}"
+                    SelectedIndex="0"
+                    SelectedItem="{Binding SelectedSalMali}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutControl>
+    </Grid>
+</Window>

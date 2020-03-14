@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8E43B59-BBDF-47B4-93AA-427088051EE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PersianDateTime, Version=1.1.5082.36395, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PersianDateTime.1.1.5082.36395\lib\net40\PersianDateTime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domains\Item.cs" />
+    <Compile Include="Domains\Kala.cs" />
+    <Compile Include="Domains\Maghsad.cs" />
+    <Compile Include="Domains\Ranande.cs" />
+    <Compile Include="Domains\Ersal.cs" />
+    <Compile Include="Models\Container.cs" />
+    <Compile Include="Models\ErsalDto.cs" />
+    <Compile Include="Models\ErsalState.cs" />
+    <Compile Include="Models\ItemDto.cs" />
+    <Compile Include="Models\KalaDto.cs" />
+    <Compile Include="Models\KalaElectionDto.cs" />
+    <Compile Include="Models\KalaGozaresh.cs" />
+    <Compile Include="Models\MaghsadDto.cs" />
+    <Compile Include="Models\PalletGozaresh.cs" />
+    <Compile Include="Models\RanadeGozaresh.cs" />
+    <Compile Include="Models\RanandeDto.cs" />
+    <Compile Include="Models\SefareshatGozaresh.cs" />
+    <Compile Include="Models\Shakesh.cs" />
+    <Compile Include="Models\Tahvil.cs" />
+    <Compile Include="Models\TolidKhodro.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IBasicDataService.cs" />
+    <Compile Include="Services\IContainerService.cs" />
+    <Compile Include="Services\IErsalItemService.cs" />
+    <Compile Include="Services\IErsalService.cs" />
+    <Compile Include="Services\IGozareshService.cs" />
+    <Compile Include="Services\IReportService.cs" />
+    <Compile Include="Services\IShakhesService.cs" />
+    <Compile Include="Services\ITahvilFroshService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="services.vsdx" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,116 @@
+﻿<Window
+    x:Class="OrdersAndisheh.View.MainViewNew" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:MVVVMLightCommand="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+    xmlns:UI="clr-namespace:OrdersAndisheh.View" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ignore="http://www.ignore.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding Tarikh}"
+    DataContext="{Binding MainNew, Source={StaticResource Locator}}"
+    mc:Ignorable="d ignore">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <dxb:BarContainerControl Grid.Row="0" ContainerType="Top">
+            <dxb:MainMenuControl Caption="Main Menu" FlowDirection="RightToLeft">
+                <dxb:BarButtonItem Command="{Binding Save, Mode=OneWay}" Content="ذخیره" />
+                <dxb:BarItemSeparator />
+                <dxb:BarButtonItem Command="{Binding Accept, Mode=OneWay}" Content="تثبیت" />
+                <dxb:BarItemSeparator />
+                <dxb:BarButtonItem Command="{Binding TahvilFrosh, Mode=OneWay}" Content="تحويل فروش" />
+            </dxb:MainMenuControl>
+            <dxb:MainMenuControl
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                FlowDirection="RightToLeft">
+                <dxb:BarButtonItem Command="{Binding NewItem}" Content="آیتم جدید" />
+                <dxb:BarButtonItem Command="{Binding Maghased}" Content="مقاصد" />
+                <dxb:BarButtonItem Command="{Binding Containering}" Content="کانتین بندی" />
+                <dxb:BarButtonItem Command="{Binding Vaziat}" Content="وضعیت ارسال" />
+                <dxb:BarButtonItem Command="{Binding Verzhen}" Content="ورژن" />
+                <dxb:BarButtonItem Command="{Binding Summery}" Content="خلاصه گزارش" />
+                <dxb:BarButtonItem Command="{Binding AllReportExport}" Content="گزارش نهایی" />
+                <dxb:BarSubItem Content="گزارش تفکیکی">
+                    <dxb:BarButtonItem Command="{Binding ListErsalNahaiExport}" Content="ليست ارسال نهايي" />
+                    <dxb:BarButtonItem Command="{Binding BargeMadarekExport}" Content="برگه مدارك" />
+                    <dxb:BarButtonItem Command="{Binding PanjerehBargeExport}" Content="برگه پنجره" />
+                    <dxb:BarItemSeparator />
+                    <dxb:BarButtonItem Command="{Binding CheckListTafkikExport}" Content="چك ليست ارسال تفكيكي" />
+                    <dxb:BarButtonItem Command="{Binding KartabletafkikExport}" Content="كارتابل ارسال تفكيكي" />
+                    <dxb:BarButtonItem Command="{Binding BimeReportExport}" Content="بيمه" />
+                </dxb:BarSubItem>
+            </dxb:MainMenuControl>
+        </dxb:BarContainerControl>
+
+        <dxg:GridControl
+            Grid.Row="1" FlowDirection="RightToLeft"
+            ItemsSource="{Binding Items}"
+            SelectionMode="Row">
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn
+                    AllowEditing="True" FieldName="IsSelected"
+                    Header="انتخاب">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="ItemKalaName" Header="کالا" />
+                <dxg:GridColumn
+                    AllowEditing="True" FieldName="Tedad"
+                    Header="تعداد" />
+                <dxg:GridColumn FieldName="Karton" Header="کارتن" />
+                <dxg:GridColumn
+                    AllowEditing="True" FieldName="PalletCount"
+                    Header="پالت" />
+                <dxg:GridColumn FieldName="ItemMaghsadName" Header="مقصد" />
+                <dxg:GridColumn FieldName="Vazn" Header="وزن" />
+                <dxg:GridColumn FieldName="ItemRanandeName" Header="راننده" />
+                <dxg:GridColumn FieldName="ItemKind" Header="نوع ارسال" />
+                <dxg:GridColumn
+                    AllowEditing="True" FieldName="Des"
+                    Header="توضیحات" />
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView
+                    x:Name="tableView" AllowConditionalFormattingMenu="True"
+                    AllowEditing="False" AllowPerPixelScrolling="True"
+                    AutoWidth="True">
+                    <dxg:TableView.FormatConditions>
+                        <dxg:FormatCondition Expression="[ItemRanandeName] == ''" FieldName="ItemRanandeName">
+                            <dx:Format Background="Aquamarine" />
+                        </dxg:FormatCondition>
+                        <dxg:FormatCondition Expression="[Tedad] == 0" FieldName="Tedad">
+                            <dx:Format Background="BurlyWood" />
+                        </dxg:FormatCondition>
+                        <dxg:FormatCondition Expression="[TahvilFrosh] == null" FieldName="Tedad">
+                            <dx:Format Foreground="Red" />
+                        </dxg:FormatCondition>
+                        <dxg:FormatCondition Expression="[ItemMaghsadName] == ''" FieldName="ItemMaghsadName">
+                            <dx:Format Background="#FFF0EB95" />
+                        </dxg:FormatCondition>
+                    </dxg:TableView.FormatConditions>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+
+        <dxr:RibbonStatusBarControl
+            Name="StatusBar" Grid.Row="2"
+            IsSizeGripVisible="True">
+            <dxr:RibbonStatusBarControl.RightItems>
+                <dxb:BarStaticItem
+                    Name="statuses" AutoSizeMode="Fill"
+                    Content="{Binding Statuses}"
+                    ContentAlignment="Right" ItemMinWidth="200" />
+            </dxr:RibbonStatusBarControl.RightItems>
+        </dxr:RibbonStatusBarControl>
+
+    </Grid>
+
+</Window>
