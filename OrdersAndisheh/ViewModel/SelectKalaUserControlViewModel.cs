@@ -4,7 +4,6 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using OrdersAndisheh.Model;
 using OrdersAndisheh.View;
 using System;
 using System.Linq;
@@ -35,6 +34,10 @@ namespace OrdersAndisheh.ViewModel
         public ObservableCollection<KalaDto> SelectionItemList { get; set; }
         public KalaDto SelectionSelectedItem { get; set; }
 
+        public List<KalaDto> GetSelectedKalas()
+        {
+            return SelectionItemList.ToList();
+        }
       
         private RelayCommand _Andisheh;
         public RelayCommand Andisheh
@@ -125,6 +128,25 @@ namespace OrdersAndisheh.ViewModel
         {
             return list.ConvertAll<SelectKalaListViewRow>(p => new SelectKalaListViewRow(p));
         }
+    }
+
+    public class SelectKalaListViewRow
+    {
+        private KalaElectionDto dto;
+        public SelectKalaListViewRow(KalaElectionDto _dto)
+        {
+            this.dto = _dto;
+        }
+        public string CodeKala
+        {
+            get { return dto.Code; }
+        }
+        public string KalaName
+        {
+            get { return dto.Name; }
+        }
+
+
     }
     
 }

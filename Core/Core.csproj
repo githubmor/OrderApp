@@ -57,6 +57,7 @@
     <Compile Include="Models\Tahvil.cs" />
     <Compile Include="Models\TolidKhodro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IBaseService.cs" />
     <Compile Include="Services\IBasicDataService.cs" />
     <Compile Include="Services\IContainerService.cs" />
     <Compile Include="Services\IErsalItemService.cs" />

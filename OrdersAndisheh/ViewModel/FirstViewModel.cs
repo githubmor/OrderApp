@@ -149,7 +149,16 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-        public int SelectedSalMali { get; set; }
+        private int seleMali;
+        public int SelectedSalMali {
+            get { return seleMali; } 
+            set 
+            {
+                seleMali = value;
+                ersal_service.ChangeDatabase(value);
+                RaisePropertyChanged("SelectedSalMali");
+            } 
+        }
 
         private static string getTarikhDiffToday(int diff)
         {

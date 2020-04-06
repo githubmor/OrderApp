@@ -15,6 +15,7 @@ namespace Core.Models
         public Vaziat ItemKind { get; set; }
         public string Des { get; set; }
         public int TahvilFrosh { get; set; }
+        public int Id { get; set; }
     }
 
     public class dbItemDto

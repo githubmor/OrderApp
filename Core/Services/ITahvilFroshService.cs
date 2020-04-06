@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface ITahvilFroshService
+    public interface ITahvilFroshService : IBaseService
     {
         List<Tahvil> ReadTahvilDataFromFile(string address);
 

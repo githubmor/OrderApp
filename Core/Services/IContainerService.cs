@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IContainerService
+    public interface IContainerService : IBaseService
     {
         List<Container> getBasicContainering(List<ItemDto> items);
 

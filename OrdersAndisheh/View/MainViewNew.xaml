@@ -81,7 +81,7 @@
                 <dxg:TableView
                     x:Name="tableView" AllowConditionalFormattingMenu="True"
                     AllowEditing="False" AllowPerPixelScrolling="True"
-                    AutoWidth="True">
+                    AutoWidth="True" ShowGroupPanel="False">
                     <dxg:TableView.FormatConditions>
                         <dxg:FormatCondition Expression="[ItemRanandeName] == ''" FieldName="ItemRanandeName">
                             <dx:Format Background="Aquamarine" />

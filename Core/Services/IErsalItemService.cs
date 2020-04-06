@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IErsalItemService
+    public interface IErsalItemService : IBaseService
     {
         bool AddOrUpdateErsalItems(string tarikh, List<ItemDto> newItems);
 
@@ -11,5 +11,6 @@ namespace Core.Services
 
         List<KalaElectionDto> GetKalasList();
 
+        List<MaghsadDto> GetMaghasedList();
     }
 }

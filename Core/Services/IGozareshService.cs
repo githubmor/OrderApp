@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IGozareshService
+    public interface IGozareshService : IBaseService
     {
         List<PalletGozaresh> GetPalletGozaresh(int az_tarikh, int ta_tarikh);
 

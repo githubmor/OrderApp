@@ -3,10 +3,11 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using OrdersAndisheh.Model;
 using OrdersAndisheh.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace OrdersAndisheh.ViewModel
@@ -26,13 +27,16 @@ namespace OrdersAndisheh.ViewModel
         {
             service = _service;
             itemService = _itemService;
-            mainViewModeldataGridRow.OnItemChenged = () => needToSave = true;
+            mainViewModeldataGridRow.OnItemChenged = () => needToSave = true ;
             Messenger.Default.Register<string>(this, "Open", OpenErsal);
-            Items = new List<mainViewModeldataGridRow>();
+            Messenger.Default.Register<List<ItemDto>>(this, "newItems", AddNewAndEditedItemsToSefaresh);
+            Items = new ObservableCollection<mainViewModeldataGridRow>();
 
             //For test Ui as messanger call
-            //OpenErsal("1398/11/28");
+            OpenErsal("1398/11/28");
         }
+
+        
 
         #region Property
 
@@ -41,13 +45,26 @@ namespace OrdersAndisheh.ViewModel
             get { return ersal != null ? ersal.Tarikh : ""; }
         }
 
-        public List<mainViewModeldataGridRow> Items { get; set; }
+        public ObservableCollection<mainViewModeldataGridRow> Items { get; set; }
         public string Statuses { get; set; }
 
         #endregion Property
 
         #region Methods
-
+        private void AddNewAndEditedItemsToSefaresh(List<ItemDto> itemsComebackFromEditing)
+        {
+            var newAddedItem = itemsComebackFromEditing.Where(p => p.Id == 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            newAddedItem.ForEach(p => Items.Add(p));
+            var editedItem = itemsComebackFromEditing.Where(p => p.Id > 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            Items.ToList().ForEach(p=>
+            {
+                if (editedItem.Any(t=>t.dto.Id==p.dto.Id))
+                {
+                    Items.Remove(p);
+                }
+            });
+            editedItem.ForEach(p => Items.Add(p));
+        }
         private void OpenErsal(string tarikh)
         {
             ersal = service.GetErsal(tarikh);
@@ -66,8 +83,8 @@ namespace OrdersAndisheh.ViewModel
 
         private void LoadItems(string tarikh)
         {
-            Items = itemService.GetItems(tarikh)
-                .ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            Items = new ObservableCollection<mainViewModeldataGridRow>(itemService.GetItems(tarikh)
+                .ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p)));
             RaisePropertyChanged("Items");
         }
 
@@ -164,7 +181,6 @@ namespace OrdersAndisheh.ViewModel
                     {
                         var op = new NewItemView();
                         op.ShowDialog();
-                        LoadItems(Tarikh);
                     }
                     ));
             }
@@ -179,9 +195,10 @@ namespace OrdersAndisheh.ViewModel
                 return _Maghased ?? (_Maghased = new RelayCommand(
                     () =>
                     {
-                        var items = getSelectedItem();
-                        //throw new NotImplementedException();
-                        LoadItems(Tarikh);
+                        var op = new NewItemView();
+                        Messenger.Default.Send<List<ItemDto>>(Items.Where(p=>p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
+                            , "SendItemsFromMain");
+                        op.ShowDialog();
                     }
                     ));
             }
@@ -1538,5 +1555,103 @@ namespace OrdersAndisheh.ViewModel
         //}
 
         //#endregion Command
+    }
+
+    //به خاطر اين  مستقيم از ديتياو استفاده نكرديم كه بتوانيم چيزي روي جدول ميخواهيم رو نشون بديم
+    public class mainViewModeldataGridRow : INotifyPropertyChanged
+    {
+        public mainViewModeldataGridRow(ItemDto _dto)
+        {
+            dto = _dto;
+        }
+        public bool IsSelected
+        {
+            get { return dto.IsSelected; }
+            set
+            {
+                dto.IsSelected = value;
+                NotifyPropertyChanged("IsSelected");
+            }
+        }
+        public string ItemKalaName
+        {
+            get { return dto.ItemKala.Name; }
+        }
+        public int Tedad
+        {
+            get { return dto.Tedad; }
+            set
+            {
+                dto.Tedad = value;
+                NotifyPropertyChanged("Tedad");
+                OnItemChenged.Invoke();
+            }
+        }
+        public int Karton
+        {
+            get { return dto.Karton; }
+        }
+        public int PalletCount
+        {
+            get { return dto.PalletCount; }
+            set
+            {
+                dto.PalletCount = value;
+                NotifyPropertyChanged("PalletCount");
+                OnItemChenged.Invoke();
+            }
+        }
+        public string ItemMaghsadName
+        {
+            get { return dto.ItemMaghsad != null ? dto.ItemMaghsad.Name : ""; }
+        }
+        public int Vazn
+        {
+            get { return dto.Vazn; }
+        }
+        public string ItemRanandeName
+        {
+            get { return dto.ItemRanande != null ? dto.ItemRanande.Name : ""; }
+        }
+        public string ItemKind
+        {
+            get { return dto.ItemKind.ToString(); }
+        }
+        public string Des
+        {
+            get { return dto.Des; }
+            set
+            {
+                dto.Des = value;
+                NotifyPropertyChanged("Des");
+                OnItemChenged.Invoke();
+            }
+        }
+        public int TahvilFrosh
+        {
+            get { return dto.TahvilFrosh; }
+        }
+        public bool IsAllOKForAccept()
+        {
+            return
+                !string.IsNullOrEmpty(ItemMaghsadName) &
+                !string.IsNullOrEmpty(ItemRanandeName) &
+                Tedad > 0 & PalletCount > 0 & TahvilFrosh > 0;
+        }
+        public ItemDto dto { get; set; }
+
+        public static Action OnItemChenged;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
+
+
+
     }
 }

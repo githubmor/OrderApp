@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IErsalService
+    public interface IErsalService : IBaseService
     {
         ErsalDto SaveNewErsal(string tarikh);
 
