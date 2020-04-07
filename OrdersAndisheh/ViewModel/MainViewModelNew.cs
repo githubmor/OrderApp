@@ -27,7 +27,7 @@ namespace OrdersAndisheh.ViewModel
         {
             service = _service;
             itemService = _itemService;
-            mainViewModeldataGridRow.OnItemChenged = () => needToSave = true ;
+            mainViewModeldataGridRow.OnItemChenged = () => needToSave = true;
             Messenger.Default.Register<string>(this, "Open", OpenErsal);
             Messenger.Default.Register<List<ItemDto>>(this, "newItems", AddNewAndEditedItemsToSefaresh);
             Items = new ObservableCollection<mainViewModeldataGridRow>();
@@ -35,8 +35,6 @@ namespace OrdersAndisheh.ViewModel
             //For test Ui as messanger call
             OpenErsal("1398/11/28");
         }
-
-        
 
         #region Property
 
@@ -51,20 +49,15 @@ namespace OrdersAndisheh.ViewModel
         #endregion Property
 
         #region Methods
+
         private void AddNewAndEditedItemsToSefaresh(List<ItemDto> itemsComebackFromEditing)
         {
             var newAddedItem = itemsComebackFromEditing.Where(p => p.Id == 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
             newAddedItem.ForEach(p => Items.Add(p));
             var editedItem = itemsComebackFromEditing.Where(p => p.Id > 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
-            Items.ToList().ForEach(p=>
-            {
-                if (editedItem.Any(t=>t.dto.Id==p.dto.Id))
-                {
-                    Items.Remove(p);
-                }
-            });
-            editedItem.ForEach(p => Items.Add(p));
+            editedItem.ForEach(edited => Items.ReplaceItem(item => item.dto == edited.dto, edited));
         }
+
         private void OpenErsal(string tarikh)
         {
             ersal = service.GetErsal(tarikh);
@@ -90,9 +83,9 @@ namespace OrdersAndisheh.ViewModel
 
         private List<ItemDto> getSelectedItem()
         {
-            if (Items.Any(p=>p.IsSelected))
+            if (Items.Any(p => p.IsSelected))
             {
-                return Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(o=>o.dto);
+                return Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(o => o.dto);
             }
             else
             {
@@ -114,9 +107,9 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         ersal = service.SaveNewErsal(ersal.Tarikh);
-                        if (ersal!=null)
+                        if (ersal != null)
                         {
-                            var res = itemService.AddOrUpdateErsalItems(ersal.Tarikh, Items.ToList().ConvertAll<ItemDto>(p=>p.dto));
+                            var res = itemService.AddOrUpdateErsalItems(ersal.Tarikh, Items.ToList().ConvertAll<ItemDto>(p => p.dto));
                             if (res)
                             {
                                 Statuses = "سفارش ذخيره شد";
@@ -146,8 +139,8 @@ namespace OrdersAndisheh.ViewModel
                     },
                     () =>
                     {
-                        return Items.Count>0 && Items.All(p=>p.IsAllOKForAccept()) & !needToSave & 
-                            (ersal!=null?!ersal.IsAccepted:false);
+                        return Items.Count > 0 && Items.All(p => p.IsAllOKForAccept()) & !needToSave &
+                            (ersal != null ? !ersal.IsAccepted : false);
                     }
                     ));
             }
@@ -168,7 +161,6 @@ namespace OrdersAndisheh.ViewModel
                     ));
             }
         }
-       
 
         private RelayCommand _NewItem;
 
@@ -195,11 +187,13 @@ namespace OrdersAndisheh.ViewModel
                 return _Maghased ?? (_Maghased = new RelayCommand(
                     () =>
                     {
+#warning وقتي روي ستون انتخاب كليك ميشود بايد روي رديف ديگر كليك كند تا همه را بتواند انتقال دهد
+                        //يعني بايد كاري كنيم كه وقتي چك باكس را كليك كرد انتخاب شود
                         var op = new NewItemView();
-                        Messenger.Default.Send<List<ItemDto>>(Items.Where(p=>p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
+                        Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
                             , "SendItemsFromMain");
                         op.ShowDialog();
-                    }
+                    }, () => { return Items.Any(p => p.IsSelected); }
                     ));
             }
         }
@@ -355,28 +349,7 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-
         #endregion Command
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //public MainViewModelNew(IErsalService _service,IErsalItemService _itemService)
         //{
@@ -1557,6 +1530,16 @@ namespace OrdersAndisheh.ViewModel
         //#endregion Command
     }
 
+    public static class Extension
+    {
+        public static void ReplaceItem<T>(this ObservableCollection<T> col, Func<T, bool> match, T newItem)
+        {
+            var oldItem = col.FirstOrDefault(i => match(i));
+            var oldIndex = col.IndexOf(oldItem);
+            col[oldIndex] = newItem;
+        }
+    }
+
     //به خاطر اين  مستقيم از ديتياو استفاده نكرديم كه بتوانيم چيزي روي جدول ميخواهيم رو نشون بديم
     public class mainViewModeldataGridRow : INotifyPropertyChanged
     {
@@ -1564,6 +1547,7 @@ namespace OrdersAndisheh.ViewModel
         {
             dto = _dto;
         }
+
         public bool IsSelected
         {
             get { return dto.IsSelected; }
@@ -1573,10 +1557,12 @@ namespace OrdersAndisheh.ViewModel
                 NotifyPropertyChanged("IsSelected");
             }
         }
+
         public string ItemKalaName
         {
             get { return dto.ItemKala.Name; }
         }
+
         public int Tedad
         {
             get { return dto.Tedad; }
@@ -1587,10 +1573,12 @@ namespace OrdersAndisheh.ViewModel
                 OnItemChenged.Invoke();
             }
         }
+
         public int Karton
         {
             get { return dto.Karton; }
         }
+
         public int PalletCount
         {
             get { return dto.PalletCount; }
@@ -1601,22 +1589,27 @@ namespace OrdersAndisheh.ViewModel
                 OnItemChenged.Invoke();
             }
         }
+
         public string ItemMaghsadName
         {
             get { return dto.ItemMaghsad != null ? dto.ItemMaghsad.Name : ""; }
         }
+
         public int Vazn
         {
             get { return dto.Vazn; }
         }
+
         public string ItemRanandeName
         {
             get { return dto.ItemRanande != null ? dto.ItemRanande.Name : ""; }
         }
+
         public string ItemKind
         {
             get { return dto.ItemKind.ToString(); }
         }
+
         public string Des
         {
             get { return dto.Des; }
@@ -1627,10 +1620,12 @@ namespace OrdersAndisheh.ViewModel
                 OnItemChenged.Invoke();
             }
         }
+
         public int TahvilFrosh
         {
             get { return dto.TahvilFrosh; }
         }
+
         public bool IsAllOKForAccept()
         {
             return
@@ -1638,11 +1633,13 @@ namespace OrdersAndisheh.ViewModel
                 !string.IsNullOrEmpty(ItemRanandeName) &
                 Tedad > 0 & PalletCount > 0 & TahvilFrosh > 0;
         }
+
         public ItemDto dto { get; set; }
 
         public static Action OnItemChenged;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -1650,8 +1647,5 @@ namespace OrdersAndisheh.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
-
-
     }
 }

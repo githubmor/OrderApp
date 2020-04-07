@@ -3,11 +3,7 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace OrdersAndisheh.ViewModel
@@ -16,6 +12,7 @@ namespace OrdersAndisheh.ViewModel
     {
         private IErsalItemService service;
         private List<ItemDto> Items;
+
         public NewItemViewModel(IErsalItemService _service)
         {
             service = _service;
@@ -31,8 +28,10 @@ namespace OrdersAndisheh.ViewModel
             vaziat = true;
             stateManager();
         }
+
         private bool vaziat;
-        //false = new Item , true = Edit maghsad 
+
+        //false = new Item , true = Edit maghsad
         private void stateManager()
         {
             if (vaziat)
@@ -44,9 +43,9 @@ namespace OrdersAndisheh.ViewModel
                     Items.AddRange(newItems.ConvertAll<ItemDto>(p => new ItemDto() { ItemKala = p }));
                 }
                 SelectedViewModel = new MaghsadItemUserControlViewModel(service);
-                Messenger.Default.Send<List<TedadItemRow>>(Items.ConvertAll<TedadItemRow>(p => new TedadItemRow(p))
-                    , "GetKala");
-            }else
+                Messenger.Default.Send<List<ItemDto>>(Items, "GetKala");
+            }
+            else
             {
                 SelectedViewModel = new SelectKalaUserControlViewModel(service);
             }
@@ -57,12 +56,11 @@ namespace OrdersAndisheh.ViewModel
         public object SelectedViewModel
         {
             get { return selectedViewModel; }
-            set 
-            { 
-                selectedViewModel = value; 
+            set
+            {
+                selectedViewModel = value;
                 RaisePropertyChanged("SelectedViewModel");
             }
-
         }
 
         private RelayCommand _Next;
@@ -76,10 +74,13 @@ namespace OrdersAndisheh.ViewModel
                     {
                         vaziat = true;
                         stateManager();
-                    }, () => { 
-                        return !vaziat; }));
+                    }, () =>
+                    {
+                        return !vaziat;
+                    }));
             }
         }
+
         private RelayCommand _Back;
 
         public RelayCommand Back
@@ -94,6 +95,7 @@ namespace OrdersAndisheh.ViewModel
                     }, () => { return vaziat; }));
             }
         }
+
         private RelayCommand<Window> _AddToSefaresh;
 
         public RelayCommand<Window> AddToSefaresh
@@ -111,6 +113,5 @@ namespace OrdersAndisheh.ViewModel
                     }, (Window window) => { return vaziat; }));
             }
         }
-        
     }
 }
