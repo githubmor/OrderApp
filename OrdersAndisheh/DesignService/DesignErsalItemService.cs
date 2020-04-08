@@ -56,7 +56,7 @@ namespace OrdersAndisheh.DesignService
         }
 
 
-        public List<KalaElectionDto> GetKalasList()
+        public List<KalaElectionDto> GetKalasListSortByMostAndLastErsal()
         {
             return new List<KalaElectionDto>()
             {
@@ -71,8 +71,7 @@ namespace OrdersAndisheh.DesignService
             throw new NotImplementedException();
         }
 
-
-        public List<MaghsadDto> GetMaghasedList()
+        public List<MaghsadDto> GetMaghasedListByKalaList(List<ItemDto> items)
         {
             return new List<MaghsadDto>()
             {

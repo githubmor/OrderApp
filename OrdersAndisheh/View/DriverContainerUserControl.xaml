@@ -1,20 +1,18 @@
 ﻿<UserControl
-            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
-            xmlns:l="clr-namespace:OrdersAndisheh.View"
-            xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
-            x:Class="OrdersAndisheh.View.DriverContainerUserControl" 
-             mc:Ignorable="d" Background="#FFF1F1F1" >
+    x:Class="OrdersAndisheh.View.DriverContainerUserControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:l="clr-namespace:OrdersAndisheh.View" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="#FFF1F1F1" mc:Ignorable="d">
     <UserControl.Resources>
         <l:ColorValueConvertor x:Key="converter" />
         <l:ZeroVisibleConvertor x:Key="converter2" />
     </UserControl.Resources>
     <Grid>
-        <StackPanel FlowDirection="RightToLeft" Orientation="Vertical" >
-            <Label VerticalContentAlignment="Center" VerticalAlignment="Top" x:Name="myLabel">
+        <StackPanel FlowDirection="RightToLeft" Orientation="Vertical">
+            <Label
+                x:Name="myLabel" VerticalAlignment="Top"
+                VerticalContentAlignment="Center">
                 <Label.Content>
                     <TextBlock>
                         <TextBlock.Text>
@@ -34,17 +32,28 @@
                     {0} راننده
                 </Label.ContentStringFormat>
             </Label>-->
-            <ListView Margin="5"  Name="DriverListBox" MinHeight="120" ItemsSource="{Binding Mahmole ,UpdateSourceTrigger=PropertyChanged }"   FlowDirection="RightToLeft">
+            <ListView
+                Name="DriverListBox" MinHeight="120"
+                Margin="5" FlowDirection="RightToLeft"
+                ItemsSource="{Binding Mahmole, UpdateSourceTrigger=PropertyChanged}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="نام کالا" Width="Auto" DisplayMemberBinding="{Binding Kala}" />
-                        <GridViewColumn Header="وزن" Width="Auto" DisplayMemberBinding="{Binding Vazn}" />
-                        <GridViewColumn Header="تعداد پالت"  DisplayMemberBinding="{Binding Pallet}" />
+                        <GridViewColumn
+                            Width="Auto"
+                            DisplayMemberBinding="{Binding Kala}"
+                            Header="نام کالا" />
+                        <GridViewColumn
+                            Width="Auto"
+                            DisplayMemberBinding="{Binding Vazn}"
+                            Header="وزن" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Pallet}" Header="تعداد پالت" />
                     </GridView>
                 </ListView.View>
             </ListView>
 
-            <Label VerticalContentAlignment="Center" VerticalAlignment="Top" x:Name="asa">
+            <Label
+                x:Name="asa" VerticalAlignment="Top"
+                VerticalContentAlignment="Center">
                 <Label.Content>
                     <TextBlock>
                         <TextBlock.Text>
@@ -90,8 +99,11 @@
                     {0} جایگاه
                 </Label.ContentStringFormat>
             </Label>-->
-            
-            <ComboBox ItemsSource="{Binding Drivers}" DisplayMemberPath="Name"  SelectedItem="{Binding SelectedDriver,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+
+            <ComboBox
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding Drivers}"
+                SelectedItem="{Binding SelectedDriver, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
         </StackPanel>
 
     </Grid>

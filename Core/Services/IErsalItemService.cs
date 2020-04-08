@@ -9,8 +9,8 @@ namespace Core.Services
 
         List<ItemDto> GetItems(string tarikh);
 
-        List<KalaElectionDto> GetKalasList();
+        List<KalaElectionDto> GetKalasListSortByMostAndLastErsal();
 
-        List<MaghsadDto> GetMaghasedList();
+        List<MaghsadDto> GetMaghasedListByKalaList(List<ItemDto> items);
     }
 }

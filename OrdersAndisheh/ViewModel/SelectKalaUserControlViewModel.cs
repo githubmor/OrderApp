@@ -16,7 +16,7 @@ namespace OrdersAndisheh.ViewModel
         public SelectKalaUserControlViewModel(IErsalItemService _service)
         {
             service = _service;
-            kalaha = service.GetKalasList();
+            kalaha = service.GetKalasListSortByMostAndLastErsal();
             AllKalaList = kalaha.ConvertToSelectKalaListViewRow();
             RaisePropertyChanged("ItemsList");
             Selection_KalaList = new ObservableCollection<KalaDto>();

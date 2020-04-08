@@ -17,20 +17,19 @@ namespace OrdersAndisheh.ViewModel
         public MaghsadItemUserControlViewModel(IErsalItemService _service)
         {
             KalaList = new List<TedadItemRow>();
-
             service = _service;
-
             Messenger.Default.Register<List<ItemDto>>(this, "GetKala", GetKala);
         }
 
         private void GetKala(List<ItemDto> kalas)
         {
             KalaList = kalas.ConvertAll<TedadItemRow>(p => new TedadItemRow(p));
+            Maghased = service.GetMaghasedListByKalaList(kalas);
         }
 
         public List<TedadItemRow> KalaList { get; set; }
 
-        public List<MaghsadDto> Maghased { get { return service.GetMaghasedList(); } }
+        public List<MaghsadDto> Maghased { get; set; }
         public MaghsadDto SelectionMaghsad { get; set; }
 
         private RelayCommand _NewMaghsad;
