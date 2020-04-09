@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IShakhesService
+    public interface IShakhesService : IBaseService
     {
         void SetTolidKhodro(List<TolidKhodro> tolids);
 

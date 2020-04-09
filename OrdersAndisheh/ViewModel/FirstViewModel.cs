@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using OrdersAndisheh.View;
 using System;
 using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Reflection;
@@ -132,9 +132,9 @@ namespace OrdersAndisheh.ViewModel
                 RaisePropertyChanged("Sefareshat");
             }
         }
-        public List<ErsalState> Sefareshat
+        public ObservableCollection<ErsalState> Sefareshat
         {
-            get { return ersal_service.GetErsalStates(isShowAcceptedSefaresh); }
+            get { return new ObservableCollection<ErsalState>(ersal_service.GetErsalStates(isShowAcceptedSefaresh)); }
         }
 
         public ErsalState SelectedSefareshTarikh { get; set; }
@@ -149,7 +149,16 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-        public int SelectedSalMali { get; set; }
+        private int seleMali;
+        public int SelectedSalMali {
+            get { return seleMali; } 
+            set 
+            {
+                seleMali = value;
+                ersal_service.ChangeDatabase(value);
+                RaisePropertyChanged("SelectedSalMali");
+            } 
+        }
 
         private static string getTarikhDiffToday(int diff)
         {

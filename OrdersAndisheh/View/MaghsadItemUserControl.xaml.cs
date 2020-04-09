@@ -1,6 +1,4 @@
-﻿using DevExpress.Mvvm;
-using OrdersAndisheh.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace OrdersAndisheh.View
 {
     /// <summary>
-    /// Interaction logic for NewItemView.xaml
+    /// Interaction logic for NewItemUserControl.xaml
     /// </summary>
-    public partial class NewItemView : Window
+    public partial class MaghsadItemUserControl : UserControl
     {
-        public NewItemView()
+        public MaghsadItemUserControl()
         {
             InitializeComponent();
         }
+
         
     }
 }

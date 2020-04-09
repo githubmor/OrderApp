@@ -3,10 +3,11 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using OrdersAndisheh.Model;
 using OrdersAndisheh.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace OrdersAndisheh.ViewModel
@@ -28,10 +29,11 @@ namespace OrdersAndisheh.ViewModel
             itemService = _itemService;
             mainViewModeldataGridRow.OnItemChenged = () => needToSave = true;
             Messenger.Default.Register<string>(this, "Open", OpenErsal);
-            Items = new List<mainViewModeldataGridRow>();
+            Messenger.Default.Register<List<ItemDto>>(this, "newItems", AddNewAndEditedItemsToSefaresh);
+            Items = new ObservableCollection<mainViewModeldataGridRow>();
 
             //For test Ui as messanger call
-            //OpenErsal("1398/11/28");
+            OpenErsal("1398/11/28");
         }
 
         #region Property
@@ -41,12 +43,20 @@ namespace OrdersAndisheh.ViewModel
             get { return ersal != null ? ersal.Tarikh : ""; }
         }
 
-        public List<mainViewModeldataGridRow> Items { get; set; }
+        public ObservableCollection<mainViewModeldataGridRow> Items { get; set; }
         public string Statuses { get; set; }
 
         #endregion Property
 
         #region Methods
+
+        private void AddNewAndEditedItemsToSefaresh(List<ItemDto> itemsComebackFromEditing)
+        {
+            var newAddedItem = itemsComebackFromEditing.Where(p => p.Id == 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            newAddedItem.ForEach(p => Items.Add(p));
+            var editedItem = itemsComebackFromEditing.Where(p => p.Id > 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            editedItem.ForEach(edited => Items.ReplaceItem(item => item.dto == edited.dto, edited));
+        }
 
         private void OpenErsal(string tarikh)
         {
@@ -66,16 +76,16 @@ namespace OrdersAndisheh.ViewModel
 
         private void LoadItems(string tarikh)
         {
-            Items = itemService.GetItems(tarikh)
-                .ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
+            Items = new ObservableCollection<mainViewModeldataGridRow>(itemService.GetItems(tarikh)
+                .ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p)));
             RaisePropertyChanged("Items");
         }
 
         private List<ItemDto> getSelectedItem()
         {
-            if (Items.Any(p=>p.IsSelected))
+            if (Items.Any(p => p.IsSelected))
             {
-                return Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(o=>o.dto);
+                return Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(o => o.dto);
             }
             else
             {
@@ -97,9 +107,9 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         ersal = service.SaveNewErsal(ersal.Tarikh);
-                        if (ersal!=null)
+                        if (ersal != null)
                         {
-                            var res = itemService.AddOrUpdateErsalItems(ersal.Tarikh, Items.ToList().ConvertAll<ItemDto>(p=>p.dto));
+                            var res = itemService.AddOrUpdateErsalItems(ersal.Tarikh, Items.ToList().ConvertAll<ItemDto>(p => p.dto));
                             if (res)
                             {
                                 Statuses = "سفارش ذخيره شد";
@@ -129,8 +139,8 @@ namespace OrdersAndisheh.ViewModel
                     },
                     () =>
                     {
-                        return Items.Count>0 && Items.All(p=>p.IsAllOKForAccept()) & !needToSave & 
-                            (ersal!=null?!ersal.IsAccepted:false);
+                        return Items.Count > 0 && Items.All(p => p.IsAllOKForAccept()) & !needToSave &
+                            (ersal != null ? !ersal.IsAccepted : false);
                     }
                     ));
             }
@@ -151,7 +161,6 @@ namespace OrdersAndisheh.ViewModel
                     ));
             }
         }
-       
 
         private RelayCommand _NewItem;
 
@@ -164,7 +173,6 @@ namespace OrdersAndisheh.ViewModel
                     {
                         var op = new NewItemView();
                         op.ShowDialog();
-                        LoadItems(Tarikh);
                     }
                     ));
             }
@@ -179,10 +187,13 @@ namespace OrdersAndisheh.ViewModel
                 return _Maghased ?? (_Maghased = new RelayCommand(
                     () =>
                     {
-                        var items = getSelectedItem();
-                        //throw new NotImplementedException();
-                        LoadItems(Tarikh);
-                    }
+#warning وقتي روي ستون انتخاب كليك ميشود بايد روي رديف ديگر كليك كند تا همه را بتواند انتقال دهد
+                        //يعني بايد كاري كنيم كه وقتي چك باكس را كليك كرد انتخاب شود
+                        var op = new NewItemView();
+                        Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
+                            , "SendItemsFromMain");
+                        op.ShowDialog();
+                    }, () => { return Items.Any(p => p.IsSelected); }
                     ));
             }
         }
@@ -338,28 +349,7 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-
         #endregion Command
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //public MainViewModelNew(IErsalService _service,IErsalItemService _itemService)
         //{
@@ -1538,5 +1528,124 @@ namespace OrdersAndisheh.ViewModel
         //}
 
         //#endregion Command
+    }
+
+    public static class Extension
+    {
+        public static void ReplaceItem<T>(this ObservableCollection<T> col, Func<T, bool> match, T newItem)
+        {
+            var oldItem = col.FirstOrDefault(i => match(i));
+            var oldIndex = col.IndexOf(oldItem);
+            col[oldIndex] = newItem;
+        }
+    }
+
+    //به خاطر اين  مستقيم از ديتياو استفاده نكرديم كه بتوانيم چيزي روي جدول ميخواهيم رو نشون بديم
+    public class mainViewModeldataGridRow : INotifyPropertyChanged
+    {
+        public mainViewModeldataGridRow(ItemDto _dto)
+        {
+            dto = _dto;
+        }
+
+        public bool IsSelected
+        {
+            get { return dto.IsSelected; }
+            set
+            {
+                dto.IsSelected = value;
+                NotifyPropertyChanged("IsSelected");
+            }
+        }
+
+        public string ItemKalaName
+        {
+            get { return dto.ItemKala.Name; }
+        }
+
+        public int Tedad
+        {
+            get { return dto.Tedad; }
+            set
+            {
+                dto.Tedad = value;
+                NotifyPropertyChanged("Tedad");
+                OnItemChenged.Invoke();
+            }
+        }
+
+        public int Karton
+        {
+            get { return dto.Karton; }
+        }
+
+        public int PalletCount
+        {
+            get { return dto.PalletCount; }
+            set
+            {
+                dto.PalletCount = value;
+                NotifyPropertyChanged("PalletCount");
+                OnItemChenged.Invoke();
+            }
+        }
+
+        public string ItemMaghsadName
+        {
+            get { return dto.ItemMaghsad != null ? dto.ItemMaghsad.Name : ""; }
+        }
+
+        public int Vazn
+        {
+            get { return dto.Vazn; }
+        }
+
+        public string ItemRanandeName
+        {
+            get { return dto.ItemRanande != null ? dto.ItemRanande.Name : ""; }
+        }
+
+        public string ItemKind
+        {
+            get { return dto.ItemKind.ToString(); }
+        }
+
+        public string Des
+        {
+            get { return dto.Des; }
+            set
+            {
+                dto.Des = value;
+                NotifyPropertyChanged("Des");
+                OnItemChenged.Invoke();
+            }
+        }
+
+        public int TahvilFrosh
+        {
+            get { return dto.TahvilFrosh; }
+        }
+
+        public bool IsAllOKForAccept()
+        {
+            return
+                !string.IsNullOrEmpty(ItemMaghsadName) &
+                !string.IsNullOrEmpty(ItemRanandeName) &
+                Tedad > 0 & PalletCount > 0 & TahvilFrosh > 0;
+        }
+
+        public ItemDto dto { get; set; }
+
+        public static Action OnItemChenged;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
     }
 }

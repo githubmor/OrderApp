@@ -10,6 +10,7 @@ namespace OrdersAndisheh.DesignService
 {
     public class DesignErsalService : IErsalService
     {
+        
         public bool DeleteErsal(string tarikh)
         {
             throw new NotImplementedException();
@@ -56,6 +57,11 @@ namespace OrdersAndisheh.DesignService
             return new ErsalDto() { Tarikh = tarikh };
         }
 
-        
+        private int year;
+
+        public void ChangeDatabase(int _year)
+        {
+            year = _year;
+        }
     }
 }

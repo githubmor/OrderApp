@@ -21,6 +21,7 @@ namespace OrdersAndisheh.DesignService
                 { 
                     new ItemDto() 
                     { 
+                        Id = 1,
                         ItemKala = new KalaDto(){Name = "111"}, 
                         ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
                         ItemRanande = new RanandeDto(){Name = "قريشي"},
@@ -30,6 +31,7 @@ namespace OrdersAndisheh.DesignService
                     },
                     new ItemDto() 
                     { 
+                        Id = 2,
                         ItemKala = new KalaDto(){Name = "121"}, 
                         ItemRanande = new RanandeDto(){Name = "قريشي"},
                         ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
@@ -40,6 +42,7 @@ namespace OrdersAndisheh.DesignService
                     },
                     new ItemDto() 
                     { 
+                        Id = 3,
                         ItemKala = new KalaDto(){Name = "111"}, 
                         ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
                         ItemRanande = new RanandeDto(){Name = "قريشي"},
@@ -53,13 +56,29 @@ namespace OrdersAndisheh.DesignService
         }
 
 
-        public List<KalaElectionDto> GetKalasList()
+        public List<KalaElectionDto> GetKalasListSortByMostAndLastErsal()
         {
             return new List<KalaElectionDto>()
             {
                 new KalaElectionDto(){Code = "15001020",Name="AAAAA",Moshtari=Moshtari.Sapco,Sherkat=Sherkat.Andisheh},
                 new KalaElectionDto(){Code = "15001068",Name="BBBBB",Moshtari=Moshtari.Sazehgostar,Sherkat=Sherkat.Andisheh},
                 new KalaElectionDto(){Code = "14500001",Name="CCCCC",Moshtari=Moshtari.Sazehgostar,Sherkat=Sherkat.Imen}
+            };
+        }
+
+        public void ChangeDatabase(int year)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MaghsadDto> GetMaghasedListByKalaList(List<ItemDto> items)
+        {
+            return new List<MaghsadDto>()
+            {
+                new MaghsadDto(){Name="kashan"},
+                new MaghsadDto(){Name="saipa"},
+                new MaghsadDto(){Name="pars"},
+                new MaghsadDto(){Name="babol"}
             };
         }
     }

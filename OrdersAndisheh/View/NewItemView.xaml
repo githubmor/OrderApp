@@ -1,24 +1,44 @@
 ﻿<Window
     x:Class="OrdersAndisheh.View.NewItemView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ViewModels="clr-namespace:OrdersAndisheh.ViewModel"
-    xmlns:Views="clr-namespace:OrdersAndisheh.View" Title="NewItemView"
-    Width="700" Height="300"
+    xmlns:Views="clr-namespace:OrdersAndisheh.View" x:Name="NewItemViews"
+    Title="NewItemView"
     DataContext="{Binding NewItem, Source={StaticResource Locator}}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type ViewModels:SelectKalaUserControlViewModel}">
             <Views:SelectionItemUserControl />
         </DataTemplate>
-        <!--<DataTemplate DataType="{x:Type local:DepartmentViewModel}">
-            <local:DepartmentView/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type ViewModels:MaghsadItemUserControlViewModel}">
+            <Views:MaghsadItemUserControl />
+        </DataTemplate>
     </Window.Resources>
-    <DockPanel LastChildFill="True">
-        <Button
-            Command="{Binding Next}"
-            Content="Next" DockPanel.Dock="Left" />
-        <Button
-            Command="{Binding Back}"
-            Content="back" DockPanel.Dock="Right" />
-        <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" />
-    </DockPanel>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="1" Margin="10"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                MinWidth="100" Margin="5"
+                Command="{Binding AddToSefaresh}"
+                CommandParameter="{Binding ElementName=NewItemViews}"
+                Content="AddToSefaresh" />
+            <Button
+                MinWidth="100" Margin="5"
+                Command="{Binding Next}"
+                Content="Next" />
+            <Button
+                MinWidth="100" Margin="5"
+                Command="{Binding Back}"
+                Content="Back" />
+        </StackPanel>
+
+        <ContentControl
+            x:Name="Pages" Grid.Row="0"
+            Content="{Binding SelectedViewModel}" />
+    </Grid>
 </Window>

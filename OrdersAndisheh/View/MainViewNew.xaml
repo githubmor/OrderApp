@@ -76,27 +76,13 @@
                 <dxg:GridColumn
                     AllowEditing="True" FieldName="Des"
                     Header="توضیحات" />
+
             </dxg:GridControl.Columns>
             <dxg:GridControl.View>
                 <dxg:TableView
-                    x:Name="tableView" AllowConditionalFormattingMenu="True"
-                    AllowEditing="False" AllowPerPixelScrolling="True"
-                    AutoWidth="True">
-                    <dxg:TableView.FormatConditions>
-                        <dxg:FormatCondition Expression="[ItemRanandeName] == ''" FieldName="ItemRanandeName">
-                            <dx:Format Background="Aquamarine" />
-                        </dxg:FormatCondition>
-                        <dxg:FormatCondition Expression="[Tedad] == 0" FieldName="Tedad">
-                            <dx:Format Background="BurlyWood" />
-                        </dxg:FormatCondition>
-                        <dxg:FormatCondition Expression="[TahvilFrosh] == null" FieldName="Tedad">
-                            <dx:Format Foreground="Red" />
-                        </dxg:FormatCondition>
-                        <dxg:FormatCondition Expression="[ItemMaghsadName] == ''" FieldName="ItemMaghsadName">
-                            <dx:Format Background="#FFF0EB95" />
-                        </dxg:FormatCondition>
-                    </dxg:TableView.FormatConditions>
-                </dxg:TableView>
+                    x:Name="tableView" AllowEditing="False"
+                    AutoWidth="True" EditorButtonShowMode="ShowAlways"
+                    ShowGroupPanel="False" />
             </dxg:GridControl.View>
         </dxg:GridControl>
 

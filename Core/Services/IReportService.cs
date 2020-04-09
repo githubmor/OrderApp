@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.Services
 {
-    public interface IReportService
+    public interface IReportService : IBaseService
     {
         void ExportReport(ErsalReportKind kind, ErsalDto ersal, List<ItemDto> items);
     }

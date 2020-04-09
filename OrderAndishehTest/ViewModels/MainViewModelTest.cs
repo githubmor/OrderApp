@@ -78,7 +78,7 @@ namespace OrderAndishehTest.ViewModels
 
             vm.Save.Execute(null);
 
-            vm.Items.ForEach(p => p.dto.TahvilFrosh = 20);
+            vm.Items.ToList().ForEach(p => p.dto.TahvilFrosh = 20);
 
 
             Assert.IsTrue(vm.Accept.CanExecute(null));
