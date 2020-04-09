@@ -23,9 +23,10 @@ namespace OrdersAndisheh.ViewModel
         public FirstViewModel(IErsalService _service, ISaleMaliManager _manager)
         {
             manger = _manager;
-#error نمی توان اینجا از سال مالی اینطوری استفاده کرد
-            SaleMaliManager.OnChangeSalaMali = () => { ReOpenApplication(); };
-            manger.CheckOutSalMali();
+            if (manger.CheckOutSalMali())
+            {
+                ReOpenApplication();
+            }
             
             ersal_service = _service;
         }
@@ -169,7 +170,8 @@ namespace OrdersAndisheh.ViewModel
 
         private void ReOpenApplication()
         {
-            throw new NotImplementedException();
+            Application.Restart();
+            //throw new NotImplementedException();
         }
 
         private static string getTarikhDiffToday(int diff)

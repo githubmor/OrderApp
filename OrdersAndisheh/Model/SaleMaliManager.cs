@@ -7,20 +7,24 @@ namespace OrdersAndisheh.Model
     {
         private int thisYear;
 
-        public void CheckOutSalMali()
+        public bool CheckOutSalMali()
         {
             thisYear = PersianDateTime.Now.Year;
             
-            if ( IsCreateThisYearSalMali() && !IsCurrentSalMaliThisYear() )
+            if (IsCreateThisYearDatabase()  )
             {
-                ChangeCurrentSalMaliToThisYear();
-                OnChangeSalaMali.Invoke();
+                if (!IsCurrentSalMaliThisYear())
+                {
+                    ChangeCurrentSalMaliToThisYear();
+                    return true;
+                }else
+                    return false;
             }
             else
             {
-                CreateThisYearSalMali();
+                CreateThisYearDatabase();
                 ChangeCurrentSalMaliToThisYear();
-                OnChangeSalaMali.Invoke();
+                return true;
             }
         }
 
@@ -31,10 +35,10 @@ namespace OrdersAndisheh.Model
 
         public void ChangeSalMaliTo(int seletedSalMali)
         {
-            OnChangeSalaMali.Invoke();
+            
         }
 
-        private void CreateThisYearSalMali()
+        private void CreateThisYearDatabase()
         {
             throw new NotImplementedException();
         }
@@ -44,7 +48,7 @@ namespace OrdersAndisheh.Model
             ChangeSalMaliTo(thisYear);
         }
 
-        private bool IsCreateThisYearSalMali()
+        private bool IsCreateThisYearDatabase()
         {
             throw new NotImplementedException();
         }
@@ -53,7 +57,5 @@ namespace OrdersAndisheh.Model
         {
             throw new NotImplementedException();
         }
-
-        public static Action OnChangeSalaMali;
     }
 }

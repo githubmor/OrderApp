@@ -10,7 +10,6 @@ namespace OrdersAndisheh.DesignService
 {
     public class DesignErsalService : IErsalService
     {
-        
         public bool DeleteErsal(string tarikh)
         {
             throw new NotImplementedException();

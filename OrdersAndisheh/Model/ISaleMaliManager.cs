@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OrdersAndisheh.Model
 {
     public interface ISaleMaliManager
     {
         void ChangeSalMaliTo(int seletedSalMali);
-        void CheckOutSalMali();
+        //return true if salMali is this year
+        bool CheckOutSalMali();
         List<int> GetSalMalis();
-        
     }
 }
