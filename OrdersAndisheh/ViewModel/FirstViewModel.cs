@@ -4,6 +4,7 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
+using OrdersAndisheh.Model;
 using OrdersAndisheh.View;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,14 @@ namespace OrdersAndisheh.ViewModel
     public class FirstViewModel : ViewModelBase
     {
         private IErsalService ersal_service;
-        public FirstViewModel(IErsalService _service)
+        ISaleMaliManager manger;
+        public FirstViewModel(IErsalService _service, ISaleMaliManager _manager)
         {
+            manger = _manager;
+#error نمی توان اینجا از سال مالی اینطوری استفاده کرد
+            SaleMaliManager.OnChangeSalaMali = () => { ReOpenApplication(); };
+            manger.CheckOutSalMali();
+            
             ersal_service = _service;
         }
 
@@ -143,7 +150,7 @@ namespace OrdersAndisheh.ViewModel
         {
             get 
             { 
-                var sals = ersal_service.GetErsalYears();
+                var sals = manger.GetSalMalis();
                 SelectedSalMali = sals[0];
                 return sals;
             }
@@ -155,9 +162,14 @@ namespace OrdersAndisheh.ViewModel
             set 
             {
                 seleMali = value;
-                ersal_service.ChangeDatabase(value);
+                manger.ChangeSalMaliTo(value);
                 RaisePropertyChanged("SelectedSalMali");
             } 
+        }
+
+        private void ReOpenApplication()
+        {
+            throw new NotImplementedException();
         }
 
         private static string getTarikhDiffToday(int diff)
