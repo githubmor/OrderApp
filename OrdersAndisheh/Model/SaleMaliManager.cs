@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace OrdersAndisheh.Model
 {
@@ -35,7 +36,18 @@ namespace OrdersAndisheh.Model
 
         public void ChangeSalMaliTo(int seletedSalMali)
         {
-            
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.ConnectionStrings.ConnectionStrings.Add(
+                new ConnectionStringSettings("OrderDbConnectionString", getConnectionString(seletedSalMali)));
+            config.Save(ConfigurationSaveMode.Modified, true);
+            ConfigurationManager.RefreshSection("connectionStrings");
+        }
+
+        private string getConnectionString(int seletedSalMali)
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + seletedSalMali + ".mdf";
+            return "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog="+path
+                +";Integrated Security=True;Connect Timeout=30";
         }
 
         private void CreateThisYearDatabase()
