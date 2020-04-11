@@ -21,11 +21,6 @@
             <dxb:MainMenuControl Caption="Main Menu" FlowDirection="RightToLeft">
                 <dxb:BarButtonItem Command="{Binding NewMaghsad}" Content="مقصد جديد" />
                 <dxb:BarItemSeparator />
-                <!--<dxb:BarButtonItem Command="{Binding Imen}" Content="ايمن" />
-                <dxb:BarItemSeparator />
-                <dxb:BarButtonItem Command="{Binding Sazeh}" Content="سازه گستر" />
-                <dxb:BarItemSeparator />
-                <dxb:BarButtonItem Command="{Binding Sapco}" Content="ساپكو" />-->
             </dxb:MainMenuControl>
         </dxb:BarContainerControl>
         <dxg:GridControl

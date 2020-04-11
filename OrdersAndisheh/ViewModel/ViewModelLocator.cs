@@ -39,6 +39,7 @@ namespace OrdersAndisheh.ViewModel
             SimpleIoc.Default.Register<FirstViewModel>();
             SimpleIoc.Default.Register<MainViewModelNew>();
             SimpleIoc.Default.Register<NewItemViewModel>();
+            SimpleIoc.Default.Register<ContaineringViewModel>();
 
             //if (IsInDesignModeStatic)
             //{
@@ -87,6 +88,14 @@ namespace OrdersAndisheh.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<NewItemViewModel>(Guid.NewGuid().ToString());
+            }
+        }
+
+        public ContaineringViewModel Continaring
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ContaineringViewModel>(Guid.NewGuid().ToString());
             }
         }
 

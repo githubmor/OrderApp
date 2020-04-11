@@ -23,28 +23,28 @@ namespace OrdersAndisheh.View
     /// <summary>
     /// Description for MvvmView1.
     /// </summary>
-    public partial class DriverSelectionView : Window
+    public partial class ContineringView : Window
     {
        bool isDragStarted;
 
-       public DriverSelectionView()
+       public ContineringView()
        {
             InitializeComponent();
 
-            Loaded += new RoutedEventHandler(DriverSelectionView_Loaded);
+            //Loaded += new RoutedEventHandler(DriverSelectionView_Loaded);
         }
 
        void DriverSelectionView_Loaded(object sender, RoutedEventArgs e)
        {
 
            
-           ErsallistBox.AllowDrop = true;
+           //ErsallistBox.AllowDrop = true;
 
 
-           ErsallistBox.AddHandler(ListView.MouseLeftButtonDownEvent, new MouseButtonEventHandler(list_MouseLeftButtonDown), true);
-           ErsallistBox.PreviewMouseMove += new MouseEventHandler(list_PreviewMouseMove);
-           ErsallistBox.DragOver += new DragEventHandler(list_DragOver);
-           ErsallistBox.Drop += new DragEventHandler(list_Drop);
+           //ErsallistBox.AddHandler(ListView.MouseLeftButtonDownEvent, new MouseButtonEventHandler(list_MouseLeftButtonDown), true);
+           //ErsallistBox.PreviewMouseMove += new MouseEventHandler(list_PreviewMouseMove);
+           //ErsallistBox.DragOver += new DragEventHandler(list_DragOver);
+           //ErsallistBox.Drop += new DragEventHandler(list_Drop);
         }
 
        void list_Drop(object sender, DragEventArgs e)

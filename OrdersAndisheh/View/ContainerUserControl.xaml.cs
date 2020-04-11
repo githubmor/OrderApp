@@ -22,10 +22,10 @@ namespace OrdersAndisheh.View
     /// <summary>
     /// Interaction logic for DriverContainerUserControl.xaml
     /// </summary>
-    public partial class DriverContainerUserControl : UserControl
+    public partial class ContainerUserControl : UserControl
     {
         bool isDragStarted;
-        public DriverContainerUserControl()
+        public ContainerUserControl()
         {
             InitializeComponent();
             //this.DataContext = new DriverContainerViewModel();

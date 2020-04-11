@@ -227,8 +227,8 @@
     <Compile Include="ViewModel\PalletItem.cs" />
     <Compile Include="ViewModel\PalletReportViewModel.cs" />
     <Compile Include="ViewModel\LastAmountViewModel.cs" />
-    <Compile Include="ViewModel\DriverContainerViewModel.cs" />
-    <Compile Include="ViewModel\DriverSelectionViewModel.cs" />
+    <Compile Include="ViewModel\ContainerViewModel.cs" />
+    <Compile Include="ViewModel\ContaineringViewModel.cs" />
     <Compile Include="ViewModel\DriverWorksViewModel.cs" />
     <Compile Include="ViewModel\ErsalReportViewModel.cs" />
     <Compile Include="ViewModel\FirstViewModel.cs" />
@@ -292,11 +292,11 @@
     </Compile>
     <Compile Include="View\ZeroVisibleConvertor.cs" />
     <Compile Include="View\ColorValueConvertor.cs" />
-    <Compile Include="View\DriverContainerUserControl.xaml.cs">
-      <DependentUpon>DriverContainerUserControl.xaml</DependentUpon>
+    <Compile Include="View\ContainerUserControl.xaml.cs">
+      <DependentUpon>ContainerUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DriverSelectionView.xaml.cs">
-      <DependentUpon>DriverSelectionView.xaml</DependentUpon>
+    <Compile Include="View\ContineringView.xaml.cs">
+      <DependentUpon>ContineringView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EnterNextTab.cs" />
     <Compile Include="View\FirstView.xaml.cs">
@@ -341,11 +341,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\DriverContainerUserControl.xaml">
+    <Page Include="View\ContainerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DriverSelectionView.xaml">
+    <Page Include="View\ContineringView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

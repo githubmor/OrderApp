@@ -81,5 +81,17 @@ namespace OrdersAndisheh.DesignService
                 new MaghsadDto(){Name="babol"}
             };
         }
+
+
+        public List<RanandeDto> GetRanandehList()
+        {
+            return new List<RanandeDto>()
+            {
+                new RanandeDto(){Name="contin 1",isContainer = true},
+                new RanandeDto(){Name="maleki"},
+                new RanandeDto(){Name="contin 2",isContainer = true},
+                new RanandeDto(){Name="abasnasab"}
+            };
+        }
     }
 }

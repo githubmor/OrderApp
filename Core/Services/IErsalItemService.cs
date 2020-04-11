@@ -12,5 +12,7 @@ namespace Core.Services
         List<KalaElectionDto> GetKalasListSortByMostAndLastErsal();
 
         List<MaghsadDto> GetMaghasedListByKalaList(List<ItemDto> items);
+
+        List<RanandeDto> GetRanandehList();
     }
 }

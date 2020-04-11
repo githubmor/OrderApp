@@ -207,10 +207,12 @@ namespace OrdersAndisheh.ViewModel
                 return _Containering ?? (_Containering = new RelayCommand(
                     () =>
                     {
-                        //throw new NotImplementedException();
-                        LoadItems(Tarikh);
+                        var op = new ContineringView();
+                        Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
+                            , "SendItemListForContaining");
+                        op.ShowDialog();
                     }
-                    ));
+                    ,() => { return Items.Any(p => p.IsSelected); }));
             }
         }
 

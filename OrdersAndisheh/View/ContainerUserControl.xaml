@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="OrdersAndisheh.View.ContainerUserControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:l="clr-namespace:OrdersAndisheh.View" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="#FFF1F1F1" mc:Ignorable="d">
+    <UserControl.Resources>
+        <l:ColorValueConvertor x:Key="converter" />
+        <l:ZeroVisibleConvertor x:Key="converter2" />
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel FlowDirection="RightToLeft" Orientation="Vertical">
+            <Label
+                Margin="5" VerticalAlignment="Stretch"
+                VerticalContentAlignment="Center"
+                Content="{Binding Maghased}" />
+            <dxe:ListBoxEdit
+                Name="DriverListBox" MinWidth="100"
+                MinHeight="120" Margin="5"
+                FlowDirection="RightToLeft"
+                ItemsSource="{Binding Mahmole}" />
+
+            <Label
+                x:Name="asa" VerticalAlignment="Top"
+                VerticalContentAlignment="Center">
+                <Label.Content>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ک- {1} ف- {2} چ- {3} ج">
+                                <Binding Path="VaznKol" />
+                                <Binding Path="FeleziPalletCount" />
+                                <Binding Path="ChobiPalletCount" />
+                                <Binding Path="JaigahCount" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label.Content>
+            </Label>
+
+            <ComboBox
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding Ranandeha}"
+                SelectedItem="{Binding SelectedRanande}" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>
