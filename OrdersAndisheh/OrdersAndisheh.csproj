@@ -88,54 +88,54 @@
     </Reference>
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Data.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Data.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Images.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Images.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Images.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Mvvm.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Mvvm.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v15.1.Core">
-      <HintPath>..\DLL\DevExpress.RichEdit.v15.1.Core.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.RichEdit.v15.1.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Controls.v15.1">
-      <HintPath>..\DLL\DevExpress.Xpf.Controls.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Controls.v15.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Xpf.Core.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Core.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v15.1, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Xpf.Grid.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Grid.v15.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v15.1.Core, Version=15.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
-      <HintPath>..\DLL\DevExpress.Xpf.Grid.v15.1.Core.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Grid.v15.1.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Layout.v15.1.Core">
-      <HintPath>..\DLL\DevExpress.Xpf.Layout.v15.1.Core.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Layout.v15.1.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.LayoutControl.v15.1">
-      <HintPath>..\DLL\DevExpress.Xpf.LayoutControl.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.LayoutControl.v15.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.NavBar.v15.1">
-      <HintPath>..\DLL\DevExpress.Xpf.NavBar.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.NavBar.v15.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.PropertyGrid.v15.1">
-      <HintPath>..\DLL\DevExpress.Xpf.PropertyGrid.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.PropertyGrid.v15.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Xpf.Ribbon.v15.1">
-      <HintPath>..\DLL\DevExpress.Xpf.Ribbon.v15.1.dll</HintPath>
+      <HintPath>..\..\DLL\DevExpress.Xpf.Ribbon.v15.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -218,6 +218,8 @@
     </ApplicationDefinition>
     <Compile Include="DesignService\DesignErsalItemService.cs" />
     <Compile Include="DesignService\DesignErsalService.cs" />
+    <Compile Include="Model\ISaleMaliManager.cs" />
+    <Compile Include="Model\SaleMaliManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\NewItemViewModel.cs" />
     <Compile Include="ViewModel\MaghsadItemUserControlViewModel.cs" />
@@ -469,9 +471,7 @@
       <Name>ImportingLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -18,6 +18,7 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using OrdersAndisheh.DesignService;
+using OrdersAndisheh.Model;
 using System;
 
 namespace OrdersAndisheh.ViewModel
@@ -43,8 +44,9 @@ namespace OrdersAndisheh.ViewModel
 
             //if (IsInDesignModeStatic)
             //{
-                SimpleIoc.Default.Register<IErsalService, DesignErsalService>();
-                SimpleIoc.Default.Register<IErsalItemService, DesignErsalItemService>();
+            SimpleIoc.Default.Register<ISaleMaliManager, SaleMaliManager>();
+            SimpleIoc.Default.Register<IErsalService, DesignErsalService>();
+            SimpleIoc.Default.Register<IErsalItemService, DesignErsalItemService>();
             //}
             //else
             //{

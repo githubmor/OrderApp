@@ -15,8 +15,9 @@ namespace DataTest
             try
             {
                 var db = new Context();
-                db.ChangeDatabase(initialCatalog: Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                    + "\\sdn.mdf",configConnectionStringName: "OrderDbConnectionString");
+                //db.ChangeDatabase(initialCatalog: Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+                //    + "\\sdn.mdf", configConnectionStringName: "OrderDbConnectionString");
+                db.ChangeDatabase("e:\\sdn.mdf", configConnectionStringName: "OrderDbConnectionString");
 
                 db.Orders.Add(new Data.Entity.Order(){Accepted=true,SalMahRoz=13990102});
                 db.SaveChanges();
