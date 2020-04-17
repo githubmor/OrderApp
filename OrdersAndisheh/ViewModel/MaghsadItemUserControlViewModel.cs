@@ -17,6 +17,7 @@ namespace OrdersAndisheh.ViewModel
         public MaghsadItemUserControlViewModel(IErsalItemService _service)
         {
             KalaList = new List<TedadItemRow>();
+            Maghased = new List<MaghsadDto>();
             service = _service;
             Messenger.Default.Register<List<ItemDto>>(this, "GetKala", GetKala);
         }

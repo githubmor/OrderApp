@@ -18,7 +18,6 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using OrdersAndisheh.DesignService;
-using OrdersAndisheh.Model;
 using System;
 
 namespace OrdersAndisheh.ViewModel
@@ -40,11 +39,10 @@ namespace OrdersAndisheh.ViewModel
             SimpleIoc.Default.Register<FirstViewModel>();
             SimpleIoc.Default.Register<MainViewModelNew>();
             SimpleIoc.Default.Register<NewItemViewModel>();
-            SimpleIoc.Default.Register<ContaineringViewModel>();
+            SimpleIoc.Default.Register<ContaineringListViewModel>();
 
             //if (IsInDesignModeStatic)
             //{
-            SimpleIoc.Default.Register<ISaleMaliManager, SaleMaliManager>();
             SimpleIoc.Default.Register<IErsalService, DesignErsalService>();
             SimpleIoc.Default.Register<IErsalItemService, DesignErsalItemService>();
             //}
@@ -93,11 +91,11 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-        public ContaineringViewModel Continaring
+        public ContaineringListViewModel Continaring
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ContaineringViewModel>(Guid.NewGuid().ToString());
+                return ServiceLocator.Current.GetInstance<ContaineringListViewModel>(Guid.NewGuid().ToString());
             }
         }
 

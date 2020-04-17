@@ -2,9 +2,6 @@
 using Core.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrdersAndisheh.DesignService
 {
@@ -15,16 +12,18 @@ namespace OrdersAndisheh.DesignService
             return true;
         }
 
-        public List<Core.Models.ItemDto> GetItems(string tarikh)
+        public List<ItemDto> GetItems(string tarikh)
         {
-            return new List<Core.Models.ItemDto>() 
+            var rList = GetRanandehList();
+            var mList = GetMaghasedListByKalaList(null);
+            return new List<ItemDto>() 
                 { 
                     new ItemDto() 
                     { 
                         Id = 1,
                         ItemKala = new KalaDto(){Name = "111"}, 
-                        ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
-                        ItemRanande = new RanandeDto(){Name = "قريشي"},
+                        ItemMaghsad = mList[0],
+                        ItemRanande = rList[1],
                         Karton = 5,
                         PalletCount = 8,
                         Vazn = 658
@@ -33,8 +32,8 @@ namespace OrdersAndisheh.DesignService
                     { 
                         Id = 2,
                         ItemKala = new KalaDto(){Name = "121"}, 
-                        ItemRanande = new RanandeDto(){Name = "قريشي"},
-                        ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
+                        ItemRanande = rList[1],
+                        ItemMaghsad = mList[1],
                         Karton = 50,
                         PalletCount = 204,
                         Tedad = 784,
@@ -44,14 +43,32 @@ namespace OrdersAndisheh.DesignService
                     { 
                         Id = 3,
                         ItemKala = new KalaDto(){Name = "111"}, 
-                        ItemMaghsad = new MaghsadDto(){Name = "سايپا"},
-                        ItemRanande = new RanandeDto(){Name = "قريشي"},
+                        ItemRanande = rList[2],
                         Karton = 5,
                         PalletCount = 8,
                         Tedad = 6588,
                         Vazn = 658
                     },
-                    
+                    new ItemDto()
+                    {
+                        Id = 3,
+                        ItemKala = new KalaDto(){Name = "111"},
+                        ItemMaghsad = mList[2],
+                        Karton = 5,
+                        PalletCount = 8,
+                        Tedad = 6588,
+                        Vazn = 658
+                    },
+                    new ItemDto()
+                    {
+                        Id = 3,
+                        ItemKala = new KalaDto(){Name = "111"},
+                        Karton = 5,
+                        PalletCount = 8,
+                        Tedad = 6588,
+                        Vazn = 658
+                    }
+
                 };
         }
 

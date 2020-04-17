@@ -12,15 +12,15 @@ using Core.Models;
 namespace OrdersAndisheh.ViewModel
 {
 
-    public class ContaineringViewModel : ViewModelBase
+    public class ContaineringListViewModel : ViewModelBase
     {
         IErsalItemService service;
         //int pos = 1;
-        public ContaineringViewModel(IErsalItemService _service)
+        public ContaineringListViewModel(IErsalItemService _service)
         {
             service = _service;
             //ErsalItems = new List<ItemDto>();
-            ContinarViewModels = new ObservableCollection<ContainerViewModel>();
+            ContinarViewModels = new ObservableCollection<ContainerUserControlViewModel>();
             Messenger.Default.Register<List<ItemDto>>(this, "SendItemListForContaining", SendItemListForContaining);
         }
 
@@ -33,7 +33,7 @@ namespace OrdersAndisheh.ViewModel
             if (bedoneMaghsad.Count > 0)
             {
                 //همه بدون مقصد ها داخل یک کانتینر
-                ContinarViewModels.Add(new ContainerViewModel(bedoneMaghsad, ranandehList));
+                ContinarViewModels.Add(new ContainerUserControlViewModel(bedoneMaghsad, ranandehList));
             }
             
 
@@ -44,7 +44,7 @@ namespace OrdersAndisheh.ViewModel
             {
                 //همه مقصد دار ها چه با راننده چه کانتین بندی شده داخل کانتین خودشون براساس راننده
                 MaghsadDarRanandehDar.GroupBy(p => p.ItemRanande).ToList().ForEach(group =>
-                    ContinarViewModels.Add(new ContainerViewModel(group.ToList(), ranandehList)));
+                    ContinarViewModels.Add(new ContainerUserControlViewModel(group.ToList(), ranandehList)));
             }
 
             
@@ -53,7 +53,7 @@ namespace OrdersAndisheh.ViewModel
             {
                 //همه مقصد دارها بدون راننده داخل کانتین خودشون براساس مقصد هاشون
                 MaghsadDarBedoneranande.GroupBy(p => p.ItemMaghsad).ToList().ForEach(group =>
-                   ContinarViewModels.Add(new ContainerViewModel(group.ToList(), ranandehList)));
+                   ContinarViewModels.Add(new ContainerUserControlViewModel(group.ToList(), ranandehList)));
             }
             ////آیتم هایی که راننده موقت دارند باید در کانتین خود قرار گرفته و راننده آنها انتخاب شود
             //var tempDriver = ErsalItems.Where(t => t.Driver != null).Select(p => p.Ranande).Distinct();
@@ -108,7 +108,7 @@ namespace OrdersAndisheh.ViewModel
         //}
 
 
-        public ObservableCollection<ContainerViewModel> ContinarViewModels { get; set; }
+        public ObservableCollection<ContainerUserControlViewModel> ContinarViewModels { get; set; }
 
         private RelayCommand _myCommand1;
 

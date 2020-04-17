@@ -18,23 +18,23 @@ namespace OrdersAndisheh.ViewModel
             service = _service;
             Items = new List<ItemDto>();
             Messenger.Default.Register<List<ItemDto>>(this, "SendItemsFromMain", SendItems);
-            vaziat = false;
+            MustMaghsadShow = false;
             stateManager();
         }
 
         private void SendItems(List<ItemDto> obj)
         {
             Items = obj;
-            vaziat = true;
+            MustMaghsadShow = true;
             stateManager();
         }
 
-        private bool vaziat;
+        private bool MustMaghsadShow;
 
         //false = new Item , true = Edit maghsad
         private void stateManager()
         {
-            if (vaziat)
+            if (MustMaghsadShow)
             {
                 if (SelectedViewModel is SelectKalaUserControlViewModel)
                 {
@@ -72,11 +72,11 @@ namespace OrdersAndisheh.ViewModel
                 return _Next ?? (_Next = new RelayCommand(
                     () =>
                     {
-                        vaziat = true;
+                        MustMaghsadShow = true;
                         stateManager();
                     }, () =>
                     {
-                        return !vaziat;
+                        return !MustMaghsadShow;
                     }));
             }
         }
@@ -90,9 +90,9 @@ namespace OrdersAndisheh.ViewModel
                 return _Back ?? (_Back = new RelayCommand(
                     () =>
                     {
-                        vaziat = false;
+                        MustMaghsadShow = false;
                         stateManager();
-                    }, () => { return vaziat; }));
+                    }, () => { return MustMaghsadShow; }));
             }
         }
 
@@ -110,7 +110,7 @@ namespace OrdersAndisheh.ViewModel
                         {
                             window.Close();
                         }
-                    }, (Window window) => { return vaziat; }));
+                    }, (Window window) => { return MustMaghsadShow; }));
             }
         }
     }

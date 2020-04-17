@@ -33,7 +33,7 @@ namespace OrdersAndisheh.ViewModel
             Items = new ObservableCollection<mainViewModeldataGridRow>();
 
             //For test Ui as messanger call
-            OpenErsal("1398/11/28");
+            //OpenErsal("1398/11/28");
         }
 
         #region Property
@@ -207,7 +207,7 @@ namespace OrdersAndisheh.ViewModel
                 return _Containering ?? (_Containering = new RelayCommand(
                     () =>
                     {
-                        var op = new ContineringView();
+                        var op = new ContineringListView();
                         Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
                             , "SendItemListForContaining");
                         op.ShowDialog();

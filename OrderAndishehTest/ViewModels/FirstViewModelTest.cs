@@ -11,20 +11,20 @@ namespace OrderAndishehTest.ViewModels
     {
         
         [TestMethod]
-        public void ViewModelIntializeTest()
+        public void FirstViewModel_OpenWithDefalutData()
         {
             IErsalService service = new DesignErsalService();
             FirstViewModel vm = new FirstViewModel(service);
 
             Assert.IsFalse(vm.IsShowAcceptedSefaresh);
-            Assert.AreEqual(vm.SaleMali.Count, service.GetErsalYears().Count);
+            //Assert.AreEqual(vm.SaleMali.Count, service.GetErsalYears().Count);
             Assert.AreEqual(vm.Sefareshat.Count, 
                 service.GetErsalStates(vm.IsShowAcceptedSefaresh).Count);
-            Assert.AreEqual(vm.SelectedSalMali, vm.SaleMali[0]);
+            Assert.AreEqual(vm.SaleMali, "1300");
             Assert.IsNull(vm.SelectedSefareshTarikh);
         }
         [TestMethod]
-        public void ViewModelChangeShowAcceptedSefareshTest()
+        public void FirstViewModel_Change_IsShowAcceptedSefaresh()
         {
             IErsalService service = new DesignErsalService();
             FirstViewModel vm = new FirstViewModel(service);
@@ -41,16 +41,6 @@ namespace OrderAndishehTest.ViewModels
                 service.GetErsalStates(vm.IsShowAcceptedSefaresh).Count);
             Assert.IsNull(vm.SelectedSefareshTarikh);
         }
-        [TestMethod]
-        public void ViewModelChangeShowhAcceptedSefareshTest()
-        {
-            #warning بايد بعد از تغيير سال مالي در كانكشن تغيير ايجاد شود
-            IErsalService service = new DesignErsalService();
-            FirstViewModel vm = new FirstViewModel(service);
-            vm.SelectedSalMali = service.GetErsalYears()[1];
-
-            Assert.AreEqual(vm.SelectedSalMali, vm.SaleMali[1]);
-
-        }
+        
     }
 }

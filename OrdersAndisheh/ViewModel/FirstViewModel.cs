@@ -4,31 +4,20 @@ using Core.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using OrdersAndisheh.Model;
 using OrdersAndisheh.View;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity.Validation;
-using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
 
 namespace OrdersAndisheh.ViewModel
 {
     public class FirstViewModel : ViewModelBase
     {
         private IErsalService ersal_service;
-        ISaleMaliManager manger;
-        public FirstViewModel(IErsalService _service, ISaleMaliManager _manager)
+        public FirstViewModel(IErsalService _service )
         {
-            manger = _manager;
-            if (manger.CheckOutSalMali())
-            {
-                ReOpenApplication();
-            }
-            
             ersal_service = _service;
+#warning بعدا اینو تغییر بده
+            SaleMali = "1300";
         }
 
         public string Today
@@ -147,30 +136,30 @@ namespace OrdersAndisheh.ViewModel
 
         public ErsalState SelectedSefareshTarikh { get; set; }
 
-        public List<int> SaleMali
-        {
-            get 
-            { 
-                var sals = manger.GetSalMalis();
-                SelectedSalMali = sals[0];
-                return sals;
-            }
-        }
+        //public List<int> SaleMali
+        //{
+        //    get 
+        //    { 
+        //        var sals = manger.GetSalMalis();
+        //        SelectedSalMali = sals[0];
+        //        return sals;
+        //    }
+        //}
 
-        private int seleMali;
-        public int SelectedSalMali {
-            get { return seleMali; } 
-            set 
+        private string seleMali;
+        public string SaleMali
+        {
+            get { return seleMali; }
+            set
             {
                 seleMali = value;
-                manger.ChangeSalMaliTo(value);
-                RaisePropertyChanged("SelectedSalMali");
-            } 
+                RaisePropertyChanged("SaleMali");
+            }
         }
 
         private void ReOpenApplication()
         {
-            Application.Restart();
+            //Application.Restart();
             //throw new NotImplementedException();
         }
 

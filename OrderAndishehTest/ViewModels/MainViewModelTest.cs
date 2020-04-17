@@ -33,9 +33,9 @@ namespace OrderAndishehTest.ViewModels
             MainViewModelNew vm = new MainViewModelNew(service, itemService);
 
             string tarikh = "1398/11/28";
-            Messenger.Default.Send<string>(tarikh, "Open");
+            Messenger.Default.Send(tarikh, "Open");
 
-            Assert.AreEqual(vm.Items.Count, 3);
+            Assert.AreEqual(vm.Items.Count, itemService.GetItems(tarikh).Count);
             Assert.AreEqual(vm.Statuses, "سفارش تاريخ " + tarikh + " باز شد");
             Assert.AreEqual(vm.Tarikh, tarikh);
             Assert.IsFalse(vm.Accept.CanExecute(null));
@@ -76,10 +76,12 @@ namespace OrderAndishehTest.ViewModels
             Assert.IsFalse(vm.Accept.CanExecute(null));
             Assert.IsTrue(vm.Save.CanExecute(null));
 
-            vm.Save.Execute(null);
+            
 
             vm.Items.ToList().ForEach(p => p.dto.TahvilFrosh = 20);
-
+            vm.Items.ToList().ForEach(p => p.dto.ItemRanande = itemService.GetRanandehList()[0]);
+            vm.Items.ToList().ForEach(p => p.dto.ItemMaghsad = itemService.GetMaghasedListByKalaList(null)[0]);
+            vm.Save.Execute(null);
 
             Assert.IsTrue(vm.Accept.CanExecute(null));
             Assert.IsFalse(vm.Save.CanExecute(null));
