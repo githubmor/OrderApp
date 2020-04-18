@@ -91,6 +91,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ViewModels\ContainerUserControlViewModelTest.cs" />
     <Compile Include="ViewModels\SelectKalaViewModelTest.cs" />
     <Compile Include="ViewModels\MaghsadViewModelTest.cs" />
     <Compile Include="ViewModels\NewViewModelTest.cs" />

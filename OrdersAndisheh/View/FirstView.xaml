@@ -6,7 +6,7 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:tb="http://www.hardcodet.net/taskbar"
-    Title="ارسال محصول"
+    Title="{Binding SaleMali}"
     DataContext="{Binding First, Source={StaticResource Locator}}">
     <Window.Resources>
         <ResourceDictionary>
@@ -89,7 +89,7 @@
                     </dxe:ListBoxEdit.ItemTemplate>
                 </dxe:ListBoxEdit>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutItem
+            <!--<dxlc:LayoutItem
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 FlowDirection="RightToLeft" Label="سال مالي :">
                 <dxe:ComboBoxEdit
@@ -97,7 +97,7 @@
                     ItemsSource="{Binding SaleMali}"
                     SelectedIndex="0"
                     SelectedItem="{Binding SelectedSalMali}" />
-            </dxlc:LayoutItem>
+            </dxlc:LayoutItem>-->
         </dxlc:LayoutControl>
     </Grid>
 </Window>

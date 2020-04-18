@@ -15,13 +15,13 @@ namespace OrderAndishehTest.ViewModels
     {
         
         [TestMethod]
-        public void ViewModelIntializeBeforeOpenTarikhTest()
+        public void MaghsadItemUserControlViewModelOpenWithDefault()
         {
             IErsalItemService itemService = new DesignErsalItemService();
             MaghsadItemUserControlViewModel vm = new MaghsadItemUserControlViewModel(itemService);
 
             Assert.IsTrue(vm.KalaList.Count==0);
-            Assert.IsTrue(vm.Maghased.Count>0);
+            Assert.IsTrue(vm.Maghased.Count==0);
             Assert.IsNull(vm.SelectionMaghsad);
         }
         [TestMethod]

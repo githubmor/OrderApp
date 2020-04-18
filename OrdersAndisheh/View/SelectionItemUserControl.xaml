@@ -31,8 +31,8 @@
             MinWidth="100" MinHeight="200"
             Margin="10" HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            ItemsSource="{Binding ItemsList}"
-            SelectedItem="{Binding ItemsSelectedItem}">
+            ItemsSource="{Binding AllKalaList}"
+            SelectedItem="{Binding SelectedKala}">
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:EventToCommand Command="{Binding AddThisItem}" EventName="PreviewMouseDoubleClick" />
             </dxmvvm:Interaction.Behaviors>
@@ -56,8 +56,8 @@
             MinWidth="100" MinHeight="200"
             Margin="10" HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            ItemsSource="{Binding SelectionItemList}"
-            SelectedItem="{Binding SelectionSelectedItem}">
+            ItemsSource="{Binding Selection_KalaList}"
+            SelectedItem="{Binding Selection_SelectedItem}">
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:EventToCommand Command="{Binding RemoveThisItem}" EventName="PreviewMouseDoubleClick" />
             </dxmvvm:Interaction.Behaviors>

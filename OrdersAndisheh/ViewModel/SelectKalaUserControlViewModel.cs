@@ -18,7 +18,7 @@ namespace OrdersAndisheh.ViewModel
             service = _service;
             kalaha = service.GetKalasListSortByMostAndLastErsal();
             AllKalaList = kalaha.ConvertToSelectKalaListViewRow();
-            RaisePropertyChanged("ItemsList");
+            RaisePropertyChanged("AllKalaList");
             Selection_KalaList = new ObservableCollection<KalaDto>();
         }
 
@@ -42,7 +42,7 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         AllKalaList = kalaha.Where(p => p.Sherkat == Sherkat.Andisheh).ToList().ConvertToSelectKalaListViewRow();
-                        RaisePropertyChanged("ItemsList");
+                        RaisePropertyChanged("AllKalaList");
                     }));
             }
         }
@@ -57,7 +57,7 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         AllKalaList = kalaha.Where(p => p.Sherkat == Sherkat.Imen).ToList().ConvertToSelectKalaListViewRow();
-                        RaisePropertyChanged("ItemsList");
+                        RaisePropertyChanged("AllKalaList");
                     }));
             }
         }
@@ -72,7 +72,7 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         AllKalaList = kalaha.Where(p => p.Moshtari == Moshtari.Sazehgostar).ToList().ConvertToSelectKalaListViewRow();
-                        RaisePropertyChanged("ItemsList");
+                        RaisePropertyChanged("AllKalaList");
                     }));
             }
         }
@@ -87,7 +87,7 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         AllKalaList = kalaha.Where(p => p.Moshtari == Moshtari.Sapco).ToList().ConvertToSelectKalaListViewRow();
-                        RaisePropertyChanged("ItemsList");
+                        RaisePropertyChanged("AllKalaList");
                     }));
             }
         }

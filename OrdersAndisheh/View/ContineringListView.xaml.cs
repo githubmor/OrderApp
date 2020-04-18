@@ -23,11 +23,11 @@ namespace OrdersAndisheh.View
     /// <summary>
     /// Description for MvvmView1.
     /// </summary>
-    public partial class ContineringView : Window
+    public partial class ContineringListView : Window
     {
        bool isDragStarted;
 
-       public ContineringView()
+       public ContineringListView()
        {
             InitializeComponent();
 

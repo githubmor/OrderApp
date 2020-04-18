@@ -17,8 +17,33 @@
             <dxe:ListBoxEdit
                 Name="DriverListBox" MinWidth="100"
                 MinHeight="120" Margin="5"
+                AllowDrop="True"
                 FlowDirection="RightToLeft"
-                ItemsSource="{Binding Mahmole}" />
+                ItemsSource="{Binding Mahmole}" >
+                <dxe:ListBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock
+                                    Name="نام" Margin="5"
+                                    Text="{Binding Name}"
+                                     />
+                            <TextBlock
+                                    Name="Pallet" Margin="5"
+                                    Text="{Binding Pallet}"
+                                     />
+                            <TextBlock
+                                    Name="Vazn" Margin="5"
+                                    Text="{Binding Vazn}"
+                                     />
+                            <TextBlock
+                                    Name="Maghsad" Margin="5"
+                                    Text="{Binding Maghsad}"
+                                     />
+                        </StackPanel>
+                        
+                    </DataTemplate>
+                </dxe:ListBoxEdit.ItemTemplate>
+            </dxe:ListBoxEdit>
 
             <Label
                 x:Name="asa" VerticalAlignment="Top"
