@@ -25,7 +25,7 @@ namespace OrderAndishehTest.ViewModels
             Assert.IsNull(vm.SelectionMaghsad);
         }
         [TestMethod]
-        public void ViewModelOpenSefareshTest()
+        public void MaghsadViewModelSendItems()
         {
             IErsalItemService itemService = new DesignErsalItemService();
             MaghsadItemUserControlViewModel vm = new MaghsadItemUserControlViewModel(itemService);

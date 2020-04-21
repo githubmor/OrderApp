@@ -20,24 +20,27 @@ namespace OrderAndishehTest.ViewModels
             IErsalItemService itemService = new DesignErsalItemService();
             var items = itemService.GetItems("");
             var ranads = itemService.GetRanandehList();
-
-            MahmoleList n = new MahmoleList();
-            items.ForEach(p => n.Add(new ContainerRow(p)));
+            var chobi = items.Where(p => !p.ItemKala.IsPalletFelezi).Sum(p=>p.PalletCount);
+            var felezi = items.Where(p => p.ItemKala.IsPalletFelezi).Sum(p => p.PalletCount);
+            var ja = (Math.Ceiling((double)felezi / 2) + chobi).ToString();
+            string maghsum = " ";
+            items.Select(p => p.ItemMaghsad).Distinct().ToList().ForEach(p => maghsum = maghsum + " - " + (p!=null?p.Name:""));
+            int sum = 0;
+            items.ToList().ForEach(p => sum = sum + p.Vazn);
 
             ContainerUserControlViewModel vm = new ContainerUserControlViewModel(items,ranads);
 
-            Assert.AreEqual(vm.ChobiPalletCount,n.ChobiPalletCount);
-            Assert.AreEqual(vm.FeleziPalletCount,n.FeleziPalletCount);
-            //با تغییر آیتم ها اینها ممکنه فیل بشه
-            Assert.AreEqual("236",vm.JaigahCount);
-            Assert.AreEqual(vm.Maghased, " - kashan - saipa -  - pars");
-
-            Assert.AreEqual(vm.Mahmole.Count, n.Count);
-            Assert.AreEqual(vm.Ranandeha.Count, ranads.Count);
-            Assert.AreEqual(vm.SelectedRanande, null);
-            Assert.AreEqual(vm.VaznKol, n.VaznKol);
+            Assert.AreEqual(chobi,vm.ChobiPalletCount);
+            Assert.AreEqual(felezi,vm.FeleziPalletCount);
+            Assert.AreEqual(ja,vm.JaigahCount);
+            Assert.AreEqual(maghsum,vm.Maghased);
+            Assert.AreEqual(items.Count,vm.Mahmole.Count);
+            Assert.AreEqual(ranads.Count,vm.Ranandeha.Count);
+            Assert.IsNull(vm.SelectedRanande);
+            Assert.AreEqual(sum,vm.VaznKol);
         }
         
         
     }
+    
 }

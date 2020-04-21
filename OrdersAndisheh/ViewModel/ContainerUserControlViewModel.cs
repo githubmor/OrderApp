@@ -10,8 +10,7 @@ namespace OrdersAndisheh.ViewModel
 
     public class ContainerUserControlViewModel : ViewModelBase
     {
-        //int felaziPalletCount = 0;
-        //int chobiPalletCount = 0;
+
         public ContainerUserControlViewModel(List<ItemDto> _items, List<RanandeDto> _ranandeha)
         {
             Mahmole = new MahmoleList();
@@ -31,7 +30,12 @@ namespace OrdersAndisheh.ViewModel
         }
         public string JaigahCount
         {
-            get { return (Math.Ceiling((double)Mahmole.FeleziPalletCount / 2) + Mahmole.ChobiPalletCount).ToString(); }
+            get { return (CountJaighahFeleziPallet() + Mahmole.ChobiPalletCount).ToString(); }
+        }
+
+        private double CountJaighahFeleziPallet()
+        {
+            return Math.Ceiling((double)Mahmole.FeleziPalletCount / 2);
         }
 
         public string Maghased

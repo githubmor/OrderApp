@@ -19,7 +19,7 @@ namespace OrdersAndisheh.ViewModel
         public ContaineringListViewModel(IErsalItemService _service)
         {
             service = _service;
-            //ErsalItems = new List<ItemDto>();
+
             ContinarViewModels = new ObservableCollection<ContainerUserControlViewModel>();
             Messenger.Default.Register<List<ItemDto>>(this, "SendItemListForContaining", SendItemListForContaining);
         }
