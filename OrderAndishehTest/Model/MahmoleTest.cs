@@ -27,11 +27,11 @@ namespace OrderAndishehTest.Model
             MahmoleList vm = new MahmoleList();
             items.ForEach(p => vm.Add(new ContainerRow(p)));
 
-            Assert.AreEqual(chobi, vm.ChobiPalletCount);
-            Assert.AreEqual(felezi, vm.FeleziPalletCount);
-            Assert.AreEqual(maghsum, vm.Maghased);
-            Assert.AreEqual(sum, vm.VaznKol);
-            Assert.AreEqual(items.Count, vm.Count);
+            Assert.AreEqual(236, vm.ChobiPalletCount);
+            Assert.AreEqual(0, vm.FeleziPalletCount);
+            Assert.AreEqual("kashan - saipa - pars", vm.Maghased);
+            Assert.AreEqual(2677, vm.VaznKol);
+            Assert.AreEqual(5, vm.Count);
 
         }
     }

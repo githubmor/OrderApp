@@ -2,7 +2,8 @@
     x:Class="OrdersAndisheh.View.ContineringListView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:c="clr-namespace:OrdersAndisheh.View"
     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" Title="انتخاب رانندگان"
+    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" x:Name="ContineringList"
+    Title="انتخاب رانندگان"
     DataContext="{Binding Continaring, Source={StaticResource Locator}}">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,17 +17,18 @@
             <dxb:MainMenuControl Caption="Main Menu" FlowDirection="RightToLeft">
                 <dxb:BarButtonItem Command="{Binding AddNewContainer}" Content="كانتين جديد" />
                 <dxb:BarItemSeparator />
-                <dxb:BarButtonItem Command="{Binding SaveContainers}" Content="ذخيره كانتين بندي" />
+                <dxb:BarButtonItem
+                    Command="{Binding SaveContainers}"
+                    CommandParameter="{Binding ElementName=ContineringList}"
+                    Content="ذخيره كانتين بندي" />
                 <dxb:BarItemSeparator />
             </dxb:MainMenuControl>
         </dxb:BarContainerControl>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" >
-            <ItemsControl 
-              ItemsSource="{Binding ContinarViewModels}">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding ContinarViewModels}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" 
-                 IsItemsHost="True" />
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>

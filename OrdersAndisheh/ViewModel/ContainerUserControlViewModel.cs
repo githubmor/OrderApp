@@ -15,14 +15,19 @@ namespace OrdersAndisheh.ViewModel
         {
             Mahmole = new MahmoleList();
             _items.ForEach(p => Mahmole.Add(new ContainerRow(p)));
+
             Ranandeha = _ranandeha;
-           
+
+            if (Mahmole.getRanande()!=null)
+            {
+                SelectedRanande = Ranandeha.SingleOrDefault(p => p.Name == Mahmole.getRanande().Name);
+            }
+      
         }
 
         public MahmoleList Mahmole { get; set; }
         public List<RanandeDto> Ranandeha { get; set; }
-        public RanandeDto SelectedRanande { get; set; }
-       
+        public RanandeDto SelectedRanande { get; set; }     
 
         public int VaznKol
         {
@@ -58,6 +63,14 @@ namespace OrdersAndisheh.ViewModel
                 return Mahmole.ChobiPalletCount;
             }
         }
+
+
+
+        internal List<ItemDto> GetItemDtoWithRanande()
+        {
+            Mahmole.assignRanande(SelectedRanande);
+            return Mahmole.getDtoList();
+        }
     }
 
     public class ContainerRow
@@ -85,6 +98,11 @@ namespace OrdersAndisheh.ViewModel
         }
 
         public string Maghsad { get { return (dto.ItemMaghsad != null ? dto.ItemMaghsad.Name : ""); } }
+
+        internal ItemDto getDto()
+        {
+            return dto;
+        }
     }
 
     public class MahmoleList :ObservableCollection<ContainerRow>
@@ -121,10 +139,32 @@ namespace OrdersAndisheh.ViewModel
         {
             get
             {
-                string sum = " ";
-                Items.Select(p=>p.Maghsad).Distinct().ToList().ForEach(p => sum = sum + " - " + p);
+                string sum = "";
+                Items.Select(p=>p.Maghsad).Distinct().ToList().ForEach(p =>
+                    {
+                        if (!string.IsNullOrEmpty(p))
+                            if (string.IsNullOrEmpty(sum))
+                                sum = p;
+                            else
+                                sum = sum + " - " + p;
+                    });
                 return sum;
             }
+        }
+
+        internal List<ItemDto> getDtoList()
+        {
+            return this.Select(p => p.getDto()).ToList();
+        }
+
+        internal void assignRanande(RanandeDto SelectedRanande)
+        {
+            this.getDtoList().ForEach(p => p.ItemRanande = SelectedRanande);
+        }
+
+        internal RanandeDto getRanande()
+        {
+            return this.getDtoList()[0].ItemRanande;
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Core.Services;
 using Core.Models;
+using System.Windows;
 
 namespace OrdersAndisheh.ViewModel
 {
@@ -22,12 +23,20 @@ namespace OrdersAndisheh.ViewModel
 
             ContinarViewModels = new ObservableCollection<ContainerUserControlViewModel>();
             Messenger.Default.Register<List<ItemDto>>(this, "SendItemListForContaining", SendItemListForContaining);
+            Messenger.Default.Register<string>(this, "Tarikh", setTarikh);
         }
+
+        private string Tarikh;
+        private void setTarikh(string tarikh)
+        {
+            Tarikh = tarikh;
+        }
+        private List<RanandeDto> ranandehList = new List<RanandeDto>();
 
         private void SendItemListForContaining(List<ItemDto> items)
         {
             //ErsalItems = items;
-            var ranandehList = service.GetRanandehList();
+            ranandehList = service.GetRanandehList();
 
             var bedoneMaghsad = items.Where(p => p.ItemMaghsad == null).ToList();
             if (bedoneMaghsad.Count > 0)
@@ -126,26 +135,31 @@ namespace OrdersAndisheh.ViewModel
 
         private void ExecuteAddNewContainer()
         {
-            //DriverViewModels.Add(new DriverContainerViewModel(service, pos));
-            //pos += 1;
+            ContinarViewModels.Add(new ContainerUserControlViewModel(new List<ItemDto>(), ranandehList));
         }
 
-        private RelayCommand _SaveContainers;
+        private RelayCommand<Window> _SaveContainers;
 
         /// <summary>
         /// Gets the SaveDrivers.
         /// </summary>
-        public RelayCommand SaveContainers
+        public RelayCommand<Window> SaveContainers
         {
             get
             {
                 return _SaveContainers
-                    ?? (_SaveContainers = new RelayCommand(ExecuteSaveContainers));
+                    ?? (_SaveContainers = new RelayCommand<Window>(ExecuteSaveContainers));
             }
         }
 
-        private void ExecuteSaveContainers()
+        private void ExecuteSaveContainers(Window window)
         {
+            List<ItemDto> dtos = ContinarViewModels.SelectMany(p => p.GetItemDtoWithRanande()).ToList();
+            service.AddOrUpdateErsalItems(Tarikh,dtos);
+            if (window != null)
+            {
+                window.Close();
+            }
             //List<Driver> te = new List<Driver>();
             //foreach (var item in DriverViewModels)
             //{

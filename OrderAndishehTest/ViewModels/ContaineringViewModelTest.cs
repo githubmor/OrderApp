@@ -13,56 +13,130 @@ namespace OrderAndishehTest.ViewModels
     [TestClass]
     public class ContaineringViewModelTest
     {
-        [TestMethod]
-        public void ContaineringVMIntializedefault()
+        IErsalItemService itemService;
+        public ContaineringViewModelTest()
         {
-            IErsalItemService itemService = new DesignErsalItemService();
+            itemService = new DesignErsalItemService();
+        }
+        [TestMethod]
+        public void ContaineringVMIntializeDefault()
+        {
             ContaineringListViewModel vm = new ContaineringListViewModel(itemService);
 
             Assert.AreEqual(0, vm.ContinarViewModels.Count);
         }
 
         [TestMethod]
-        public void ContaineringVMSendItems()
+        public void ContaineringVMSendItems_WithRanaded_NoRanande()
         {
-            IErsalItemService itemService = new DesignErsalItemService();
             ContaineringListViewModel vm = new ContaineringListViewModel(itemService);
 
-            List<ItemDto> items = itemService.GetItems("");
+            List<ItemDto> items = GetItems();
             Messenger.Default.Send<List<ItemDto>>(items, "SendItemListForContaining");
 
-            Assert.AreEqual(CalculateContainer(items), vm.ContinarViewModels.Count);
+            Assert.AreEqual(2, vm.ContinarViewModels.Count);
         }
 
-        private static int CalculateContainer(List<ItemDto> items)
+        private List<ItemDto> GetItems()
         {
-            int sum = 0;
+            return new List<ItemDto>() 
+                { 
+                    new ItemDto() 
+                    { 
+                        Id = 1,
+                        ItemKala = new KalaDto(){Name = "111",IsPalletFelezi=true}, 
+                        ItemMaghsad = new MaghsadDto(){Name="aaa"},
+                        ItemRanande = itemService.GetRanandehList()[0],
+                        Karton = 5,
+                        PalletCount = 1,
+                        Vazn = 100
+                    },
+                    new ItemDto() 
+                    { 
+                        Id = 2,
+                        ItemKala = new KalaDto(){Name = "121"}, 
+                        ItemMaghsad = new MaghsadDto(){Name="bbb"},
+                        Karton = 50,
+                        PalletCount = 1,
+                        Tedad = 48,
+                        Vazn = 200
+                    },
+                    
+                };
+        }
 
-            var bedoneMaghsad = items.Where(p => p.ItemMaghsad == null).ToList();
-            if (bedoneMaghsad.Count > 0)
-            {
-                //همه بدون مقصد ها داخل یک کانتینر
-                sum = sum + 1;
-            }
+        [TestMethod]
+        public void ContaineringVMSendItems_NoRanande_2Maghsad()
+        {
+            ContaineringListViewModel vm = new ContaineringListViewModel(itemService);
 
+            List<ItemDto> items = GetItems2();
+            Messenger.Default.Send<List<ItemDto>>(items, "SendItemListForContaining");
 
-            var MaghsadDar = items.Where(p => p.ItemMaghsad != null).ToList();
+            Assert.AreEqual(2, vm.ContinarViewModels.Count);
+        }
 
-            var MaghsadDarRanandehDar = MaghsadDar.Where(p => p.ItemRanande != null).ToList();
-            if (MaghsadDarRanandehDar.Count > 0)
-            {
-                //همه مقصد دار ها چه با راننده چه کانتین بندی شده داخل کانتین خودشون براساس راننده
-                MaghsadDarRanandehDar.GroupBy(p => p.ItemRanande).ToList().ForEach(group => sum = sum + 1);
-            }
+        private List<ItemDto> GetItems2()
+        {
+            return new List<ItemDto>() 
+                { 
+                    new ItemDto() 
+                    { 
+                        Id = 1,
+                        ItemKala = new KalaDto(){Name = "111",IsPalletFelezi=true}, 
+                        ItemMaghsad = new MaghsadDto(){Name="aaa"},
+                        Karton = 5,
+                        PalletCount = 1,
+                        Vazn = 100
+                    },
+                    new ItemDto() 
+                    { 
+                        Id = 2,
+                        ItemKala = new KalaDto(){Name = "121"}, 
+                        ItemMaghsad = new MaghsadDto(){Name="bbb"},
+                        Karton = 50,
+                        PalletCount = 1,
+                        Tedad = 48,
+                        Vazn = 200
+                    },
+                    
+                };
+        }
 
+        [TestMethod]
+        public void ContaineringVMSendItems_NoRanande_NoMaghsad()
+        {
+            ContaineringListViewModel vm = new ContaineringListViewModel(itemService);
 
-            var MaghsadDarBedoneranande = MaghsadDar.Where(p => p.ItemRanande == null).ToList();
-            if (MaghsadDarBedoneranande.Count > 0)
-            {
-                //همه مقصد دارها بدون راننده داخل کانتین خودشون براساس مقصد هاشون
-                MaghsadDarBedoneranande.GroupBy(p => p.ItemMaghsad).ToList().ForEach(group => sum = sum + 1);
-            }
-            return sum;
+            List<ItemDto> items = GetItems3();
+            Messenger.Default.Send<List<ItemDto>>(items, "SendItemListForContaining");
+
+            Assert.AreEqual(1, vm.ContinarViewModels.Count);
+        }
+
+        private List<ItemDto> GetItems3()
+        {
+            return new List<ItemDto>() 
+                { 
+                    new ItemDto() 
+                    { 
+                        Id = 1,
+                        ItemKala = new KalaDto(){Name = "111",IsPalletFelezi=true}, 
+                        Karton = 5,
+                        PalletCount = 1,
+                        Vazn = 100
+                    },
+                    new ItemDto() 
+                    { 
+                        Id = 2,
+                        ItemKala = new KalaDto(){Name = "121"}, 
+                        Karton = 50,
+                        PalletCount = 1,
+                        Tedad = 48,
+                        Vazn = 200
+                    },
+                    
+                };
         }
     }
 }

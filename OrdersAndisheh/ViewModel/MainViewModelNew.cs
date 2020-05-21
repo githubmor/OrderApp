@@ -29,7 +29,6 @@ namespace OrdersAndisheh.ViewModel
             itemService = _itemService;
             mainViewModeldataGridRow.OnItemChenged = () => needToSave = true;
             Messenger.Default.Register<string>(this, "Open", OpenErsal);
-            Messenger.Default.Register<List<ItemDto>>(this, "newItems", AddNewAndEditedItemsToSefaresh);
             Items = new ObservableCollection<mainViewModeldataGridRow>();
 
             //For test Ui as messanger call
@@ -50,20 +49,12 @@ namespace OrdersAndisheh.ViewModel
 
         #region Methods
 
-        private void AddNewAndEditedItemsToSefaresh(List<ItemDto> itemsComebackFromEditing)
-        {
-            var newAddedItem = itemsComebackFromEditing.Where(p => p.Id == 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
-            newAddedItem.ForEach(p => Items.Add(p));
-            var editedItem = itemsComebackFromEditing.Where(p => p.Id > 0).ToList().ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p));
-            editedItem.ForEach(edited => Items.ReplaceItem(item => item.dto == edited.dto, edited));
-        }
-
         private void OpenErsal(string tarikh)
         {
             ersal = service.GetErsal(tarikh);
             if (ersal != null)
             {
-                LoadItems(tarikh);
+                LoadItems();
                 Statuses = "سفارش تاريخ " + tarikh + " باز شد";
             }
             else
@@ -74,9 +65,9 @@ namespace OrdersAndisheh.ViewModel
             }
         }
 
-        private void LoadItems(string tarikh)
+        private void LoadItems()
         {
-            Items = new ObservableCollection<mainViewModeldataGridRow>(itemService.GetItems(tarikh)
+            Items = new ObservableCollection<mainViewModeldataGridRow>(itemService.GetItems(Tarikh)
                 .ConvertAll<mainViewModeldataGridRow>(p => new mainViewModeldataGridRow(p)));
             RaisePropertyChanged("Items");
         }
@@ -107,15 +98,10 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         ersal = service.SaveNewErsal(ersal.Tarikh);
-                        if (ersal != null)
-                        {
-                            var res = itemService.AddOrUpdateErsalItems(ersal.Tarikh, Items.ToList().ConvertAll<ItemDto>(p => p.dto));
-                            if (res)
-                            {
-                                Statuses = "سفارش ذخيره شد";
-                                needToSave = false;
-                            }
-                        }
+#warning بايد پرسيده شود ورژن بزنيم يا نه
+                        service.Versioning(ersal.Tarikh);
+                        Statuses = "سفارش ذخيره شد";
+                        needToSave = false;
                     },
                     () =>
                     {
@@ -156,7 +142,7 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         //throw new NotImplementedException();
-                        LoadItems(Tarikh);
+                        LoadItems();
                     }
                     ));
             }
@@ -172,7 +158,9 @@ namespace OrdersAndisheh.ViewModel
                     () =>
                     {
                         var op = new NewItemView();
-                        op.ShowDialog();
+                        Messenger.Default.Send<string>(Tarikh, "Tarikh");
+                        op.Show();
+                        LoadItems();
                     }
                     ));
             }
@@ -187,12 +175,14 @@ namespace OrdersAndisheh.ViewModel
                 return _Maghased ?? (_Maghased = new RelayCommand(
                     () =>
                     {
-#warning وقتي روي ستون انتخاب كليك ميشود بايد روي رديف ديگر كليك كند تا همه را بتواند انتقال دهد
+                        #warning وقتي روي ستون انتخاب كليك ميشود بايد روي رديف ديگر كليك كند تا همه را بتواند انتقال دهد
                         //يعني بايد كاري كنيم كه وقتي چك باكس را كليك كرد انتخاب شود
                         var op = new NewItemView();
                         Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
                             , "SendItemsFromMain");
-                        op.ShowDialog();
+                        Messenger.Default.Send<string>(Tarikh, "Tarikh");
+                        op.Show();
+                        LoadItems();
                     }, () => { return Items.Any(p => p.IsSelected); }
                     ));
             }
@@ -210,26 +200,28 @@ namespace OrdersAndisheh.ViewModel
                         var op = new ContineringListView();
                         Messenger.Default.Send<List<ItemDto>>(Items.Where(p => p.IsSelected).ToList().ConvertAll<ItemDto>(p => p.dto)
                             , "SendItemListForContaining");
-                        op.ShowDialog();
+                        Messenger.Default.Send<string>(Tarikh, "Tarikh");
+                        op.Show();
+                        LoadItems();
                     }
                     ,() => { return Items.Any(p => p.IsSelected); }));
             }
         }
 
-        private RelayCommand _Verzhen;
+        //private RelayCommand _Verzhen;
 
-        public RelayCommand Verzhen
-        {
-            get
-            {
-                return _Verzhen ?? (_Verzhen = new RelayCommand(
-                    () =>
-                    {
-                        throw new NotImplementedException();
-                    }
-                    ));
-            }
-        }
+        //public RelayCommand Verzhen
+        //{
+        //    get
+        //    {
+        //        return _Verzhen ?? (_Verzhen = new RelayCommand(
+        //            () =>
+        //            {
+        //                service.ExportNewVersion()
+        //            }
+        //            ));
+        //    }
+        //}
 
         private RelayCommand _Summery;
 

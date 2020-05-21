@@ -16,5 +16,7 @@ namespace Core.Services
         ErsalDto GetErsal(string tarikh);
 
         List<int> GetErsalYears();
+
+        void Versioning(string p);
     }
 }

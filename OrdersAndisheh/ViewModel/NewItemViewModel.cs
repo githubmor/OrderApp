@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace OrdersAndisheh.ViewModel
 {
@@ -18,8 +19,14 @@ namespace OrdersAndisheh.ViewModel
             service = _service;
             Items = new List<ItemDto>();
             Messenger.Default.Register<List<ItemDto>>(this, "SendItemsFromMain", SendItems);
+            Messenger.Default.Register<string>(this, "Tarikh", setTarikh);
             MustMaghsadShow = false;
             stateManager();
+        }
+        private string Tarikh;
+        private void setTarikh(string tarikh)
+        {
+            Tarikh = tarikh;
         }
 
         private void SendItems(List<ItemDto> obj)
@@ -105,7 +112,8 @@ namespace OrdersAndisheh.ViewModel
                 return _AddToSefaresh ?? (_AddToSefaresh = new RelayCommand<Window>(
                     (Window window) =>
                     {
-                        Messenger.Default.Send<List<ItemDto>>(Items, "newItems");
+                        service.AddOrUpdateErsalItems(Tarikh, Items);
+                        //Messenger.Default.Send<List<ItemDto>>(Items, "newItems");
                         if (window != null)
                         {
                             window.Close();

@@ -13,33 +13,99 @@ namespace OrderAndishehTest.ViewModels
     [TestClass]
     public class ContainerUserControlViewModelTest
     {
-        
+        IErsalItemService itemService;
+        public ContainerUserControlViewModelTest()
+        {
+            itemService = new DesignErsalItemService();
+        }
         [TestMethod]
         public void ContainerUserControlViewModelOpenWithData()
         {
-            IErsalItemService itemService = new DesignErsalItemService();
-            var items = itemService.GetItems("");
             var ranads = itemService.GetRanandehList();
-            var chobi = items.Where(p => !p.ItemKala.IsPalletFelezi).Sum(p=>p.PalletCount);
-            var felezi = items.Where(p => p.ItemKala.IsPalletFelezi).Sum(p => p.PalletCount);
-            var ja = (Math.Ceiling((double)felezi / 2) + chobi).ToString();
-            string maghsum = " ";
-            items.Select(p => p.ItemMaghsad).Distinct().ToList().ForEach(p => maghsum = maghsum + " - " + (p!=null?p.Name:""));
-            int sum = 0;
-            items.ToList().ForEach(p => sum = sum + p.Vazn);
 
-            ContainerUserControlViewModel vm = new ContainerUserControlViewModel(items,ranads);
+            ContainerUserControlViewModel vm = new ContainerUserControlViewModel(getItems(),ranads);
 
-            Assert.AreEqual(chobi,vm.ChobiPalletCount);
-            Assert.AreEqual(felezi,vm.FeleziPalletCount);
-            Assert.AreEqual(ja,vm.JaigahCount);
-            Assert.AreEqual(maghsum,vm.Maghased);
-            Assert.AreEqual(items.Count,vm.Mahmole.Count);
-            Assert.AreEqual(ranads.Count,vm.Ranandeha.Count);
-            Assert.IsNull(vm.SelectedRanande);
-            Assert.AreEqual(sum,vm.VaznKol);
+            Assert.AreEqual(1,vm.ChobiPalletCount);
+            Assert.AreEqual(1,vm.FeleziPalletCount);
+            Assert.AreEqual("2",vm.JaigahCount);
+            Assert.AreEqual("aaa - bbb", vm.Maghased);
+            Assert.AreEqual(2,vm.Mahmole.Count);
+            Assert.AreEqual(4,vm.Ranandeha.Count);
+            Assert.IsNotNull(vm.SelectedRanande);
+            Assert.AreEqual(300,vm.VaznKol);
         }
-        
+
+        private List<ItemDto> getItems()
+        {
+            return new List<ItemDto>() 
+                { 
+                    new ItemDto() 
+                    { 
+                        Id = 1,
+                        ItemKala = new KalaDto(){Name = "111",IsPalletFelezi=true}, 
+                        ItemMaghsad = new MaghsadDto(){Name="aaa"},
+                        ItemRanande = itemService.GetRanandehList()[0],
+                        Karton = 5,
+                        PalletCount = 1,
+                        Vazn = 100
+                    },
+                    new ItemDto() 
+                    { 
+                        Id = 2,
+                        ItemKala = new KalaDto(){Name = "121"}, 
+                        ItemMaghsad = new MaghsadDto(){Name="bbb"},
+                        Karton = 50,
+                        PalletCount = 1,
+                        Tedad = 48,
+                        Vazn = 200
+                    },
+                    
+                };
+        }
+
+        [TestMethod]
+        public void ContainerUserControlViewModelOpenWithData2()
+        {
+            var ranads = itemService.GetRanandehList();
+
+            ContainerUserControlViewModel vm = new ContainerUserControlViewModel(getItems2(), ranads);
+
+            Assert.AreEqual(1, vm.ChobiPalletCount);
+            Assert.AreEqual(1, vm.FeleziPalletCount);
+            Assert.AreEqual("2", vm.JaigahCount);
+            Assert.AreEqual("", vm.Maghased);
+            Assert.AreEqual(2, vm.Mahmole.Count);
+            Assert.AreEqual(4, vm.Ranandeha.Count);
+            Assert.IsNotNull(vm.SelectedRanande);
+            Assert.AreEqual(300, vm.VaznKol);
+        }
+
+        private List<ItemDto> getItems2()
+        {
+            return new List<ItemDto>() 
+                { 
+                    new ItemDto() 
+                    { 
+                        Id = 1,
+                        ItemKala = new KalaDto(){Name = "111",IsPalletFelezi=true}, 
+                        ItemRanande = itemService.GetRanandehList()[0],
+                        Karton = 5,
+                        PalletCount = 1,
+                        Vazn = 100
+                    },
+                    new ItemDto() 
+                    { 
+                        Id = 2,
+                        ItemKala = new KalaDto(){Name = "121"}, 
+                        Karton = 50,
+                        PalletCount = 1,
+                        Tedad = 48,
+                        Vazn = 200
+                    },
+                    
+                };
+        }
+
         
     }
     
