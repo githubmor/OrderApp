@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Entity
 {
-    public class ErsalKalaEntity :BaseKalaEntity
+    public class ErsalKalaEntity : BaseKalaEntity
     {
         public ErsalKalaEntity()
         {
             Khodros = new List<KhodorEntity>();
         }
+
         public List<KhodorEntity> Khodros { get; set; }
     }
 }

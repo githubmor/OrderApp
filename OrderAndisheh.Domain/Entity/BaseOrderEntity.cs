@@ -5,6 +5,5 @@
         public int Tarikh { get; set; }
         public bool IsAccepted { get; set; }
         public int Version { get; set; }
-
     }
 }

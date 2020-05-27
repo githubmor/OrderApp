@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OrderAndisheh.Domain.Entity
+﻿namespace OrderAndisheh.Domain.Entity
 {
     public class ProductEntity
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Entity
 {
@@ -12,6 +8,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             Ersali = new List<ErsalEntity>();
         }
+
         public string SherkatName { get; set; }
         public List<ErsalEntity> Ersali { get; set; }
     }

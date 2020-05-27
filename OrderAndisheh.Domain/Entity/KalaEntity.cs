@@ -1,6 +1,6 @@
 ﻿namespace OrderAndisheh.Domain.Entity
 {
-    public class KalaEntity :BaseKalaEntity
+    public class KalaEntity : BaseKalaEntity
     {
         public int TedadDarPallet { get; set; }
         public int TedadDarBaste { get; set; }
