@@ -7,7 +7,6 @@
             Details = new System.Collections.Generic.List<CabinEntity>();
         }
 
-        public int Version { get; set; }
         public System.Collections.Generic.List<CabinEntity> Details { get; set; }
     }
 }

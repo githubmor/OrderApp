@@ -1,11 +1,9 @@
 ﻿namespace OrderAndisheh.Domain.Entity
 {
-    public class KalaEntity
+    public class KalaEntity :BaseKalaEntity
     {
-        public string Name { get; set; }
         public int TedadDarPallet { get; set; }
         public int TedadDarBaste { get; set; }
-        public string Code { get; set; }
         public string CodeJense { get; set; }
         public int WeighWithPallet { get; set; }
 

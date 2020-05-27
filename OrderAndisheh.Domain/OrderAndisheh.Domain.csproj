@@ -41,7 +41,10 @@
   <ItemGroup>
     <Compile Include="Entity\AmarTolidEntity.cs" />
     <Compile Include="Entity\BaseOrderEntity.cs" />
-    <Compile Include="Entity\TolidEntity.cs" />
+    <Compile Include="Entity\BaseKalaEntity.cs" />
+    <Compile Include="Entity\CustomerEntity.cs" />
+    <Compile Include="Entity\ErsalKalaEntity.cs" />
+    <Compile Include="Entity\SherkatEntity.cs" />
     <Compile Include="Entity\DestinationEntity.cs" />
     <Compile Include="Entity\DriverEntity.cs" />
     <Compile Include="Entity\ErsalEntity.cs" />

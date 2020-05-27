@@ -1,8 +1,7 @@
 ﻿namespace OrderAndisheh.Domain.Entity
 {
-    public class TolidEntity
+    public class DestinationEntity
     {
         public string Name { get; set; }
-        public AmarTolidEntity AmarTolid { get; set; }
     }
 }

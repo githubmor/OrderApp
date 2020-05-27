@@ -2,8 +2,7 @@
 {
     public class ErsalEntity
     {
-        public KalaEntity Kala { get; set; }
+        public ErsalKalaEntity Kala { get; set; }
         public int TedadErsali { get; set; }
-        public KhodorEntity Khodor { get; set; }
     }
 }

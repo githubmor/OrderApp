@@ -5,21 +5,15 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class ShakhesEntity
     {
-        public List<TolidEntity> Tolidi { get; set; }
-        public List<ErsalEntity> Ersali { get; set; }
+        public SherkatEntity Sherkat { get; set; }
+        public CustomerEntity Customer { get; set; }
 
-        public int ErsaliSum { get { return getErsaliSum(); } }
-
-        private int getErsaliSum()
-        {
-            throw new NotImplementedException();
+        public float getDarSadSahm(){
+            return 0F;
         }
-
-        public int ErsalPercent { get { return getErsalPercent(); } }
-
-        private int getErsalPercent()
+        public int getTedadErsal()
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
