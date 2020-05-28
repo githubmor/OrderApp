@@ -42,8 +42,6 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void CabinEntity_NullDriver_IsOk()
         {
             CabinEntity c = new CabinEntity();
-
-            var d = new DriverEntity() { CodeMeli = "2064800", Mobile = "0911", Name = "masoud", Pelak = "ad" };
             c.Driver = null;
         }
 
@@ -52,8 +50,6 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void CabinEntity_NullMahmoles_IsOk()
         {
             CabinEntity c = new CabinEntity();
-
-            var d = new DriverEntity() { CodeMeli = "2064800", Mobile = "0911", Name = "masoud", Pelak = "ad" };
             c.Mahmoles = null;
         }
     }

@@ -10,31 +10,18 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void AmarTolidEntity_SetProperty_IsOK()
         {
-            AmarTolidEntity a = new AmarTolidEntity();
-            a.Khodor = new KhodorEntity() { Name = "206" };
-            a.TedadTolid = 200;
+            AmarTolidEntity a = new AmarTolidEntity(new KhodorEntity() { Name = "206" },200);
 
             Assert.AreEqual(200, a.TedadTolid);
             Assert.AreEqual(a.Khodor.Name, "206");
             Assert.IsNotNull(a.Khodor);
         }
 
-        [TestMethod]
-        public void AmarTolidEntity_DefaultProperty_IsOK()
-        {
-            AmarTolidEntity a = new AmarTolidEntity();
-
-            Assert.AreEqual(0, a.TedadTolid);
-            Assert.IsNull(a.Khodor);
-        }
-
         [ExpectedException(typeof(NullReferenceException))]
         [TestMethod]
         public void AmarTolidEntity_SetKhodroNull_IsOK()
         {
-            AmarTolidEntity a = new AmarTolidEntity();
-
-            a.Khodor = null;
+            AmarTolidEntity a = new AmarTolidEntity(null,0);
         }
     }
 }
