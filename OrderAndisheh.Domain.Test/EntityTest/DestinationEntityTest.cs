@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -9,18 +10,16 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void DestinationEntity_DefaultProperty_IsOK()
         {
-            DestinationEntity d = new DestinationEntity();
+            DestinationEntity d = new DestinationEntity("name");
 
-            Assert.AreEqual("", d.Name);
+            Assert.AreEqual("name", d.Name);
         }
 
+        [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void DestinationEntity_SetProperty_IsOK()
+        public void DestinationEntity_EmptyName_Exception()
         {
-            DestinationEntity d = new DestinationEntity();
-            d.Name = "asdsad";
-
-            Assert.AreEqual("asdsad", d.Name);
+            DestinationEntity d = new DestinationEntity("");
         }
     }
 }

@@ -12,9 +12,9 @@ namespace OrderAndisheh.Domain.UseCase
             _repository = repository;
         }
 
-        public bool Handle(OrderEntity data)
+        public bool Handle(OrderEntity order)
         {
-            return _repository.SaveOrder(data);
+            return _repository.SaveOrder(order);
         }
     }
 }

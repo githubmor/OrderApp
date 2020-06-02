@@ -4,7 +4,7 @@ using OrderAndisheh.Domain.Repository;
 
 namespace OrderAndisheh.Domain.UseCase
 {
-    public class GetKalaListInteractor : IRequestHandler<IKalaType, KalaEntity>
+    public class GetKalaListInteractor : IRequestHandler<IKalaType, System.Collections.Generic.List<KalaEntity>>
     {
         private IKalaRepository _repository;
 
@@ -13,9 +13,9 @@ namespace OrderAndisheh.Domain.UseCase
             _repository = repository;
         }
 
-        public KalaEntity Handle(IKalaType data)
+        public System.Collections.Generic.List<KalaEntity> Handle(IKalaType kalaType)
         {
-            return _repository.getKalaList(data);
+            return _repository.getKalaList(kalaType);
         }
     }
 }

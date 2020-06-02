@@ -2,6 +2,6 @@
 {
     public interface IKalaRepository
     {
-        Entity.KalaEntity getKalaList(Interfaces.IKalaType data);
+        System.Collections.Generic.List<OrderAndisheh.Domain.Entity.KalaEntity> getKalaList(Interfaces.IKalaType data);
     }
 }

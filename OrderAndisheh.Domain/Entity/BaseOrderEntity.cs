@@ -1,74 +1,58 @@
 ﻿using System;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class BaseOrderEntity
     {
-        private int _id;
-        public BaseOrderEntity(int Id,bool IsAccepted = false)
+        public BaseOrderEntity(int tarikh, int version = 0, bool isAccepted = false)
         {
-            if (!Id.IsDateAndVersion())
+            if (!IsDateNumber(tarikh))
             {
-                throw new IndexOutOfRangeException("");
+                throw new IndexOutOfRangeException("فرمت تاریخ سفارش درست نمی باشد");
             }
-            _Tarikh = getTarikh(Id);
-            _IsAccepted = IsAccepted;
-            _Version = getVersion(Id);
+            Tarikh = tarikh;
+            IsAccepted = isAccepted;
+            Version = version;
         }
 
-        private int getVersion(int Id)
+        public int Tarikh { get; private set; }
+        public bool IsAccepted { get; private set; }
+        public int Version { get; private set; }
+
+        public void VersionIncrease()
         {
-            return Id % 100000000;
+            Version = Version + 1;
         }
 
-        private int getTarikh(int Id)
+        public void ChangeAccepted(bool check)
         {
-            return Id - getVersion(Id);
+            IsAccepted = check;
         }
 
-        private int _Tarikh;
-
-        public int Tarikh
+        private bool IsDateNumber(int date)
         {
-            get { return _Tarikh; }
+            var year = getYear(date);
+            var month = getMonth(date);
+            var day = getDay(date);
+
+            return 1300 < year && year < 1500 &&
+                0 < month && month < 13 &&
+                0 < day && (month < 7 ? day < 31 : day < 30);
         }
 
-        private bool _IsAccepted;
-
-        public bool IsAccepted
+        private int getDay(int date)
         {
-            get { return _IsAccepted; }
+            return date - (getYear(date) * 10000) - (getMonth(date) * 100);
         }
 
-        private int _Version;
-
-        public int Version
+        private int getMonth(int date)
         {
-            get { return _Version; }
-            set
-            {
-                _Version = value;
-            }
+            return (date - (getYear(date) * 10000)) / 100;
         }
 
-        public void Accepted()
+        private int getYear(int date)
         {
-            _IsAccepted = true;
+            return date / 10000;
         }
-
-        private bool IsDateAndVersion(int id)
-        {
-            int year = id / 10 ^ 5;
-            int month = id / 10 ^ 5;
-
-            return i > 130001019 || i < 999912309;
-        }
-    }
-
-    public static class IntExtension{
-        public static bool IsDateAndVersion(this int i)  
-        { 
-            return i>130001019 || i<999912309; 
-        }
-
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Entity\BaseKalaEntity.cs" />
     <Compile Include="Entity\CustomerEntity.cs" />
     <Compile Include="Entity\ErsalKalaEntity.cs" />
+    <Compile Include="Entity\PalletEntity.cs" />
     <Compile Include="Entity\SherkatEntity.cs" />
     <Compile Include="Entity\DestinationEntity.cs" />
     <Compile Include="Entity\DriverEntity.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="UseCase\GetKalaListInteractor.cs" />
     <Compile Include="UseCase\GetShakhesListInteractor.cs" />
     <Compile Include="UseCase\IRequestHandler.cs" />
+    <Compile Include="UseCase\GenerateOrderIntractor.cs" />
     <Compile Include="UseCase\OpenOrderIntractor.cs" />
     <Compile Include="UseCase\ReportGenaratorInteraction.cs" />
     <Compile Include="UseCase\SaveOrderInteractor.cs" />

@@ -1,18 +1,24 @@
-﻿namespace OrderAndisheh.Domain.Entity
+﻿using System;
+
+namespace OrderAndisheh.Domain.Entity
 {
     public class BaseKalaEntity
     {
-        public BaseKalaEntity(string Name, string Code, string FaniCode)
+        public BaseKalaEntity(string name, string codeAnbar, string faniCode, string codeJense)
         {
-            this._name = Name;
-            this._code = Code;
-            this._faniCode = FaniCode;
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(codeAnbar))
+            {
+                throw new ArgumentNullException("نام يا كد انبار كالا نباید تهي باشد");
+            }
+            Name = name;
+            CodeAnbar = codeAnbar;
+            FaniCode = faniCode;
+            CodeJense = codeJense;
         }
-        private string _name;
-        private string _code;
-        private string _faniCode;
-        public string Name { get { return _name; } }
-        public string Code { get { return _code; } }
-        public string FaniCode { get { return _faniCode; } }
+
+        public string Name { get; private set; }
+        public string CodeAnbar { get; private set; }
+        public string FaniCode { get; private set; }
+        public string CodeJense { get; private set; }
     }
 }

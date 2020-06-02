@@ -1,7 +1,10 @@
-﻿namespace OrderAndisheh.Domain.Repository
+﻿using OrderAndisheh.Domain.Entity;
+using System.Collections.Generic;
+
+namespace OrderAndisheh.Domain.Repository
 {
     public interface IDriverRepository
     {
-        Entity.DriverEntity getDriverList(Interfaces.ICarType data);
+        List<DriverEntity> getDriverList(Interfaces.ICarType data);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -7,29 +8,32 @@ namespace OrderAndisheh.Domain.Test.EntityTest
     public class DriverEntityTest
     {
         [TestMethod]
-        public void DriverEntity_DefaultProperty_IsOK()
+        public void DriverEntity_AllSet_IsOK()
         {
-            DriverEntity d = new DriverEntity();
+            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
-            Assert.AreEqual(d.CodeMeli, "");
-            Assert.AreEqual(d.Mobile, "");
-            Assert.AreEqual(d.Name, "");
-            Assert.AreEqual(d.Pelak, "");
+            Assert.AreEqual(d.CodeMeli, "codeMeli");
+            Assert.AreEqual(d.Mobile, "mobile");
+            Assert.AreEqual(d.Name, "name");
+            Assert.AreEqual(d.Pelak, "pelak");
         }
 
         [TestMethod]
-        public void DriverEntity_SetProperty_IsOK()
+        public void DriverEntity_SetNameMeli_IsOK()
         {
-            DriverEntity d = new DriverEntity();
-            d.CodeMeli = "206";
-            d.Mobile = "0911";
-            d.Name = "nam";
-            d.Pelak = "857";
+            DriverEntity d = new DriverEntity("name", "", "", "");
 
-            Assert.AreEqual(d.CodeMeli, "206");
-            Assert.AreEqual(d.Mobile, "0911");
-            Assert.AreEqual(d.Name, "nam");
-            Assert.AreEqual(d.Pelak, "857");
+            Assert.AreEqual(d.CodeMeli, "");
+            Assert.AreEqual(d.Mobile, "");
+            Assert.AreEqual(d.Name, "name");
+            Assert.AreEqual(d.Pelak, "");
+        }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void DriverEntity_EmptyName_IsOK()
+        {
+            DriverEntity d = new DriverEntity("", "mobile", "codeMeli", "pelak");
         }
     }
 }

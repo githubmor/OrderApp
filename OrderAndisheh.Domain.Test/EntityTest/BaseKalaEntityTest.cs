@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -7,35 +8,42 @@ namespace OrderAndisheh.Domain.Test.EntityTest
     public class BaseKalaEntityTest
     {
         [TestMethod]
-        public void BaseKalaEntityTest_DefaultProperty_IsOk()
-        {
-            BaseKalaEntity b = new BaseKalaEntity();
-
-            Assert.AreEqual("", b.Code);
-            Assert.AreEqual("", b.FaniCode);
-            Assert.AreEqual("", b.Name);
-        }
-
-        [TestMethod]
         public void BaseKalaEntityTest_SetProperty_IsOk()
         {
-            BaseKalaEntity b = new BaseKalaEntity();
-            b.Code = "12";
-            b.FaniCode = "12";
-            b.Name = "12";
+            BaseKalaEntity b = new BaseKalaEntity("name", "codeAnbar", "fani", "jens");
 
-            Assert.AreEqual("12", b.Code);
-            Assert.AreEqual("12", b.FaniCode);
-            Assert.AreEqual("12", b.Name);
+            Assert.AreEqual("codeAnbar", b.CodeAnbar);
+            Assert.AreEqual("fani", b.FaniCode);
+            Assert.AreEqual("name", b.Name);
+            Assert.AreEqual("jens", b.CodeJense);
         }
 
-        [ExpectedException(typeof(ExpectedExceptionAttribute))]
+        [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void BaseKalaEntityTest_SetProperty_IsOk()
+        public void BaseKalaEntityTest_EmptyName_Exception()
         {
-            BaseKalaEntity b = new BaseKalaEntity();
+            BaseKalaEntity b = new BaseKalaEntity("", "dsa", "sdf", "sdfs");
+        }
 
-            b.Name = "";
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void BaseKalaEntityTest_EmptyCodeAnbar_Exception()
+        {
+            BaseKalaEntity b = new BaseKalaEntity("asd", "", "asd", "asd");
+        }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void BaseKalaEntityTest_EmptyNameAndCodeAnbar_Exception()
+        {
+            BaseKalaEntity b = new BaseKalaEntity("", "", "asd", "asd");
+        }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void BaseKalaEntityTest_EmptyAll_Exception()
+        {
+            BaseKalaEntity b = new BaseKalaEntity("", "", "", "");
         }
     }
 }

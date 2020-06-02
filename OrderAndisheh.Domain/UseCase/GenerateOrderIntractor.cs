@@ -3,18 +3,18 @@
 
 //namespace OrderAndisheh.Domain.UseCase
 //{
-//    public class UpdateOrderInteractor : IRequestHandler<OrderEntity, bool>
+//    public class GenerateOrderIntractor : IRequestHandler<int, OrderEntity?>
 //    {
 //        private IOrderRepository _repository;
 
-//        public UpdateOrderInteractor(IOrderRepository repository)
+//        public GenerateOrderIntractor(IOrderRepository repository)
 //        {
 //            _repository = repository;
 //        }
 
-//        public bool Handle(OrderEntity data)
+//        public OrderEntity? Handle(int tarikh)
 //        {
-//            return _repository.UpdateOrder(data);
+//            return _repository.GetOrder(tarikh);
 //        }
 //    }
 //}

@@ -1,7 +1,10 @@
-﻿namespace OrderAndisheh.Domain.Repository
+﻿using OrderAndisheh.Domain.Entity;
+using System.Collections.Generic;
+
+namespace OrderAndisheh.Domain.Repository
 {
     public interface IDestinationRepository
     {
-        Entity.DestinationEntity getDestinationList(Interfaces.IKalaDestinationType data);
+        List<DestinationEntity> getDestinationList(Interfaces.IKalaDestinationType data);
     }
 }
