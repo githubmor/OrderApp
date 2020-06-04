@@ -1,26 +1,40 @@
-﻿//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using OrderAndisheh.Domain.Entity;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OrderAndisheh.Domain.Entity;
+using System;
 
-//namespace OrderAndisheh.Domain.Test.EntityTest
-//{
-//    [TestClass]
-//    public class KhodorEntityTest
-//    {
-//        [TestMethod]
-//        public void KalaEntity_DefaultProperty_IsOK()
-//        {
-//            KhodorEntity k = new KhodorEntity();
+namespace OrderAndisheh.Domain.Test.EntityTest
+{
+    [TestClass]
+    public class KhodorEntityTest
+    {
+        [TestMethod]
+        public void KalaEntity_DefaultProperty_IsOK()
+        {
 
-//            Assert.AreEqual(k.Name, "");
-//        }
+            KhodorEntity k = new KhodorEntity("206", getCustomer());
 
-//        [TestMethod]
-//        public void KalaEntity_SetProperty_IsOK()
-//        {
-//            KhodorEntity k = new KhodorEntity();
-//            k.Name = "asdad";
+            Assert.AreEqual(k.Name, "206");
+            Assert.IsNotNull(k.Customer);
+        }
 
-//            Assert.AreEqual(k.Name, "asdad");
-//        }
-//    }
-//}
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void KalaEntity_Emptyname_ExpectedException()
+        {
+            KhodorEntity k = new KhodorEntity("", getCustomer());
+        }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void KalaEntity_NullCustomer_ExpectedException()
+        {
+            KhodorEntity k = new KhodorEntity("206", null);
+        }
+
+        private static CustomerEntity getCustomer()
+        {
+            CustomerEntity c = new CustomerEntity("Sapco");
+            return c;
+        }
+    }
+}

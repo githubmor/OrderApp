@@ -5,22 +5,22 @@ using OrderAndisheh.Domain.Entity;
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
     [TestClass]
-    public class CustomerEntityTest
+    public class SherkatEntityTest
     {
         [TestMethod]
-        public void CustomerEntityTest_DefaultProperty_IsOk()
+        public void SherkatEntity_DefaultProperty_IsOk()
         {
-            CustomerEntity c = new CustomerEntity("Sapco");
+            SherkatEntity c = new SherkatEntity("Andisheh");
 
-            Assert.AreEqual("Sapco", c.CustomerName);
+            Assert.AreEqual("Andisheh", c.SherkatName);
         }
 
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void CustomerEntityTest_NullProperty_IsOk()
+        public void SherkatEntity_NullProperty_IsOk()
         {
-            CustomerEntity c = new CustomerEntity("");
+            SherkatEntity c = new SherkatEntity("");
         }
 
     }

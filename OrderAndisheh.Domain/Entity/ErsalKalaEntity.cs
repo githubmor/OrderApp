@@ -1,15 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Entity
 {
     public class ErsalKalaEntity : BaseKalaEntity
     {
-        public ErsalKalaEntity(string name, string codeAnbar, string faniCode, string codeJense)
+        public ErsalKalaEntity(string name, string codeAnbar, string faniCode, string codeJense,
+            SherkatEntity sherkat,int tedadErsali)
             : base(name, codeAnbar, faniCode, codeJense)
         {
-            Khodros = new List<KhodorEntity>();
+            if (sherkat==null)
+            {
+                throw new ArgumentNullException("شركت در كالاي ارسالي نميتواند تهي باشد");
+            }
+            Sherkat = sherkat;
+            TedadErsali = tedadErsali;
         }
-
-        public List<KhodorEntity> Khodros { get; set; }
+        public int TedadErsali { get; private set; }
+        public SherkatEntity Sherkat { get; private set; }
     }
 }

@@ -52,11 +52,15 @@
   <ItemGroup>
     <Compile Include="EntityTest\AmarTolidEntityTest.cs" />
     <Compile Include="EntityTest\BaseKalaEntityTest.cs" />
+    <Compile Include="EntityTest\SherkatEntityTest.cs" />
+    <Compile Include="EntityTest\TahvilFroshEntityTest.cs" />
+    <Compile Include="EntityTest\OrderStateEntityTest.cs" />
+    <Compile Include="EntityTest\TahvilOrderEntityTest.cs" />
     <Compile Include="EntityTest\BaseOrderEntityTest.cs" />
     <Compile Include="EntityTest\CabinEntityTest.cs" />
     <Compile Include="EntityTest\DestinationEntityTest.cs" />
     <Compile Include="EntityTest\DriverEntityTest.cs" />
-    <Compile Include="EntityTest\ErsalEntityTest.cs" />
+    <Compile Include="EntityTest\ErsalKalaEntityTest.cs" />
     <Compile Include="EntityTest\KalaEntityTest.cs" />
     <Compile Include="EntityTest\KhodorEntityTest.cs" />
     <Compile Include="EntityTest\CustomerEntityTest.cs" />
@@ -64,6 +68,8 @@
     <Compile Include="EntityTest\ProductEntityTest.cs" />
     <Compile Include="EntityTest\MahmoleEntityTest.cs" />
     <Compile Include="EntityTest\OrderEntityTest.cs" />
+    <Compile Include="EntityTest\TolidMahaneEntityTest.cs" />
+    <Compile Include="EntityTest\ShakhesKalaEntityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

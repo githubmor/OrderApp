@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Entity
 {
     public class SherkatEntity
     {
-        public SherkatEntity()
+        public SherkatEntity(string sherkatName)
         {
-            Ersali = new List<ErsalEntity>();
+            if (string.IsNullOrEmpty(sherkatName))
+            {
+                throw new ArgumentNullException("نام شركت نمي تواند تهي باشد");
+            }
+            SherkatName = sherkatName;
         }
 
-        public string SherkatName { get; set; }
-        public List<ErsalEntity> Ersali { get; set; }
+        public string SherkatName { get; private set; }
     }
 }

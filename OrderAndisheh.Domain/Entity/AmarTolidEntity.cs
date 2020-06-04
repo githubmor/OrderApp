@@ -2,30 +2,14 @@
 
 namespace OrderAndisheh.Domain.Entity
 {
-    public class AmarTolidEntity
+    public class AmarTolidEntity:KhodorEntity
     {
-        public AmarTolidEntity(KhodorEntity Khodor, int TedadTolid)
+        public AmarTolidEntity(string name, CustomerEntity customer, int TedadTolid)
+            :base(name,customer)
         {
-            if (Khodor == null)
-            {
-                throw new NullReferenceException();
-            }
-            this._Khodor = Khodor;
-            this._TedadTolid = TedadTolid;
+            this.TedadTolid = TedadTolid;
         }
-
-        private KhodorEntity _Khodor;
-
-        public KhodorEntity Khodor
-        {
-            get { return _Khodor; }
-        }
-
-        private int _TedadTolid;
-
-        public int TedadTolid
-        {
-            get { return _TedadTolid; }
-        }
+        public int TedadTolid { get; private set; }
+        
     }
 }

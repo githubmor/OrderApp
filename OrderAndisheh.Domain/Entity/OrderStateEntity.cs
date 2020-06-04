@@ -2,14 +2,18 @@
 {
     public class OrderStateEntity : BaseOrderEntity
     {
-        public OrderStateEntity(int tarikh, int version = 0, bool isAccepted = false)
-            : base(tarikh, version, isAccepted)
+        public OrderStateEntity(int tarikh, bool isTedadSet, bool isTahvilSet, bool isDriverSet, bool isDestinationSet)
+            : base(tarikh)
         {
+            IsTedadSet = isTedadSet;
+            IsTahvilSet = isTahvilSet;
+            IsDriverSet = isDriverSet;
+            IsDestinationSet = isDestinationSet;
         }
 
-        public bool IsTedadSet { get; set; }
-        public bool IsTahvilSet { get; set; }
-        public bool IsDriverSet { get; set; }
-        public bool IsDestinationSet { get; set; }
+        public bool IsTedadSet { get; private set; }
+        public bool IsTahvilSet { get; private set; }
+        public bool IsDriverSet { get; private set; }
+        public bool IsDestinationSet { get; private set; }
     }
 }
