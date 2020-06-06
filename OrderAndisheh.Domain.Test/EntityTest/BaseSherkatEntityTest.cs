@@ -5,12 +5,12 @@ using OrderAndisheh.Domain.Entity;
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
     [TestClass]
-    public class SherkatEntityTest
+    public class BaseSherkatEntityTest
     {
         [TestMethod]
-        public void SherkatEntity_DefaultProperty_IsOk()
+        public void BaseSherkatEntity_DefaultProperty_IsOk()
         {
-            SherkatEntity c = new SherkatEntity("Andisheh");
+            BaseSherkatEntity c = new BaseSherkatEntity("Andisheh");
 
             Assert.AreEqual("Andisheh", c.SherkatName);
         }
@@ -18,9 +18,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void SherkatEntity_NullProperty_IsOk()
+        public void BaseSherkatEntity_NullProperty_IsOk()
         {
-            SherkatEntity c = new SherkatEntity("");
+            BaseSherkatEntity c = new BaseSherkatEntity("");
         }
 
     }

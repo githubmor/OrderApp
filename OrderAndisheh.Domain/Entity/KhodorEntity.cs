@@ -3,16 +3,14 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class KhodorEntity
     {
-        public KhodorEntity(string name, CustomerEntity customer)
+        public KhodorEntity(string name)
         {
-            if (string.IsNullOrEmpty(name)||customer==null)
+            if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("نام خودرو يا مشتري تهي مي باشد");
+                throw new ArgumentNullException("نام خودر نمي تواند تهي باشد");
             }
             Name = name;
-            Customer = customer;
         }
         public string Name { get; private set; }
-        public CustomerEntity Customer { get; private set; }
     }
 }

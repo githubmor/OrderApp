@@ -11,30 +11,17 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void KalaEntity_DefaultProperty_IsOK()
         {
 
-            KhodorEntity k = new KhodorEntity("206", getCustomer());
+            KhodorEntity k = new KhodorEntity("206");
 
             Assert.AreEqual(k.Name, "206");
-            Assert.IsNotNull(k.Customer);
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void KalaEntity_Emptyname_ExpectedException()
         {
-            KhodorEntity k = new KhodorEntity("", getCustomer());
+            KhodorEntity k = new KhodorEntity("");
         }
 
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void KalaEntity_NullCustomer_ExpectedException()
-        {
-            KhodorEntity k = new KhodorEntity("206", null);
-        }
-
-        private static CustomerEntity getCustomer()
-        {
-            CustomerEntity c = new CustomerEntity("Sapco");
-            return c;
-        }
     }
 }

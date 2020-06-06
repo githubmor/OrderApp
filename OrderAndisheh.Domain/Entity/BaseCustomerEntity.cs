@@ -1,9 +1,9 @@
 ﻿using System;
 namespace OrderAndisheh.Domain.Entity
 {
-    public class CustomerEntity
+    public class BaseCustomerEntity
     {
-        public CustomerEntity(string customerName)
+        public BaseCustomerEntity(string customerName)
         {
             if (string.IsNullOrEmpty(customerName))
             {

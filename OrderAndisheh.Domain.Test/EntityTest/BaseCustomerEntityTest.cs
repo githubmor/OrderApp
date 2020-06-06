@@ -5,12 +5,12 @@ using OrderAndisheh.Domain.Entity;
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
     [TestClass]
-    public class CustomerEntityTest
+    public class BaseCustomerEntityTest
     {
         [TestMethod]
-        public void CustomerEntityTest_DefaultProperty_IsOk()
+        public void BaseCustomerEntityTest_DefaultProperty_IsOk()
         {
-            CustomerEntity c = new CustomerEntity("Sapco");
+            BaseCustomerEntity c = new BaseCustomerEntity("Sapco");
 
             Assert.AreEqual("Sapco", c.CustomerName);
         }
@@ -18,9 +18,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void CustomerEntityTest_NullProperty_IsOk()
+        public void BaseCustomerEntityTest_NullProperty_IsOk()
         {
-            CustomerEntity c = new CustomerEntity("");
+            BaseCustomerEntity c = new BaseCustomerEntity("");
         }
 
     }

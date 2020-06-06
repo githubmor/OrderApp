@@ -40,15 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\AmarTolidEntity.cs" />
+    <Compile Include="Entity\CustomerTolidiEntity.cs" />
     <Compile Include="Entity\BaseOrderEntity.cs" />
     <Compile Include="Entity\BaseKalaEntity.cs" />
-    <Compile Include="Entity\CustomerEntity.cs" />
+    <Compile Include="Entity\BaseCustomerEntity.cs" />
+    <Compile Include="Entity\ErsaliSherkatEntity.cs" />
     <Compile Include="Entity\ErsalKalaEntity.cs" />
     <Compile Include="Entity\PalletEntity.cs" />
-    <Compile Include="Entity\SherkatEntity.cs" />
+    <Compile Include="Entity\BaseSherkatEntity.cs" />
     <Compile Include="Entity\DestinationEntity.cs" />
     <Compile Include="Entity\DriverEntity.cs" />
-    <Compile Include="Entity\ShakhesKalaEntity.cs" />
+    <Compile Include="Entity\ShakhesEntity.cs" />
     <Compile Include="Entity\KalaEntity.cs" />
     <Compile Include="Entity\KhodorEntity.cs" />
     <Compile Include="Entity\MahmoleEntity.cs" />
@@ -56,7 +58,7 @@
     <Compile Include="Entity\OrderEntity.cs" />
     <Compile Include="Entity\OrderStateEntity.cs" />
     <Compile Include="Entity\ProductEntity.cs" />
-    <Compile Include="Entity\ShakhesEntity.cs" />
+    <Compile Include="Entity\ShakhesKalaEntity.cs" />
     <Compile Include="Entity\TahvilFroshEntity.cs" />
     <Compile Include="Entity\TahvilOrderEntity.cs" />
     <Compile Include="Entity\TolidMahaneEntity.cs" />

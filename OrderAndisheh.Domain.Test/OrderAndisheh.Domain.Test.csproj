@@ -51,8 +51,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EntityTest\AmarTolidEntityTest.cs" />
+    <Compile Include="EntityTest\CustomerTolidiEntityTest.cs" />
     <Compile Include="EntityTest\BaseKalaEntityTest.cs" />
-    <Compile Include="EntityTest\SherkatEntityTest.cs" />
+    <Compile Include="EntityTest\ErsaliSherkatEntityTest.cs" />
+    <Compile Include="EntityTest\BaseSherkatEntityTest.cs" />
+    <Compile Include="EntityTest\ShakhesKalaEntityTest.cs" />
     <Compile Include="EntityTest\TahvilFroshEntityTest.cs" />
     <Compile Include="EntityTest\OrderStateEntityTest.cs" />
     <Compile Include="EntityTest\TahvilOrderEntityTest.cs" />
@@ -63,13 +66,13 @@
     <Compile Include="EntityTest\ErsalKalaEntityTest.cs" />
     <Compile Include="EntityTest\KalaEntityTest.cs" />
     <Compile Include="EntityTest\KhodorEntityTest.cs" />
-    <Compile Include="EntityTest\CustomerEntityTest.cs" />
+    <Compile Include="EntityTest\BaseCustomerEntityTest.cs" />
     <Compile Include="EntityTest\PalletEntityTest.cs" />
     <Compile Include="EntityTest\ProductEntityTest.cs" />
     <Compile Include="EntityTest\MahmoleEntityTest.cs" />
     <Compile Include="EntityTest\OrderEntityTest.cs" />
     <Compile Include="EntityTest\TolidMahaneEntityTest.cs" />
-    <Compile Include="EntityTest\ShakhesKalaEntityTest.cs" />
+    <Compile Include="EntityTest\ShakhesEntityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

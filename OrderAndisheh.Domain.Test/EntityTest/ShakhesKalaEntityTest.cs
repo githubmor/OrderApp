@@ -11,50 +11,47 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesKalaEntity_SetDafult_IsOk()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), 5, getTolidList());
+            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), getAmarTolids());
 
-            Assert.IsNotNull(s.Ersali);
-            Assert.IsNotNull(s.Tolidi);
-            Assert.AreEqual(1,s.Tolidi.Count);
-            Assert.AreEqual(5,s.ZaribMasrafDarKhodro);
+            Assert.IsNotNull(s.AmarTolids);
+            Assert.AreEqual(1,s.AmarTolids.Count);
+            Assert.IsNotNull(s.ErsalKala);
+            Assert.AreEqual(5,s.getDarsadSahm());
         }
+
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesKalaEntity_NullErsali_ExpectedException()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(null, 5, getTolidList());
-        }
-
-        [ExpectedException(typeof(ArgumentNullException))]
-        [TestMethod]
-        public void ShakhesKalaEntity_ZeroZarib_ExpectedException()
-        {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), 0, getTolidList());
+            ShakhesKalaEntity s = new ShakhesKalaEntity(null, getAmarTolids());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesKalaEntity_EmptyTolidi_ExpectedException()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), 5,  new List<AmarTolidEntity>());
+            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), new List<AmarTolidEntity>());
         }
 
-        private List<AmarTolidEntity> getTolidList()
+        private List<AmarTolidEntity> getAmarTolids()
         {
-            return new List<AmarTolidEntity>() { new AmarTolidEntity("206",getCustomer(), 200) };
+            return new List<AmarTolidEntity>() { new AmarTolidEntity("206", 200) };
         }
 
-        private static CustomerEntity getCustomer()
+        private List<KhodorEntity> getKhodroList()
         {
-            CustomerEntity c = new CustomerEntity("Sapco");
-            return c;
+            return new List<KhodorEntity>() { new KhodorEntity("206") };
+        }
+        private BaseCustomerEntity getCustomer()
+        {
+            return new BaseCustomerEntity("Sapco");
         }
 
         private ErsalKalaEntity getErsali()
         {
-            SherkatEntity c = new SherkatEntity("Andisheh");
-            return new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", c, 20);
+            return new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2, 
+                getKhodroList(), getCustomer()) ;
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Entity
 {
-    public class SherkatEntity
+    public class BaseSherkatEntity
     {
-        public SherkatEntity(string sherkatName)
+        public BaseSherkatEntity(string sherkatName)
         {
             if (string.IsNullOrEmpty(sherkatName))
             {

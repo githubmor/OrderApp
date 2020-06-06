@@ -32,12 +32,12 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
         private List<AmarTolidEntity> getAmarTolidList()
         {
-            return new List<AmarTolidEntity>() { new AmarTolidEntity("206",getCustomer(), 200) };
+            return new List<AmarTolidEntity>() { new AmarTolidEntity("206", 200) };
         }
 
-        private static CustomerEntity getCustomer()
+        private static BaseCustomerEntity getCustomer()
         {
-            CustomerEntity c = new CustomerEntity("Sapco");
+            BaseCustomerEntity c = new BaseCustomerEntity("Sapco");
             return c;
         }
     }

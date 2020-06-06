@@ -4,8 +4,8 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class AmarTolidEntity:KhodorEntity
     {
-        public AmarTolidEntity(string name, CustomerEntity customer, int TedadTolid)
-            :base(name,customer)
+        public AmarTolidEntity(string name, int TedadTolid)
+            :base(name)
         {
             this.TedadTolid = TedadTolid;
         }

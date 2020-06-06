@@ -1,34 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class ShakhesKalaEntity
     {
-        public ShakhesKalaEntity(ErsalKalaEntity ersali,int zaribMasrafDarKhodro,List<AmarTolidEntity> tolidi)
+        public ShakhesKalaEntity(ErsalKalaEntity ersalKala, List<AmarTolidEntity> amarTolids)
         {
-            if (ersali==null)
+            if (amarTolids.Count == 0)
             {
-                throw new ArgumentNullException("ارسالي در شاخص كالا نمي تواند تهي باشد");
+                throw new ArgumentNullException("آمار توليد در شاخص كالا نمي تواند تهي باشد");
             }
-            if (zaribMasrafDarKhodro == 0)
+            if (ersalKala == null)
             {
-                throw new ArgumentNullException("ضريب مصرف كالا در شاخص كالا نبايد صفر باشد");
+                throw new ArgumentNullException("كالاي ارسالي در شاخص كالا نمي تواند تهي باشد");
             }
-            if (tolidi.Count == 0)
-            {
-                throw new ArgumentNullException("توليدي خودرو در شاخص كالا نبايد تهي باشد");
-            }
-            Ersali = ersali;
-            Tolidi = tolidi;
-            ZaribMasrafDarKhodro = zaribMasrafDarKhodro;
+            ErsalKala = ersalKala;
+            AmarTolids = amarTolids;
         }
-        public ErsalKalaEntity Ersali { get; private set; }
-        public List<AmarTolidEntity> Tolidi { get; private set; }
-        public int ZaribMasrafDarKhodro { get; private set; }
+        public ErsalKalaEntity ErsalKala { get; private set; }
+        public List<AmarTolidEntity> AmarTolids { get; private set; }
 
         public int getDarsadSahm()
         {
-            return 0;
+            return ((ErsalKala.TedadErsali / ErsalKala.ZaribMasrafDarKhodro) * 100) / AmarTolids.Sum(p => p.TedadTolid);
         }
     }
 }
