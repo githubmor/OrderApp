@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
@@ -11,33 +11,53 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsaliSherkatEntityTest_DefaultProperty_IsOk()
         {
-            ErsaliSherkatEntity c = new ErsaliSherkatEntity("Andisheh",getErsali());
+            ErsaliSherkatEntity ersaliSherkat =
+                new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
 
-            Assert.AreEqual("Andisheh", c.SherkatName);
-            Assert.AreEqual(1, c.ErsaliKala.Count);
-            Assert.IsNotNull(c.ErsaliKala.Count);
+            Assert.AreEqual("Andisheh", ersaliSherkat.SherkatName);
+            Assert.AreEqual(1, ersaliSherkat.ErsaliKala.Count);
+            Assert.IsNotNull(ersaliSherkat.ErsaliKala.Count);
+        }
+
+        [TestMethod]
+        public void ErsaliSherkatEntityTest_getErsaliByNullCustomer_IsOk()
+        {
+            ErsaliSherkatEntity ersaliSherkat =
+                new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
+
+            var re = ersaliSherkat.getErsaliByCustomer(null);
+
+            Assert.AreEqual(0, re.Count);
+        }
+
+        [TestMethod]
+        public void ErsaliSherkatEntityTest_getErsaliByNotMatchCustomer_IsOk()
+        {
+            ErsaliSherkatEntity ersaliSherkat =
+                new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
+
+            var re = ersaliSherkat.getErsaliByCustomer(Ultility.getCustomer2());
+
+            Assert.AreEqual(0, re.Count);
+        }
+
+        [TestMethod]
+        public void ErsaliSherkatEntityTest_getErsaliByCustomer_IsOk()
+        {
+            ErsaliSherkatEntity ersaliSherkat =
+                new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
+
+            var re = ersaliSherkat.getErsaliByCustomer(Ultility.getCustomer());
+
+            Assert.AreEqual(1, re.Count);
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsaliSherkatEntityTest_EmptyErsaliKala_IsOk()
         {
-            ErsaliSherkatEntity c = new ErsaliSherkatEntity("Andisheh", new List<ErsalKalaEntity>());
-        }
-
-
-        private List<KhodorEntity> getKhodroList()
-        {
-            return new List<KhodorEntity>() { new KhodorEntity("206") };
-        }
-        private BaseCustomerEntity getCustomer()
-        {
-            return new BaseCustomerEntity("Sapco");
-        }
-        private List<ErsalKalaEntity> getErsali()
-        {
-            return new List<ErsalKalaEntity>() { new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2, 
-                getKhodroList(), getCustomer()) };
+            ErsaliSherkatEntity ersaliSherkat = new ErsaliSherkatEntity("Andisheh",
+                new List<ErsalKalaEntity>());
         }
     }
 }

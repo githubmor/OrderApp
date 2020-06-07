@@ -26,7 +26,7 @@ namespace OrderAndisheh.Domain.Entity
 
             var selectedSherkat = ErsaliSherkat.Single(p => p.SherkatName == sherkat.SherkatName);
 
-            var kalaha = selectedSherkat.ErsaliKala.Where(p => p.Customer.CustomerName == customer.CustomerName);
+            var kalaha = selectedSherkat.getErsaliByCustomer(customer);
 
             var selectedCustomer = CustomerTolidi.Single(p=>p.CustomerName==customer.CustomerName);
 

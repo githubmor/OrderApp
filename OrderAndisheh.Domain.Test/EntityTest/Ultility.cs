@@ -72,5 +72,15 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             return new BaseCustomerEntity("Sapco");
         }
 
+        public static List<ErsalKalaEntity> getErsali()
+        {
+            return new List<ErsalKalaEntity>() { new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2,
+                getKhodroList(), getCustomer()) };
+        }
+
+        public static BaseCustomerEntity getCustomer2()
+        {
+            return new BaseCustomerEntity("Sazeh");
+        }
     }
 }
