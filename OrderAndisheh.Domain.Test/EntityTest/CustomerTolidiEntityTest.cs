@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
@@ -11,41 +11,58 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CustomerTolidiEntity_DefaultProperty_IsOk()
         {
-            CustomerTolidiEntity c = new CustomerTolidiEntity("Sapco",getAmarTolids());
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
 
-            Assert.AreEqual("Sapco", c.CustomerName);
-            Assert.AreEqual(1, c.AmarTolids.Count);
-            Assert.IsNotNull(c.AmarTolids);
+            Assert.AreEqual("Sapco", customerTolidi.CustomerName);
+            Assert.AreEqual(1, customerTolidi.AmarTolids.Count);
+            Assert.IsNotNull(customerTolidi.AmarTolids);
         }
 
         [TestMethod]
         public void CustomerTolidiEntity_getAmarTolidi_IsOk()
         {
-            CustomerTolidiEntity c = new CustomerTolidiEntity("Sapco", getAmarTolids());
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
 
-            var re = c.getAmarTolidi(new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2, 
-                getKhodroList(), getCustomer()));
+            var re = customerTolidi.getAmarTolidi(Ultility.getKhodroList());
 
             Assert.AreEqual(1, re.Count);
+        }
+
+        [TestMethod]
+        public void CustomerTolidiEntity_getAmarTolidiNullKhodro_IsOk()
+        {
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
+
+            var re = customerTolidi.getAmarTolidi(null);
+
+            Assert.AreEqual(0, re.Count);
+        }
+
+        [TestMethod]
+        public void CustomerTolidiEntity_getEmptyAmarTolidi_IsOk()
+        {
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
+
+            var re = customerTolidi.getAmarTolidi(new List<KhodorEntity>());
+
+            Assert.AreEqual(0, re.Count);
+        }
+
+        [TestMethod]
+        public void CustomerTolidiEntity_getAmarTolidiNotMatch_IsOk()
+        {
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
+
+            var re = customerTolidi.getAmarTolidi(Ultility.getKhodroList2());
+
+            Assert.AreEqual(0, re.Count);
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void CustomerTolidiEntityTest_NullProperty_IsOk()
         {
-            CustomerTolidiEntity c = new CustomerTolidiEntity("Sapco",new List<AmarTolidKhodroEntity>());
-        }
-        private List<AmarTolidKhodroEntity> getAmarTolids()
-        {
-            return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 2000) };
-        }
-        private List<KhodorEntity> getKhodroList()
-        {
-            return new List<KhodorEntity>() { new KhodorEntity("206") };
-        }
-        private BaseCustomerEntity getCustomer()
-        {
-            return new BaseCustomerEntity("Sapco");
+            CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", new List<AmarTolidKhodroEntity>());
         }
     }
 }

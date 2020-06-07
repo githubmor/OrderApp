@@ -21,18 +21,21 @@ namespace OrderAndisheh.Domain.Entity
 
         public void AddMahmole(List<MahmoleEntity> mahmoles)
         {
-            mahmoles.ForEach(it =>
+            if (mahmoles != null)
             {
-                var myMahmole = GetDuplicateMahmoleOrNull(it);
-                if (myMahmole != null)
+                mahmoles.ForEach(it =>
                 {
-                    myMahmole.AddProduct(it.Products);
-                }
-                else
-                {
-                    Mahmoles.Add(it);
-                }
-            });
+                    var myMahmole = GetDuplicateMahmoleOrNull(it);
+                    if (myMahmole != null)
+                    {
+                        myMahmole.AddProduct(it.Products);
+                    }
+                    else
+                    {
+                        Mahmoles.Add(it);
+                    }
+                });
+            }
         }
 
         private MahmoleEntity GetDuplicateMahmoleOrNull(MahmoleEntity mahmole)

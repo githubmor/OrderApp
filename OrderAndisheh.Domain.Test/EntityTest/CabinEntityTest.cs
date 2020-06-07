@@ -34,6 +34,18 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_SetNullDriver_IsOk()
         {
+            CabinEntity cabin = new CabinEntity(null);
+
+            Assert.IsNull(cabin.Driver);
+            Assert.IsNotNull(cabin.Mahmoles);
+            Assert.AreEqual(0, cabin.Mahmoles.Count);
+            Assert.AreEqual("", cabin.Drivername);
+            Assert.AreEqual(0, cabin.VaznCabin);
+        }
+
+        [TestMethod]
+        public void CabinEntity_AddNullDriver_IsOk()
+        {
             CabinEntity cabin = new CabinEntity(Ultility.getDriver());
 
             cabin.Driver = null;
@@ -70,6 +82,30 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
 
         [TestMethod]
+        public void CabinEntity_SetNullMahmole_IsOk()
+        {
+            CabinEntity c = new CabinEntity(null);
+
+            Assert.IsNull(c.Driver);
+            Assert.IsNotNull(c.Mahmoles);
+            Assert.AreEqual(0, c.Mahmoles.Count);
+            Assert.AreEqual("", c.Drivername);
+            Assert.AreEqual(0, c.VaznCabin);
+        }
+
+        [TestMethod]
+        public void CabinEntity_SetEmptyMahmole_IsOk()
+        {
+            CabinEntity c = new CabinEntity(new List<MahmoleEntity>());
+
+            Assert.IsNull(c.Driver);
+            Assert.IsNotNull(c.Mahmoles);
+            Assert.AreEqual(0, c.Mahmoles.Count);
+            Assert.AreEqual("", c.Drivername);
+            Assert.AreEqual(0, c.VaznCabin);
+        }
+
+        [TestMethod]
         public void CabinEntity_AddMahmole_IsOk()
         {
             CabinEntity c = new CabinEntity(Ultility.getDriver());
@@ -97,6 +133,19 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual(0, c.VaznCabin);
         }
 
+        [TestMethod]
+        public void CabinEntity_AddNullMahmole_IsOk()
+        {
+            CabinEntity c = new CabinEntity(Ultility.getDriver());
+
+            c.AddMahmole(null);
+
+            Assert.IsNotNull(c.Driver);
+            Assert.IsNotNull(c.Mahmoles);
+            Assert.AreEqual(0, c.Mahmoles.Count);
+            Assert.AreEqual("name", c.Drivername);
+            Assert.AreEqual(0, c.VaznCabin);
+        }
         [TestMethod]
         public void CabinEntity_AddMahmoleWithSameDestination_IsOk()
         {

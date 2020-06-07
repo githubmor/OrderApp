@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class CustomerTolidiEntity : BaseCustomerEntity
@@ -8,22 +9,36 @@ namespace OrderAndisheh.Domain.Entity
         public CustomerTolidiEntity(string customerName, List<AmarTolidKhodroEntity> amarTolids)
             : base(customerName)
         {
-            if (amarTolids.Count==0)
+            if (amarTolids.Count == 0)
             {
-                throw new ArgumentNullException("آمار توليدي در مشتري توليد نمي تواند تهي باشد");
+                throw new ArgumentNullException("آمار توليدي در مشتري توليد نمي تواند تهي باشد", "amarTolids");
             }
             AmarTolids = amarTolids;
         }
+
         public List<AmarTolidKhodroEntity> AmarTolids { get; private set; }
 
-        public List<AmarTolidKhodroEntity> getAmarTolidi(ErsalKalaEntity kala){
-            List<AmarTolidKhodroEntity> selectedAmarTolis = new List<AmarTolidKhodroEntity>();
-            kala.Khodors.ForEach(i =>
+        public List<AmarTolidKhodroEntity> getAmarTolidi(List<KhodorEntity> khodors)
+        {
+            var result = new List<AmarTolidKhodroEntity>();
+            if (khodors != null)
             {
-                selectedAmarTolis.Add(AmarTolids.Single(u => u.Name == i.Name));
-            });
+                khodors.ForEach(i =>
+                {
+                    var re = getAmarTolidThisKhodroOrNull(i.Name);
+                    if (re != null)
+                    {
+                        result.Add(re);
+                    }
+                });
+            }
 
-            return selectedAmarTolis;
+            return result;
+        }
+
+        private AmarTolidKhodroEntity getAmarTolidThisKhodroOrNull(string name)
+        {
+            return AmarTolids.SingleOrDefault(u => u.Name == name);
         }
     }
 }

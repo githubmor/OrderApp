@@ -55,5 +55,22 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             return new List<MahmoleEntity>() { m2 };
         }
 
+        public static List<AmarTolidKhodroEntity> getAmarTolids()
+        {
+            return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 2000) };
+        }
+        public static List<KhodorEntity> getKhodroList()
+        {
+            return new List<KhodorEntity>() { new KhodorEntity("206") };
+        }
+        public static List<KhodorEntity> getKhodroList2()
+        {
+            return new List<KhodorEntity>() { new KhodorEntity("207") };
+        }
+        public static BaseCustomerEntity getCustomer()
+        {
+            return new BaseCustomerEntity("Sapco");
+        }
+
     }
 }
