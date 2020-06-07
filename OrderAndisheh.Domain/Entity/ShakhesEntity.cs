@@ -24,20 +24,39 @@ namespace OrderAndisheh.Domain.Entity
 
         public int getDarsadSahm(BaseSherkatEntity sherkat,BaseCustomerEntity customer){
 
-            var selectedSherkat = ErsaliSherkat.Single(p => p.SherkatName == sherkat.SherkatName);
+            var ErsaliSherkat = getErsaliSherkatBySherkat(sherkat);
 
-            var kalaha = selectedSherkat.getErsaliByCustomer(customer);
+            var CustomerTolid = getCustormerTolidiByCustomer(customer);
 
-            var selectedCustomer = CustomerTolidi.Single(p=>p.CustomerName==customer.CustomerName);
+            var KalaErsali = ErsaliSherkat.getKalaErsaliByCustomer(customer);
 
+            return getShakhesAvreg(getShakhesKala(CustomerTolid, KalaErsali));
+        }
+
+        private static int getShakhesAvreg(List<ShakhesKalaEntity> shakhesKala)
+        {
+            return (int)shakhesKala.Average(p => p.getDarsadSahm());
+        }
+
+        private static List<ShakhesKalaEntity> getShakhesKala(CustomerTolidiEntity selectedCustomer, List<ErsalKalaEntity> kalaha)
+        {
             List<ShakhesKalaEntity> shakhesKala = new List<ShakhesKalaEntity>();
 
             kalaha.ToList().ForEach(kala =>
             {
                 shakhesKala.Add(new ShakhesKalaEntity(kala, selectedCustomer.getAmarTolidi(kala.Khodors)));
             });
+            return shakhesKala;
+        }
 
-            return (int) shakhesKala.Average(p=>p.getDarsadSahm());
+        private CustomerTolidiEntity getCustormerTolidiByCustomer(BaseCustomerEntity customer)
+        {
+            return CustomerTolidi.Single(p => p.CustomerName == customer.CustomerName);
+        }
+
+        private ErsaliSherkatEntity getErsaliSherkatBySherkat(BaseSherkatEntity sherkat)
+        {
+            return ErsaliSherkat.Single(p => p.SherkatName == sherkat.SherkatName);
         }
         
     }

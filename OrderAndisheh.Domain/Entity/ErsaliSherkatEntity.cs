@@ -18,7 +18,7 @@ namespace OrderAndisheh.Domain.Entity
 
         public List<ErsalKalaEntity> ErsaliKala { get; private set; }
 
-        public List<ErsalKalaEntity> getErsaliByCustomer(BaseCustomerEntity customer)
+        public List<ErsalKalaEntity> getKalaErsaliByCustomer(BaseCustomerEntity customer)
         {
             if (customer != null)
             {
