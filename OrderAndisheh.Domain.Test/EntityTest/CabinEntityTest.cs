@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -80,6 +81,20 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual(1, c.Mahmoles.Count);
             Assert.AreEqual("name", c.Drivername);
             Assert.AreEqual(800, c.VaznCabin);
+        }
+
+        [TestMethod]
+        public void CabinEntity_AddEmptyMahmole_IsOk()
+        {
+            CabinEntity c = new CabinEntity(Ultility.getDriver());
+
+            c.AddMahmole(new List<MahmoleEntity>());
+
+            Assert.IsNotNull(c.Driver);
+            Assert.IsNotNull(c.Mahmoles);
+            Assert.AreEqual(0, c.Mahmoles.Count);
+            Assert.AreEqual("name", c.Drivername);
+            Assert.AreEqual(0, c.VaznCabin);
         }
 
         [TestMethod]
