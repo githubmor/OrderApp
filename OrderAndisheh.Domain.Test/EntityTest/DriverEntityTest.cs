@@ -10,30 +10,30 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void DriverEntity_AllSet_IsOK()
         {
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
+            DriverEntity driver = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
-            Assert.AreEqual(d.CodeMeli, "codeMeli");
-            Assert.AreEqual(d.Mobile, "mobile");
-            Assert.AreEqual(d.Name, "name");
-            Assert.AreEqual(d.Pelak, "pelak");
+            Assert.AreEqual(driver.CodeMeli, "codeMeli");
+            Assert.AreEqual(driver.Mobile, "mobile");
+            Assert.AreEqual(driver.Name, "name");
+            Assert.AreEqual(driver.Pelak, "pelak");
         }
 
         [TestMethod]
         public void DriverEntity_SetNameMeli_IsOK()
         {
-            DriverEntity d = new DriverEntity("name", "", "", "");
+            DriverEntity driver = new DriverEntity("name", "", "", "");
 
-            Assert.AreEqual(d.CodeMeli, "");
-            Assert.AreEqual(d.Mobile, "");
-            Assert.AreEqual(d.Name, "name");
-            Assert.AreEqual(d.Pelak, "");
+            Assert.AreEqual(driver.CodeMeli, "");
+            Assert.AreEqual(driver.Mobile, "");
+            Assert.AreEqual(driver.Name, "name");
+            Assert.AreEqual(driver.Pelak, "");
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void DriverEntity_EmptyName_IsOK()
+        public void DriverEntity_EmptyName_ExpectedException()
         {
-            DriverEntity d = new DriverEntity("", "mobile", "codeMeli", "pelak");
+            DriverEntity driver = new DriverEntity("", "mobile", "codeMeli", "pelak");
         }
     }
 }

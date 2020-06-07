@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("نام راننده نمی تواند تهی باشد");
+                throw new ArgumentNullException("نام راننده در راننده نمی تواند تهی باشد", "name");
             }
             Name = name;
             Mobile = mobile;
