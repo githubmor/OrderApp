@@ -10,48 +10,48 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseOrderEntity_SetProperty_IsOk()
         {
-            BaseOrderEntity b = new BaseOrderEntity(13990208, 5, true);
+            BaseOrderEntity baseOrder = new BaseOrderEntity(13990208, 5, true);
 
-            Assert.IsTrue(b.IsAccepted);
-            Assert.AreEqual(13990208, b.Tarikh);
-            Assert.AreEqual(5, b.Version);
+            Assert.IsTrue(baseOrder.IsAccepted);
+            Assert.AreEqual(13990208, baseOrder.Tarikh);
+            Assert.AreEqual(5, baseOrder.Version);
         }
 
         [TestMethod]
         public void BaseOrderEntity_AddVersion_IsOk()
         {
-            BaseOrderEntity b = new BaseOrderEntity(13990208, 5, true);
+            BaseOrderEntity baseOrder = new BaseOrderEntity(13990208, 5, true);
 
-            b.VersionIncrease();
+            baseOrder.VersionIncrease();
 
-            Assert.AreEqual(6, b.Version);
+            Assert.AreEqual(6, baseOrder.Version);
         }
 
         [TestMethod]
         public void BaseOrderEntity_ChangeAccepted_IsOk()
         {
-            BaseOrderEntity b = new BaseOrderEntity(13990208, 5, true);
+            BaseOrderEntity baseOrder = new BaseOrderEntity(13990208, 5, true);
 
-            b.ChangeAccepted(false);
+            baseOrder.ChangeAccepted(false);
 
-            Assert.IsFalse(b.IsAccepted);
+            Assert.IsFalse(baseOrder.IsAccepted);
         }
 
         [TestMethod]
         public void BaseOrderEntity_DefaultProperty_IsOk()
         {
-            BaseOrderEntity b = new BaseOrderEntity(13990208);
+            BaseOrderEntity baseOrder = new BaseOrderEntity(13990208);
 
-            Assert.IsFalse(b.IsAccepted);
-            Assert.AreEqual(13990208, b.Tarikh);
-            Assert.AreEqual(0, b.Version);
+            Assert.IsFalse(baseOrder.IsAccepted);
+            Assert.AreEqual(13990208, baseOrder.Tarikh);
+            Assert.AreEqual(0, baseOrder.Version);
         }
 
         [ExpectedException(typeof(IndexOutOfRangeException))]
         [TestMethod]
         public void BaseOrderEntity_tarikhNotDate_ExceptionAttributeProperty1()
         {
-            BaseOrderEntity b = new BaseOrderEntity(1398);
+            BaseOrderEntity baseOrder = new BaseOrderEntity(1398);
         }
 
         [ExpectedException(typeof(IndexOutOfRangeException))]
@@ -59,6 +59,13 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void BaseOrderEntity_monthBiggerThan12_ExceptionAttributeProperty()
         {
             BaseOrderEntity b = new BaseOrderEntity(14001308);
+        }
+
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        [TestMethod]
+        public void BaseOrderEntity_dayBiggerThan31InBahman_ExceptionAttributeProperty()
+        {
+            BaseOrderEntity b = new BaseOrderEntity(14001131);
         }
 
         [ExpectedException(typeof(IndexOutOfRangeException))]

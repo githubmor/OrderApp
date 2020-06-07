@@ -35,19 +35,32 @@ namespace OrderAndisheh.Domain.Entity
             var month = getMonth(date);
             var day = getDay(date);
 
-            return 1300 < year && year < 1500 &&
-                0 < month && month < 13 &&
-                0 < day && (month < 7 ? day < 31 : day < 30);
+            return IsYearInRange(year) && IsMonthInRange(month) && IsDayInRange(day, month);
+        }
+
+        private bool IsDayInRange(int day, int month)
+        {
+            return 0 < day && (month < 7 ? day < 31 : day < 30);
+        }
+
+        private bool IsMonthInRange(int month)
+        {
+            return 0 < month && month < 13;
+        }
+
+        private bool IsYearInRange(int year)
+        {
+            return 1300 < year && year < 1500;
         }
 
         private int getDay(int date)
         {
-            return date - (getYear(date) * 10000) - (getMonth(date) * 100);
+            return date % 100;
         }
 
         private int getMonth(int date)
         {
-            return (date - (getYear(date) * 10000)) / 100;
+            return (date / 100) % 100;
         }
 
         private int getYear(int date)
