@@ -5,7 +5,7 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class TolidMahaneEntity
     {
-        public TolidMahaneEntity(int mah, List<AmarTolidEntity> amarTolids)
+        public TolidMahaneEntity(int mah, List<AmarTolidKhodroEntity> amarTolids)
         {
             if (mah<1||mah>13)
             {
@@ -19,6 +19,6 @@ namespace OrderAndisheh.Domain.Entity
             AmarTolids = amarTolids;
         }
         public int Mah { get; private set; }
-        public List<AmarTolidEntity> AmarTolids { get; private set; }
+        public List<AmarTolidKhodroEntity> AmarTolids { get; private set; }
     }
 }

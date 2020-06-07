@@ -27,12 +27,12 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void TolidMahaneEntity_EmptyAmarTolid_IsOk()
         {
-            TolidMahaneEntity t = new TolidMahaneEntity(1, new List<AmarTolidEntity>());
+            TolidMahaneEntity t = new TolidMahaneEntity(1, new List<AmarTolidKhodroEntity>());
 
         }
-        private List<AmarTolidEntity> getAmarTolidList()
+        private List<AmarTolidKhodroEntity> getAmarTolidList()
         {
-            return new List<AmarTolidEntity>() { new AmarTolidEntity("206", 200) };
+            return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 200) };
         }
 
         private static BaseCustomerEntity getCustomer()

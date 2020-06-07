@@ -61,7 +61,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, getKhodroList(), null);
         }
-        [ExpectedException(typeof(ArgumentNullException))]
+
         private List<KhodorEntity> getKhodroList()
         {
             return new List<KhodorEntity>() { new KhodorEntity("206") };

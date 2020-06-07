@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\AmarTolidEntity.cs" />
+    <Compile Include="Entity\AmarTolidKhodroEntity.cs" />
     <Compile Include="Entity\CustomerTolidiEntity.cs" />
     <Compile Include="Entity\BaseOrderEntity.cs" />
     <Compile Include="Entity\BaseKalaEntity.cs" />

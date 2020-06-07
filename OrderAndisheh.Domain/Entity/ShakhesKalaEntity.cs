@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class ShakhesKalaEntity
     {
-        public ShakhesKalaEntity(ErsalKalaEntity ersalKala, List<AmarTolidEntity> amarTolids)
+        public ShakhesKalaEntity(ErsalKalaEntity ersalKala, List<AmarTolidKhodroEntity> amarTolids)
         {
             if (amarTolids.Count == 0)
             {
@@ -22,11 +22,15 @@ namespace OrderAndisheh.Domain.Entity
             AmarTolids = amarTolids;
         }
         public ErsalKalaEntity ErsalKala { get; private set; }
-        public List<AmarTolidEntity> AmarTolids { get; private set; }
+        public List<AmarTolidKhodroEntity> AmarTolids { get; private set; }
 
         public int getDarsadSahm()
         {
-            return ((ErsalKala.TedadErsali / ErsalKala.ZaribMasrafDarKhodro) * 100) / AmarTolids.Sum(p => p.TedadTolid);
+            var sum = AmarTolids.Sum(p => p.TedadTolid);
+            if (sum == 0)
+                return 0;
+            else
+            return ((ErsalKala.TedadErsali / ErsalKala.ZaribMasrafDarKhodro) * 100) / sum;
         }
     }
 }

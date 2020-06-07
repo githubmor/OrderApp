@@ -19,6 +19,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
 
 
+
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesEntity_NullErsali_ExpectedException()
@@ -49,11 +50,10 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new List<ErsaliSherkatEntity>() { new ErsaliSherkatEntity("Andisheh", getErsali()) };
         }
-        private List<AmarTolidEntity> getAmarTolids()
+        private List<AmarTolidKhodroEntity> getAmarTolids()
         {
-            return new List<AmarTolidEntity>() { new AmarTolidEntity("206", 200) };
+            return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 200) };
         }
-
         private List<KhodorEntity> getKhodroList()
         {
             return new List<KhodorEntity>() { new KhodorEntity("206") };

@@ -34,11 +34,7 @@ namespace OrderAndisheh.Domain.Entity
 
             kalaha.ToList().ForEach(kala =>
             {
-                List<AmarTolidEntity> selectedAmarTolis = new List<AmarTolidEntity>();
-                kala.Khodors.ForEach(i=>{
-                    selectedAmarTolis.Add(selectedCustomer.AmarTolids.Single(u=>u.Name==i.Name));
-                });
-                shakhesKala.Add(new ShakhesKalaEntity(kala, selectedAmarTolis));
+                shakhesKala.Add(new ShakhesKalaEntity(kala, selectedCustomer.getAmarTolidi(kala)));
             });
 
             return (int) shakhesKala.Average(p=>p.getDarsadSahm());
