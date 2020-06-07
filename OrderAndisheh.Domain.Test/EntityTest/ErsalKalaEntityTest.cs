@@ -11,65 +11,54 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsalKalaEntity_DefaultProperty_IsOK()
         {
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani",
+                "jens", 20, 2, Ultility.getKhodroList(), Ultility.getCustomer());
 
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",20,2,getKhodroList(),getCustomer());
-
-            Assert.AreEqual(20,e.TedadErsali);
+            Assert.AreEqual(20, e.TedadErsali);
             Assert.AreEqual(2, e.ZaribMasrafDarKhodro);
             Assert.AreEqual(1, e.Khodors.Count);
             Assert.IsNotNull(e.Khodors);
             Assert.IsNotNull(e.Customer);
-
         }
 
-        
-
-        //[TestMethod]
-        //public void ErsalKalaEntity_IsUsedInKhodro_IsOK()
-        //{
-
-        //    ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2, getKhodroList());
-
-        //    Assert.IsTrue(e.IsUsedInKhodro(new KhodorEntity("206")););
-        //}
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_AllNull_IsOK()
         {
-
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 0, new List<KhodorEntity>(),null);
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+                20, 0, null, null);
         }
+
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_EmptyKhodros_IsOK()
         {
-
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, new List<KhodorEntity>(),getCustomer());
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+                20, 10, new List<KhodorEntity>(),Ultility.getCustomer());
         }
+
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void ErsalKalaEntity_NullKhodros_IsOK()
+        {
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+                20, 10, null, Ultility.getCustomer());
+        }
+
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_ZerZarib_IsOK()
         {
-
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 0, getKhodroList(),getCustomer());
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 0, Ultility.getKhodroList(), Ultility.getCustomer());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_NullCustomer_IsOK()
         {
-
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, getKhodroList(), null);
+            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, Ultility.getKhodroList(), null);
         }
 
-        private List<KhodorEntity> getKhodroList()
-        {
-            return new List<KhodorEntity>() { new KhodorEntity("206") };
-        }
-        private BaseCustomerEntity getCustomer()
-        {
-            return new BaseCustomerEntity("Sapco");
-        }
-
+        
     }
 }

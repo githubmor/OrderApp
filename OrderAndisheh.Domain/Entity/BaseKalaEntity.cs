@@ -4,7 +4,7 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class BaseKalaEntity
     {
-        public BaseKalaEntity(string name, string codeAnbar, string faniCode = "", string codeJense = "")
+        public BaseKalaEntity(string name, string codeAnbar, string faniCode, string codeJense)
         {
             if (string.IsNullOrEmpty(name))
             {

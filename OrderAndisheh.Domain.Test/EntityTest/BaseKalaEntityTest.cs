@@ -22,28 +22,28 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseKalaEntityTest_EmptyName_Exception()
         {
-            BaseKalaEntity baseKala = new BaseKalaEntity("", "dsa");
+            BaseKalaEntity baseKala = new BaseKalaEntity("", "dsa", "fani", "jens");
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void BaseKalaEntityTest_EmptyCodeAnbar_Exception()
         {
-            BaseKalaEntity baseKala = new BaseKalaEntity("asd", "");
+            BaseKalaEntity baseKala = new BaseKalaEntity("asd", "", "fani", "jens");
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void BaseKalaEntityTest_EmptyNameAndCodeAnbar_Exception()
         {
-            BaseKalaEntity baseKala = new BaseKalaEntity("", "");
+            BaseKalaEntity baseKala = new BaseKalaEntity("", "", "fani", "jens");
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void BaseKalaEntityTest_EmptyAll_Exception()
         {
-            BaseKalaEntity baseKala = new BaseKalaEntity("", "");
+            BaseKalaEntity baseKala = new BaseKalaEntity("", "", "", "");
         }
     }
 }

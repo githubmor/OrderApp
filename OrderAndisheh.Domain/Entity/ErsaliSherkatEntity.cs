@@ -11,7 +11,8 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (ersaliKala.Count == 0)
             {
-                throw new ArgumentNullException("كالاهاي ارسالي در ارسالي شركت نمي تواند تهي باشد", "ersaliKala");
+                throw new ArgumentNullException
+                    ("كالاهاي ارسالي در ارسالي شركت نمي تواند تهي باشد", "ersaliKala");
             }
             ErsaliKala = ersaliKala;
         }
