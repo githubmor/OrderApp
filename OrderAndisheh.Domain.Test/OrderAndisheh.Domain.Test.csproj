@@ -73,6 +73,7 @@
     <Compile Include="EntityTest\OrderEntityTest.cs" />
     <Compile Include="EntityTest\TolidMahaneEntityTest.cs" />
     <Compile Include="EntityTest\ShakhesEntityTest.cs" />
+    <Compile Include="EntityTest\Ultility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

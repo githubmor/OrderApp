@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
-using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -10,58 +9,45 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_DefaultProperty_IsOk()
         {
-            CabinEntity c = new CabinEntity();
+            CabinEntity cabin = new CabinEntity();
 
-            Assert.IsNull(c.Driver);
-            Assert.IsNotNull(c.Mahmoles);
-            Assert.AreEqual(0, c.Mahmoles.Count);
-            Assert.AreEqual("", c.Drivername);
-            Assert.AreEqual(0, c.VaznCabin);
+            Assert.IsNull(cabin.Driver);
+            Assert.IsNotNull(cabin.Mahmoles);
+            Assert.AreEqual(0, cabin.Mahmoles.Count);
+            Assert.AreEqual("", cabin.Drivername);
+            Assert.AreEqual(0, cabin.VaznCabin);
         }
 
         [TestMethod]
         public void CabinEntity_SetDriver_IsOk()
         {
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-            CabinEntity c = new CabinEntity(d);
+            CabinEntity cabin = new CabinEntity(Ultility.getDriver());
 
-            Assert.IsNotNull(c.Driver);
-            Assert.IsNotNull(c.Mahmoles);
-            Assert.AreEqual(0, c.Mahmoles.Count);
-            Assert.AreEqual("name", c.Drivername);
-            Assert.AreEqual(0, c.VaznCabin);
+            Assert.IsNotNull(cabin.Driver);
+            Assert.IsNotNull(cabin.Mahmoles);
+            Assert.AreEqual(0, cabin.Mahmoles.Count);
+            Assert.AreEqual("name", cabin.Drivername);
+            Assert.AreEqual(0, cabin.VaznCabin);
         }
 
         [TestMethod]
         public void CabinEntity_SetNullDriver_IsOk()
         {
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-            CabinEntity c = new CabinEntity(d);
+            CabinEntity cabin = new CabinEntity(Ultility.getDriver());
 
-            c.Driver = null;
+            cabin.Driver = null;
 
-            Assert.IsNull(c.Driver);
-            Assert.IsNotNull(c.Mahmoles);
-            Assert.AreEqual(0, c.Mahmoles.Count);
-            Assert.AreEqual("", c.Drivername);
-            Assert.AreEqual(0, c.VaznCabin);
+            Assert.IsNull(cabin.Driver);
+            Assert.IsNotNull(cabin.Mahmoles);
+            Assert.AreEqual(0, cabin.Mahmoles.Count);
+            Assert.AreEqual("", cabin.Drivername);
+            Assert.AreEqual(0, cabin.VaznCabin);
         }
 
         [TestMethod]
         public void CabinEntity_SetMahmoleAndDriver_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
-
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
-
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-
-            CabinEntity c = new CabinEntity(new List<MahmoleEntity>() { m }, d);
+            CabinEntity c = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
 
             Assert.IsNotNull(c.Driver);
             Assert.IsNotNull(c.Mahmoles);
@@ -73,16 +59,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_SetMahmole_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
-
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
-
-            CabinEntity c = new CabinEntity(new List<MahmoleEntity>() { m });
+            CabinEntity c = new CabinEntity(Ultility.getMahmoleList());
 
             Assert.IsNull(c.Driver);
             Assert.IsNotNull(c.Mahmoles);
@@ -92,22 +69,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
 
         [TestMethod]
-        public void CabinEntity_SetNewMahmole_IsOk()
+        public void CabinEntity_AddMahmole_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+            CabinEntity c = new CabinEntity(Ultility.getDriver());
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
-
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-
-            CabinEntity c = new CabinEntity(d);
-
-            c.AddMahmole(new List<MahmoleEntity>() { m });
+            c.AddMahmole(Ultility.getMahmoleList());
 
             Assert.IsNotNull(c.Driver);
             Assert.IsNotNull(c.Mahmoles);
@@ -117,31 +83,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
 
         [TestMethod]
-        public void CabinEntity_SetNewMahmole2_IsOk()
+        public void CabinEntity_AddMahmoleWithSameDestination_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+            CabinEntity c = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
-
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-
-            CabinEntity c = new CabinEntity(new List<MahmoleEntity>() { m }, d);
-
-            PalletEntity pallet2 = new PalletEntity("GP8", 200);
-
-            KalaEntity kala2 = new KalaEntity("name", "codeAnbar2", "fani", "jens",
-                pallet2, 120, 10, 800);
-
-            ProductEntity p2 = new ProductEntity(kala2, 120);
-            DestinationEntity de2 = new DestinationEntity("Saipa");
-            MahmoleEntity m2 = new MahmoleEntity(de2, new List<ProductEntity>() { p2 });
-
-            c.AddMahmole(new List<MahmoleEntity>() { m2 });
+            c.AddMahmole(Ultility.getMahmoleList2());
 
             Assert.IsNotNull(c.Driver);
             Assert.IsNotNull(c.Mahmoles);
@@ -151,31 +97,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         }
 
         [TestMethod]
-        public void CabinEntity_SetNewMahmole3_IsOk()
+        public void CabinEntity_AddMahmoleWithDiffrentDestination_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+            CabinEntity c = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
-
-            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
-
-            CabinEntity c = new CabinEntity(new List<MahmoleEntity>() { m }, d);
-
-            PalletEntity pallet2 = new PalletEntity("GP8", 200);
-
-            KalaEntity kala2 = new KalaEntity("name2", "codeAnbar", "fani", "jens",
-                pallet2, 120, 10, 800);
-
-            ProductEntity p2 = new ProductEntity(kala2, 120);
-            DestinationEntity de2 = new DestinationEntity("Sapco");
-            MahmoleEntity m2 = new MahmoleEntity(de2, new List<ProductEntity>() { p2 });
-
-            c.AddMahmole(new List<MahmoleEntity>() { m2 });
+            c.AddMahmole(Ultility.getMahmoleList3());
 
             Assert.IsNotNull(c.Driver);
             Assert.IsNotNull(c.Mahmoles);
