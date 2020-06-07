@@ -9,7 +9,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (string.IsNullOrEmpty(sherkatName))
             {
-                throw new ArgumentNullException("نام شركت نمي تواند تهي باشد");
+                throw new ArgumentNullException("نام شركت در شركت نمي تواند تهي باشد", "sherkatName");
             }
             SherkatName = sherkatName;
         }

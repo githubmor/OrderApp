@@ -10,9 +10,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseSherkatEntity_DefaultProperty_IsOk()
         {
-            BaseSherkatEntity c = new BaseSherkatEntity("Andisheh");
+            BaseSherkatEntity baseSherkat = new BaseSherkatEntity("Andisheh");
 
-            Assert.AreEqual("Andisheh", c.SherkatName);
+            Assert.AreEqual("Andisheh", baseSherkat.SherkatName);
         }
 
 
@@ -20,7 +20,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseSherkatEntity_NullProperty_IsOk()
         {
-            BaseSherkatEntity c = new BaseSherkatEntity("");
+            BaseSherkatEntity baseSherkat = new BaseSherkatEntity("");
         }
 
     }
