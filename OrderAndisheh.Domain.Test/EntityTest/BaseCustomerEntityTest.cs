@@ -10,9 +10,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseCustomerEntityTest_DefaultProperty_IsOk()
         {
-            BaseCustomerEntity c = new BaseCustomerEntity("Sapco");
+            BaseCustomerEntity customer = new BaseCustomerEntity("Sapco");
 
-            Assert.AreEqual("Sapco", c.CustomerName);
+            Assert.AreEqual("Sapco", customer.CustomerName);
         }
 
 
@@ -20,7 +20,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void BaseCustomerEntityTest_NullProperty_IsOk()
         {
-            BaseCustomerEntity c = new BaseCustomerEntity("");
+            BaseCustomerEntity customer = new BaseCustomerEntity("");
         }
 
     }

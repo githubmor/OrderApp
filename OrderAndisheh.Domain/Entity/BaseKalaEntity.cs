@@ -4,11 +4,11 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class BaseKalaEntity
     {
-        public BaseKalaEntity(string name, string codeAnbar, string faniCode, string codeJense)
+        public BaseKalaEntity(string name, string codeAnbar, string faniCode = "", string codeJense = "")
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("نام يا كد انبار كالا نمي تواند تهي باشد");
+                throw new ArgumentNullException("نام كالا در كالا نمي تواند تهي باشد");
             }
             if (string.IsNullOrEmpty(codeAnbar))
             {
