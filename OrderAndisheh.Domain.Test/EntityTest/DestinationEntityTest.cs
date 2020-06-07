@@ -10,16 +10,16 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void DestinationEntity_DefaultProperty_IsOK()
         {
-            DestinationEntity d = new DestinationEntity("name");
+            DestinationEntity destination = new DestinationEntity("name");
 
-            Assert.AreEqual("name", d.Name);
+            Assert.AreEqual("name", destination.Name);
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void DestinationEntity_EmptyName_Exception()
+        public void DestinationEntity_EmptyName_ExpectedException()
         {
-            DestinationEntity d = new DestinationEntity("");
+            DestinationEntity destination = new DestinationEntity("");
         }
     }
 }
