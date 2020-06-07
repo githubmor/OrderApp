@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class BaseCustomerEntity
@@ -7,10 +8,11 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (string.IsNullOrEmpty(customerName))
             {
-                throw new ArgumentNullException("نام مشتري نمي تواند تهي باشد");
+                throw new ArgumentNullException("نام مشتري در مشتري نمي تواند تهي باشد", "customerName");
             }
             CustomerName = customerName;
         }
+
         public string CustomerName { get; private set; }
     }
 }
