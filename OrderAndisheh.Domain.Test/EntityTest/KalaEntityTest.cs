@@ -51,7 +51,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
                 Ultility.getpallet(), 120, 10, 800);
 
-            var re = kala.IsDoublePallet();
+            var re = kala.IsFeleziPallet();
 
             Assert.IsFalse(re);
         }

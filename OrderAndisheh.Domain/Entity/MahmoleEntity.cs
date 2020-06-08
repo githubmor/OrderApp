@@ -6,33 +6,23 @@ namespace OrderAndisheh.Domain.Entity
 {
     public class MahmoleEntity
     {
-        public MahmoleEntity()
+        public MahmoleEntity(DestinationEntity destination = null)
         {
-            Products = new System.Collections.Generic.List<ProductEntity>();
-        }
-
-        public MahmoleEntity(DestinationEntity destination)
-            : this()
-        {
+            Products = new List<ProductEntity>();
             Destination = destination;
         }
 
-        public MahmoleEntity(DestinationEntity destination, System.Collections.Generic.List<ProductEntity> product)
+        public MahmoleEntity(List<ProductEntity> product,DestinationEntity destination = null)
             : this(destination)
         {
             Products = product;
         }
 
-        public MahmoleEntity(List<ProductEntity> product)
-            : this()
-        {
-            Products = product;
-        }
+        public List<ProductEntity> Products { get; private set; }
 
-        public System.Collections.Generic.List<ProductEntity> Products { get; private set; }
-
-        public void AddProduct(System.Collections.Generic.List<ProductEntity> product)
+        public void AddProduct(List<ProductEntity> product)
         {
+
             var re = new List<ProductEntity>();
             product.ForEach(it =>
             {
@@ -56,11 +46,25 @@ namespace OrderAndisheh.Domain.Entity
         public DestinationEntity Destination { get; set; }
 
         public string DestinationName { get { return Destination != null ? Destination.Name : ""; } }
-        public int VaznMahmole { get { return getAllVazn(); } }
 
-        private int getAllVazn()
+        public int getMahmoleVazn()
         {
             return Products.Sum(it => it.vazn);
+        }
+
+        public int getMahmolePalletCount()
+        {
+            return Products.Sum(p => p.TedadPallet);
+        }
+
+        public int getMahmolePalletChobiCount()
+        {
+            return Products.Where(o => !o.Kala.IsFeleziPallet()).Sum(p => p.TedadPallet);
+        }
+
+        public int getMahmolePalletFeleziCount()
+        {
+            return Products.Where(o => o.Kala.IsFeleziPallet()).Sum(p => p.TedadPallet);
         }
     }
 }

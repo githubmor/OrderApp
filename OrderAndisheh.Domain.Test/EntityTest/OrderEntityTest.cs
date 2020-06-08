@@ -17,7 +17,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
 
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
@@ -50,7 +50,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
 
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
@@ -72,7 +72,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
 
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
@@ -87,7 +87,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p2 = new ProductEntity(kala2, 120);
             DestinationEntity de2 = new DestinationEntity("Saipa");
-            MahmoleEntity m2 = new MahmoleEntity(de2, new List<ProductEntity>() { p2 });
+            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p2 }, de2);
 
             DriverEntity d2 = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
@@ -109,7 +109,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(de, new List<ProductEntity>() { p });
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
 
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
@@ -124,7 +124,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p2 = new ProductEntity(kala2, 120);
             DestinationEntity de2 = new DestinationEntity("Saipa");
-            MahmoleEntity m2 = new MahmoleEntity(de2, new List<ProductEntity>() { p });
+            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p }, de2);
 
             DriverEntity d2 = new DriverEntity("name2", "mobile", "codeMeli", "pelak");
 

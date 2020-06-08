@@ -47,11 +47,23 @@ namespace OrderAndisheh.Domain.Entity
 
         public string Drivername { get { return Driver != null ? Driver.Name : ""; } }
 
-        public int VaznCabin { get { return getAllmahmoleVazn(); } }
-
-        private int getAllmahmoleVazn()
+        public int getCabinVazn()
         {
-            return Mahmoles.Sum(it => it.VaznMahmole);
+            return Mahmoles.Sum(it => it.getMahmoleVazn());
         }
+
+        public int getCabinPalletCount()
+        {
+            return Mahmoles.Sum(it => it.getMahmolePalletCount());
+        }
+
+        public int getCabinJaighah()
+        {
+            var palletChobi = Mahmoles.Sum(it => it.getMahmolePalletChobiCount());
+            var palletFelezi = Mahmoles.Sum(it => it.getMahmolePalletFeleziCount());
+
+            return (palletFelezi / 2) + palletChobi;
+        }
+
     }
 }

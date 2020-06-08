@@ -17,7 +17,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual("", m.DestinationName);
             Assert.IsNotNull(m.Products);
             Assert.AreEqual(0, m.Products.Count);
-            Assert.AreEqual(0, m.VaznMahmole);
+            Assert.AreEqual(0, m.getMahmoleVazn());
         }
 
         [TestMethod]
@@ -40,13 +40,13 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity d = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(d, new List<ProductEntity>() { p });
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p },d);
 
             Assert.IsNotNull(m.Destination);
             Assert.AreEqual("Saipa", m.DestinationName);
             Assert.IsNotNull(m.Products);
             Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.VaznMahmole);
+            Assert.AreEqual(800, m.getMahmoleVazn());
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual("", m.DestinationName);
             Assert.IsNotNull(m.Products);
             Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.VaznMahmole);
+            Assert.AreEqual(800, m.getMahmoleVazn());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             Assert.IsNotNull(m.Products);
             Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.VaznMahmole);
+            Assert.AreEqual(800, m.getMahmoleVazn());
         }
 
         [TestMethod]

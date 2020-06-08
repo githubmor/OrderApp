@@ -37,7 +37,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             return Pallet.Vazn;
         }
-        public bool IsDoublePallet()
+        public bool IsFeleziPallet()
         {
             return Pallet.IsFelezi;
         }
