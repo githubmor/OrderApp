@@ -1,7 +1,7 @@
 ﻿using System;
 namespace OrderAndisheh.Domain.Entity
 {
-    public class AmarTolidKhodroEntity : KhodorEntity
+    public class AmarTolidKhodroEntity : BaseKhodorEntity
     {
         public AmarTolidKhodroEntity(string name, int tedadTolid)
             : base(name)

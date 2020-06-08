@@ -54,9 +54,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 200) };
         }
-        private List<KhodorEntity> getKhodroList()
+        private List<BaseKhodorEntity> getKhodroList()
         {
-            return new List<KhodorEntity>() { new KhodorEntity("206") };
+            return new List<BaseKhodorEntity>() { new BaseKhodorEntity("206") };
         }
         private BaseCustomerEntity getCustomer()
         {

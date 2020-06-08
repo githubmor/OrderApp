@@ -1,13 +1,13 @@
 ﻿using System;
 namespace OrderAndisheh.Domain.Entity
 {
-    public class KhodorEntity
+    public class BaseKhodorEntity
     {
-        public KhodorEntity(string name)
+        public BaseKhodorEntity(string name)
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("نام خودر نمي تواند تهي باشد");
+                throw new ArgumentNullException("نام خودر در خودرو نمي تواند تهي باشد", "name");
             }
             Name = name;
         }

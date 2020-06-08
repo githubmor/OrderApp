@@ -34,7 +34,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void ErsalKalaEntity_EmptyKhodros_IsOK()
         {
             ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
-                20, 10, new List<KhodorEntity>(),Ultility.getCustomer());
+                20, 10, new List<BaseKhodorEntity>(),Ultility.getCustomer());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]

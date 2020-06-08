@@ -6,7 +6,7 @@ namespace OrderAndisheh.Domain.Entity
     public class ErsalKalaEntity : BaseKalaEntity
     {
         public ErsalKalaEntity(string name, string codeAnbar, string faniCode, string codeJense,
-            int tedadErsali, int zaribMasrafDarKhodro, List<KhodorEntity> khodors, BaseCustomerEntity customer)
+            int tedadErsali, int zaribMasrafDarKhodro, List<BaseKhodorEntity> khodors, BaseCustomerEntity customer)
             : base(name, codeAnbar, faniCode, codeJense)
         {
             if (customer == null)
@@ -32,7 +32,7 @@ namespace OrderAndisheh.Domain.Entity
 
         public int TedadErsali { get; private set; }
         public int ZaribMasrafDarKhodro { get; private set; }
-        public List<KhodorEntity> Khodors { get; private set; }
+        public List<BaseKhodorEntity> Khodors { get; private set; }
         public BaseCustomerEntity Customer { get; private set; }
     }
 }

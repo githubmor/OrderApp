@@ -59,13 +59,13 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 2000) };
         }
-        public static List<KhodorEntity> getKhodroList()
+        public static List<BaseKhodorEntity> getKhodroList()
         {
-            return new List<KhodorEntity>() { new KhodorEntity("206") };
+            return new List<BaseKhodorEntity>() { new BaseKhodorEntity("206") };
         }
-        public static List<KhodorEntity> getKhodroList2()
+        public static List<BaseKhodorEntity> getKhodroList2()
         {
-            return new List<KhodorEntity>() { new KhodorEntity("207") };
+            return new List<BaseKhodorEntity>() { new BaseKhodorEntity("207") };
         }
         public static BaseCustomerEntity getCustomer()
         {

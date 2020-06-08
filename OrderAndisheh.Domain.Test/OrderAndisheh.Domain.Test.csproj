@@ -65,7 +65,7 @@
     <Compile Include="EntityTest\DriverEntityTest.cs" />
     <Compile Include="EntityTest\ErsalKalaEntityTest.cs" />
     <Compile Include="EntityTest\KalaEntityTest.cs" />
-    <Compile Include="EntityTest\KhodorEntityTest.cs" />
+    <Compile Include="EntityTest\BaseKhodorEntityTest.cs" />
     <Compile Include="EntityTest\BaseCustomerEntityTest.cs" />
     <Compile Include="EntityTest\PalletEntityTest.cs" />
     <Compile Include="EntityTest\ProductEntityTest.cs" />

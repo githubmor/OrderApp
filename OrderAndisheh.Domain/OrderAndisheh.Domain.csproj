@@ -52,7 +52,7 @@
     <Compile Include="Entity\DriverEntity.cs" />
     <Compile Include="Entity\ShakhesEntity.cs" />
     <Compile Include="Entity\KalaEntity.cs" />
-    <Compile Include="Entity\KhodorEntity.cs" />
+    <Compile Include="Entity\BaseKhodorEntity.cs" />
     <Compile Include="Entity\MahmoleEntity.cs" />
     <Compile Include="Entity\CabinEntity.cs" />
     <Compile Include="Entity\OrderEntity.cs" />

@@ -19,7 +19,7 @@ namespace OrderAndisheh.Domain.Entity
 
         public List<AmarTolidKhodroEntity> AmarTolids { get; private set; }
 
-        public List<AmarTolidKhodroEntity> getAmarTolidi(List<KhodorEntity> khodors)
+        public List<AmarTolidKhodroEntity> getAmarTolidi(List<BaseKhodorEntity> khodors)
         {
             var result = new List<AmarTolidKhodroEntity>();
             if (khodors != null)

@@ -43,7 +43,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             CustomerTolidiEntity customerTolidi = new CustomerTolidiEntity("Sapco", Ultility.getAmarTolids());
 
-            var re = customerTolidi.getAmarTolidi(new List<KhodorEntity>());
+            var re = customerTolidi.getAmarTolidi(new List<BaseKhodorEntity>());
 
             Assert.AreEqual(0, re.Count);
         }
