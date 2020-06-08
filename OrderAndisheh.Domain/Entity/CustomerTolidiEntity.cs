@@ -11,7 +11,8 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (amarTolids.Count == 0)
             {
-                throw new ArgumentNullException("آمار توليدي در مشتري توليد نمي تواند تهي باشد", "amarTolids");
+                throw new ArgumentNullException("آمار توليدي در مشتري توليد " + 
+                    customerName + " نمي تواند تهي باشد", "amarTolids");
             }
             AmarTolids = amarTolids;
         }

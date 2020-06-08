@@ -11,21 +11,21 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsalKalaEntity_DefaultProperty_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani",
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani",
                 "jens", 20, 2, Ultility.getKhodroList(), Ultility.getCustomer());
 
-            Assert.AreEqual(20, e.TedadErsali);
-            Assert.AreEqual(2, e.ZaribMasrafDarKhodro);
-            Assert.AreEqual(1, e.Khodors.Count);
-            Assert.IsNotNull(e.Khodors);
-            Assert.IsNotNull(e.Customer);
+            Assert.AreEqual(20, ersalKala.TedadErsali);
+            Assert.AreEqual(2, ersalKala.ZaribMasrafDarKhodro);
+            Assert.AreEqual(1, ersalKala.Khodors.Count);
+            Assert.IsNotNull(ersalKala.Khodors);
+            Assert.IsNotNull(ersalKala.Customer);
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_AllNull_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
                 20, 0, null, null);
         }
 
@@ -33,7 +33,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsalKalaEntity_EmptyKhodros_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
                 20, 10, new List<KhodorEntity>(),Ultility.getCustomer());
         }
 
@@ -41,7 +41,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsalKalaEntity_NullKhodros_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens",
                 20, 10, null, Ultility.getCustomer());
         }
 
@@ -49,14 +49,14 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ErsalKalaEntity_ZerZarib_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 0, Ultility.getKhodroList(), Ultility.getCustomer());
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 0, Ultility.getKhodroList(), Ultility.getCustomer());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ErsalKalaEntity_NullCustomer_IsOK()
         {
-            ErsalKalaEntity e = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, Ultility.getKhodroList(), null);
+            ErsalKalaEntity ersalKala = new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 10, Ultility.getKhodroList(), null);
         }
 
         

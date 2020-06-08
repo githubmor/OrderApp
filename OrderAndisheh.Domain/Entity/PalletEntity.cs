@@ -20,5 +20,6 @@ namespace OrderAndisheh.Domain.Entity
 
         public string Name { get; private set; }
         public int Vazn { get; private set; }
+        public bool IsFelezi { get; set; }
     }
 }

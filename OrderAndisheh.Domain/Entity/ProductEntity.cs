@@ -119,11 +119,7 @@ namespace OrderAndisheh.Domain.Entity
             {
                 if (Kala.TedadDarPallet > 0)
                 {
-                    double OneProductWeight;
-                    int p = (int)Kala.WeighWithPallet - (int)Kala.Pallet.Vazn;
-                    OneProductWeight = (double)(p / (double)Kala.TedadDarPallet);
-
-                    return (int)(Tedad * OneProductWeight) + (int)(TedadPallet * Kala.Pallet.Vazn);
+                    return (int)(Tedad * Kala.getOneProductVazn()) + (int)(TedadPallet * Kala.getPalletVazn());
                 }
                 else
                 {

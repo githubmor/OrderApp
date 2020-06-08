@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (!IsDateNumber(tarikh))
             {
-                throw new IndexOutOfRangeException("فرمت تاریخ سفارش درست نمی باشد");
+                throw new IndexOutOfRangeException("فرمت تاریخ " + tarikh + " سفارش درست نمی باشد");
             }
             Tarikh = tarikh;
             IsAccepted = isAccepted;

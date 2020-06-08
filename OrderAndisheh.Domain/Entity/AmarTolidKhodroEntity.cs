@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (tedadTolid==0)
             {
-                throw new ArgumentException("تعداد توليد در آمار توليد نمي تواند صفر باشد ", "tedadTolid");
+                throw new ArgumentException("تعداد توليد در آمار توليد " + name + " نمي تواند صفر باشد ", "tedadTolid");
             }
             this.TedadTolid = tedadTolid;
         }

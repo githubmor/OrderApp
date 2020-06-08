@@ -8,11 +8,11 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (string.IsNullOrEmpty(name))
             {
-                throw new ArgumentNullException("نام كالا در كالا نمي تواند تهي باشد");
+                throw new ArgumentNullException("نام كالا در كالا نمي تواند تهي باشد", "name");
             }
             if (string.IsNullOrEmpty(codeAnbar))
             {
-                throw new ArgumentNullException("كد انبار در كالا نمي تواند تهي باشد");
+                throw new ArgumentNullException("كد انبار در كالا " + name + " نمي تواند تهي باشد", "codeAnbar");
             }
             Name = name;
             CodeAnbar = codeAnbar;

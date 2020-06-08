@@ -82,5 +82,10 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new BaseCustomerEntity("Sazeh");
         }
+
+        public static PalletEntity getpallet()
+        {
+            return new PalletEntity("GP8", 200);
+        }
     }
 }

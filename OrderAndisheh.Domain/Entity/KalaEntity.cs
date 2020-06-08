@@ -8,13 +8,19 @@ namespace OrderAndisheh.Domain.Entity
            PalletEntity pallet, int tedadDarPallet, int tedadDarBaste, int weighWithPallet)
             : base(name, codeAnbar, faniCode, codeJense)
         {
-            if (tedadDarPallet <= 0 || weighWithPallet <= 0)
+            if (tedadDarPallet <= 0 )
             {
-                throw new ArgumentNullException("كالا " + name + " : تعداد در پالت يا وزن كالا تعيين نشده");
+                throw new ArgumentNullException("تعداد در پالت در كالاي " + name
+                    + " نبايد صفر باشد", "tedadDarPallet");
+            }
+            if (weighWithPallet <= 0)
+            {
+                throw new ArgumentNullException("وزن با پالت در كالاي " + name
+                    + " نمي تواند صفر باشد", "weighWithPallet");
             }
             if (pallet == null)
             {
-                throw new NullReferenceException("كالا " + name + " : نوع پالت مشخص نشده");
+                throw new NullReferenceException("پالت در كالاي  " + name + " نمي تواند تهي باشد");
             }
             TedadDarPallet = tedadDarPallet;
             TedadDarBaste = tedadDarBaste;
@@ -25,7 +31,25 @@ namespace OrderAndisheh.Domain.Entity
         public PalletEntity Pallet { get; private set; }
         public int TedadDarPallet { get; private set; }
         public int TedadDarBaste { get; private set; }
-
         public int WeighWithPallet { get; private set; }
+
+        public int getPalletVazn()
+        {
+            return Pallet.Vazn;
+        }
+        public bool IsDoublePallet()
+        {
+            return Pallet.IsFelezi;
+        }
+
+        public int getVaznKhales()
+        {
+            return WeighWithPallet - Pallet.Vazn;
+        }
+
+        public float getOneProductVazn()
+        {
+            return getVaznKhales() / (float)TedadDarPallet;
+        }
     }
 }

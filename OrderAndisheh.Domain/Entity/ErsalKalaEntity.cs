@@ -11,15 +11,18 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (customer == null)
             {
-                throw new ArgumentNullException("مشتري در كالاي ارسالي نمي تواند تهي باشد", "customer");
+                throw new ArgumentNullException("مشتري در كالاي ارسالي " + name 
+                    + " نمي تواند تهي باشد", "customer");
             }
             if (khodors == null || khodors.Count == 0)
             {
-                throw new ArgumentNullException("خودرو ها در كالاي ارسالي نمي تواند تهي باشد", "khodors");
+                throw new ArgumentNullException("خودرو ها در كالاي ارسالي " + name 
+                    + " نمي تواند تهي باشد", "khodors");
             }
             if (zaribMasrafDarKhodro == 0)
             {
-                throw new ArgumentNullException("ضريب مصرف در كالاي ارسالي نمي تواند صفر باشد", "zaribMasrafDarKhodro");
+                throw new ArgumentNullException("ضريب مصرف در كالاي ارسالي " + name 
+                    + " نمي تواند صفر باشد", "zaribMasrafDarKhodro");
             }
             TedadErsali = tedadErsali;
             ZaribMasrafDarKhodro = zaribMasrafDarKhodro;
