@@ -11,12 +11,12 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void OrderStateEntity_SetProperty_IsOk()
         {
-            OrderStateEntity b = new OrderStateEntity(13990102,true, true, true, true);
+            OrderStateEntity orderState = new OrderStateEntity(13990102, true, true, true, true);
 
-            Assert.IsTrue(b.IsDestinationSet);
-            Assert.IsTrue(b.IsDriverSet);
-            Assert.IsTrue(b.IsTahvilSet);
-            Assert.IsTrue(b.IsTedadSet);
+            Assert.IsTrue(orderState.IsDestinationSet);
+            Assert.IsTrue(orderState.IsDriverSet);
+            Assert.IsTrue(orderState.IsTahvilSet);
+            Assert.IsTrue(orderState.IsTedadSet);
         }
         
     }
