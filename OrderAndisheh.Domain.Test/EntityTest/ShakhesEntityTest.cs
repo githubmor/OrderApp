@@ -11,19 +11,19 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_SetDafult_IsOk()
         {
-            ShakhesEntity s = new ShakhesEntity(Ultility.getErsaliSherkat(), 
+            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(), 
                 Ultility.getCustomerTolidi());
 
-            Assert.IsNotNull(s.CustomerTolidi);
-            Assert.IsNotNull(s.ErsaliSherkat);
+            Assert.IsNotNull(shakhes.CustomerTolidi);
+            Assert.IsNotNull(shakhes.ErsaliSherkat);
         }
 
         [TestMethod]
         public void ShakhesEntity_getDarsadSahm_IsOk()
         {
-            ShakhesEntity s = new ShakhesEntity(Ultility.getErsaliSherkat(),
+            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
                 Ultility.getCustomerTolidi());
-             var re = s.getDarsadSahm(new BaseSherkatEntity("Andisheh"), new BaseCustomerEntity("Sapco"));
+             var re = shakhes.getDarsadSahm(new BaseSherkatEntity("Andisheh"), new BaseCustomerEntity("Sapco"));
 
             Assert.AreEqual(5,re );
         }
@@ -33,7 +33,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_emptyAll_ExpectedException()
         {
-            ShakhesEntity s = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
+            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
                 new List<CustomerTolidiEntity>());
         }
 
@@ -41,7 +41,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_EmptyErsali_ExpectedException()
         {
-            ShakhesEntity s = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
+            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
                 Ultility.getCustomerTolidi());
         }
 
@@ -49,7 +49,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_EmptyTolidi_ExpectedException()
         {
-            ShakhesEntity s = new ShakhesEntity(Ultility.getErsaliSherkat(),
+            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
                 new List<CustomerTolidiEntity>());
         }
 
