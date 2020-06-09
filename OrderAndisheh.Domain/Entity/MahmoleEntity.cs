@@ -51,7 +51,7 @@ namespace OrderAndisheh.Domain.Entity
 
         public int getMahmoleVazn()
         {
-            return Products.Sum(it => it.vazn);
+            return Products.Sum(it => it.getVazn());
         }
 
         public int getMahmolePalletCount()

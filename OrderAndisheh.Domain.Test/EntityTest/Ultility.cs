@@ -1,9 +1,5 @@
 ﻿using OrderAndisheh.Domain.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -23,7 +19,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p = new ProductEntity(kala, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p },de);
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
             return new List<MahmoleEntity>() { m };
         }
 
@@ -36,7 +32,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p2 = new ProductEntity(kala2, 120);
             DestinationEntity de = new DestinationEntity("Saipa");
-            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p2 },de);
+            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p2 }, de);
 
             return new List<MahmoleEntity>() { m2 };
         }
@@ -50,7 +46,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             ProductEntity p2 = new ProductEntity(kala2, 120);
             DestinationEntity de2 = new DestinationEntity("Sapco");
-            MahmoleEntity m2 = new MahmoleEntity( new List<ProductEntity>() { p2 },de2);
+            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p2 }, de2);
 
             return new List<MahmoleEntity>() { m2 };
         }
@@ -59,14 +55,17 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 2000) };
         }
+
         public static List<BaseKhodorEntity> getKhodroList()
         {
             return new List<BaseKhodorEntity>() { new BaseKhodorEntity("206") };
         }
+
         public static List<BaseKhodorEntity> getKhodroList2()
         {
             return new List<BaseKhodorEntity>() { new BaseKhodorEntity("207") };
         }
+
         public static BaseCustomerEntity getCustomer()
         {
             return new BaseCustomerEntity("Sapco");
@@ -100,7 +99,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
                 pallet, 120, 10, 800);
 
-            return new List<ProductEntity>(){ new ProductEntity(kala, 120)};
+            return new List<ProductEntity>() { new ProductEntity(kala, 120) };
         }
 
         public static List<CabinEntity> getCabinList()
@@ -116,7 +115,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
-            return new List<CabinEntity>(){ new CabinEntity(new List<MahmoleEntity>() { m }, d)};
+            return new List<CabinEntity>() { new CabinEntity(new List<MahmoleEntity>() { m }, d) };
         }
 
         public static List<CabinEntity> getCabinList2()
@@ -132,7 +131,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             DriverEntity d2 = new DriverEntity("name2", "mobile", "codeMeli", "pelak");
 
-            return new List<CabinEntity>(){ new CabinEntity(new List<MahmoleEntity>() { m2 }, d2)};
+            return new List<CabinEntity>() { new CabinEntity(new List<MahmoleEntity>() { m2 }, d2) };
         }
 
         public static List<CabinEntity> getCabinList3()
@@ -149,6 +148,22 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
 
             return new List<CabinEntity>() { new CabinEntity(new List<MahmoleEntity>() { m }, d) };
+        }
+
+        internal static KalaEntity getkalaBastei()
+        {
+            PalletEntity pallet = new PalletEntity("GP8", 200);
+
+            return new KalaEntity("name", "codeAnbar", "fani", "jens",
+                pallet, 120, 10, 800);
+        }
+
+        internal static KalaEntity getkalaNoBastei()
+        {
+            PalletEntity pallet = new PalletEntity("GP8", 200);
+
+            return new KalaEntity("name", "codeAnbar", "fani", "jens",
+                pallet, 120, 0, 800);
         }
     }
 }

@@ -8,11 +8,11 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (kala == null)
             {
-                throw new NullReferenceException("کالا در سفارش نمی تواند تهی باشد");
+                throw new NullReferenceException("کالا در ايتم كالا نمی تواند تهی باشد");
             }
             Kala = kala;
             Tedad = tedad;
-            TedadPallet = getPalletCount();
+            TedadPallet = getDefaultPalletCount();
             TedadBaste = getBasteCount();
         }
 
@@ -24,7 +24,7 @@ namespace OrderAndisheh.Domain.Entity
             set
             {
                 _tedad = value;
-                TedadPallet = getPalletCount();
+                TedadPallet = getDefaultPalletCount();
                 TedadBaste = getBasteCount();
             }
         }
@@ -34,35 +34,42 @@ namespace OrderAndisheh.Domain.Entity
         public string TedadBaste { get; private set; }
         public int TedadPallet { get; set; }
 
-        public int vazn { get { return getVazn(); } }
-
-        private int getPalletCount()
+        private int getDefaultPalletCount()
         {
             return PalletCalCulate();
         }
 
         private int PalletCalCulate()
         {
-            var reminder = getTedadReminderAfterPalleting();
-            return (int)getPalletingFloat(Tedad) + getReminderCanBeOnePallet(getPalletingFloat(reminder));
+            return getPalleting() + getPalletingReminderAfterPalleting();
         }
 
-        private int getTedadReminderAfterPalleting()
+        private int getPalletingReminderAfterPalleting()
         {
-            return getReminder(Tedad, Kala.TedadDarPallet);
+            return getCanBeOnePallet(getReminderAfterPalleting());
         }
 
-        private float getPalletingFloat(int num)
+        private int getReminderAfterPalleting()
         {
-            return getDivision(num, Kala.TedadDarPallet);
+            return Tedad % Kala.TedadDarPallet;
         }
 
-        private int getReminderCanBeOnePallet(float num)
+        private int getPalleting()
         {
-            if (num > 0.5F)
+            return Tedad / Kala.TedadDarPallet;
+        }
+
+        private int getCanBeOnePallet(int tedad)
+        {
+            if (tedad > getTedadLimitForPalleting())
                 return 1;
             else
                 return 0;
+        }
+
+        private int getTedadLimitForPalleting()
+        {
+            return Kala.TedadDarPallet / 2;
         }
 
         private string getBasteCount()
@@ -74,8 +81,8 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (IsBasteii())
             {
-                return getDivisionTedadToTedadDarBaste().ToString() +
-                    (getReminderToTedadDarBaste() > 0 ? "[" + getReminderToTedadDarBaste() + "]" : "");
+                return getBastebandi().ToString() +
+                    (getReminderAfterBasteBandi() > 0 ? "[" + getReminderAfterBasteBandi() + "]" : "");
             }
             else
             {
@@ -83,24 +90,14 @@ namespace OrderAndisheh.Domain.Entity
             }
         }
 
-        private int getReminderToTedadDarBaste()
+        private int getReminderAfterBasteBandi()
         {
-            return getReminder(Tedad, Kala.TedadDarBaste);
+            return Tedad % Kala.TedadDarBaste;
         }
 
-        private int getReminder(int num1, int num2)
+        private int getBastebandi()
         {
-            return num1 % num2;
-        }
-
-        private int getDivisionTedadToTedadDarBaste()
-        {
-            return (int)getDivision(Tedad, Kala.TedadDarBaste);
-        }
-
-        private float getDivision(int num1, int num2)
-        {
-            return num1 / (float)num2;
+            return Tedad / Kala.TedadDarBaste;
         }
 
         private bool IsBasteii()
@@ -108,28 +105,24 @@ namespace OrderAndisheh.Domain.Entity
             return Kala.TedadDarBaste > 0;
         }
 
-        private int getVazn()
+        public int getVazn()
         {
             return VaznCalCulate();
         }
 
         private int VaznCalCulate()
         {
-            if (Kala.WeighWithPallet != null && Kala.WeighWithPallet > 0)
-            {
-                if (Kala.TedadDarPallet > 0)
-                {
-                    return (int)(Tedad * Kala.getOneProductVazn()) + (int)(TedadPallet * Kala.getPalletVazn());
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
+            return getVaznKhalesKala() + getVaznPalletha();
+        }
+
+        private int getVaznPalletha()
+        {
+            return (int)(TedadPallet * Kala.getPalletVazn());
+        }
+
+        private int getVaznKhalesKala()
+        {
+            return (int)(Tedad * Kala.getOneProductVazn());
         }
     }
 }
