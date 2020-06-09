@@ -22,20 +22,22 @@ namespace OrderAndisheh.Domain.Entity
 
         public void AddProduct(List<ProductEntity> product)
         {
-
-            var re = new List<ProductEntity>();
-            product.ForEach(it =>
+            if (product != null)
             {
-                if (HasDuplicateKala(it))
+                var re = new List<ProductEntity>();
+                product.ForEach(it =>
                 {
-                    throw new ArgumentException("آیتم " + it.Kala.Name + " در محموله موجود است و امکان افزودن کالای تکراری وجود ندارد");
-                }
-                else
-                {
-                    re.Add(it);
-                }
-            });
-            Products.AddRange(re);
+                    if (HasDuplicateKala(it))
+                    {
+                        throw new ArgumentException("آیتم " + it.Kala.Name + " در محموله موجود است و امکان افزودن کالای تکراری وجود ندارد");
+                    }
+                    else
+                    {
+                        re.Add(it);
+                    }
+                });
+                Products.AddRange(re);
+            }
         }
 
         private bool HasDuplicateKala(ProductEntity product)

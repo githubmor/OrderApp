@@ -11,108 +11,151 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_DefaultSet_IsOk()
         {
-            MahmoleEntity m = new MahmoleEntity();
+            MahmoleEntity mahmole = new MahmoleEntity();
 
-            Assert.IsNull(m.Destination);
-            Assert.AreEqual("", m.DestinationName);
-            Assert.IsNotNull(m.Products);
-            Assert.AreEqual(0, m.Products.Count);
-            Assert.AreEqual(0, m.getMahmoleVazn());
+            Assert.IsNull(mahmole.Destination);
+            Assert.AreEqual("", mahmole.DestinationName);
+            Assert.IsNotNull(mahmole.Products);
+            Assert.AreEqual(0, mahmole.Products.Count);
+            Assert.AreEqual(0, mahmole.getMahmoleVazn());
+            Assert.AreEqual(0, mahmole.getMahmolePalletChobiCount());
+            Assert.AreEqual(0, mahmole.getMahmolePalletCount());
+            Assert.AreEqual(0, mahmole.getMahmolePalletFeleziCount());
         }
 
         [TestMethod]
         public void MahmoleEntityTest_SetDestination_IsOk()
         {
-            DestinationEntity d = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(d);
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getDestination());
 
-            Assert.IsNotNull(m.Destination);
-            Assert.AreEqual("Saipa", m.DestinationName);
+            Assert.IsNotNull(mahmole.Destination);
+            Assert.AreEqual("Saipa", mahmole.DestinationName);
         }
 
         [TestMethod]
-        public void MahmoleEntityTest_SetDestinationProducts_IsOk()
+        public void MahmoleEntityTest_SetDestinationAndProducts_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
 
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity d = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p },d);
+            Assert.IsNotNull(mahmole.Destination);
+            Assert.AreEqual("Saipa", mahmole.DestinationName);
+            Assert.IsNotNull(mahmole.Products);
+            Assert.AreEqual(1, mahmole.Products.Count);
+        }
 
-            Assert.IsNotNull(m.Destination);
-            Assert.AreEqual("Saipa", m.DestinationName);
-            Assert.IsNotNull(m.Products);
-            Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.getMahmoleVazn());
+        [TestMethod]
+        public void MahmoleEntityTest_getMahmolePalletChobiCount_IsOk()
+        {
+
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+
+            var re = mahmole.getMahmolePalletChobiCount();
+
+            Assert.AreEqual(re, 1);
+        }
+
+        [TestMethod]
+        public void MahmoleEntityTest_getMahmolePalletCount_IsOk()
+        {
+
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+
+            var re = mahmole.getMahmolePalletCount();
+
+            Assert.AreEqual(re, 1);
+        }
+
+        [TestMethod]
+        public void MahmoleEntityTest_getMahmolePalletFeleziCount_IsOk()
+        {
+
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+
+            var re = mahmole.getMahmolePalletFeleziCount();
+
+            Assert.AreEqual(re, 0);
+        }
+
+        [TestMethod]
+        public void MahmoleEntityTest_getMahmoleVazn_IsOk()
+        {
+
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+
+            var re = mahmole.getMahmoleVazn();
+
+            Assert.AreEqual(re, 800);
         }
 
         [TestMethod]
         public void MahmoleEntityTest_SetProducts_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList());
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            DestinationEntity d = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p });
-
-            Assert.IsNull(m.Destination);
-            Assert.AreEqual("", m.DestinationName);
-            Assert.IsNotNull(m.Products);
-            Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.getMahmoleVazn());
+            Assert.IsNull(mahmole.Destination);
+            Assert.AreEqual("", mahmole.DestinationName);
+            Assert.IsNotNull(mahmole.Products);
+            Assert.AreEqual(1, mahmole.Products.Count);
+            Assert.AreEqual(800, mahmole.getMahmoleVazn());
         }
 
         [TestMethod]
-        public void MahmoleEntityTest_DefaultSet_AddProduct_IsOk()
+        public void MahmoleEntityTest_AddProduct_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+           
+            MahmoleEntity mahmole = new MahmoleEntity();
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
+            mahmole.AddProduct(Ultility.getProductList());
 
-            ProductEntity p = new ProductEntity(kala, 120);
-
-            MahmoleEntity m = new MahmoleEntity();
-
-            m.AddProduct(new List<ProductEntity>() { p });
-
-            Assert.IsNotNull(m.Products);
-            Assert.AreEqual(1, m.Products.Count);
-            Assert.AreEqual(800, m.getMahmoleVazn());
+            Assert.IsNotNull(mahmole.Products);
+            Assert.AreEqual(1, mahmole.Products.Count);
+            Assert.AreEqual(800, mahmole.getMahmoleVazn());
         }
 
         [TestMethod]
-        public void MahmoleEntityTest_SetDestinationNull_IsOk()
+        public void MahmoleEntityTest_AddDestination_IsOk()
         {
-            DestinationEntity d = new DestinationEntity("Saipa");
-            MahmoleEntity m = new MahmoleEntity(d);
 
-            m.Destination = null;
+            MahmoleEntity mahmole = new MahmoleEntity();
 
-            Assert.IsNull(m.Destination);
-            Assert.AreEqual("", m.DestinationName);
+            mahmole.Destination = Ultility.getDestination();
+
+            Assert.IsNotNull(mahmole.Destination);
+            Assert.AreEqual("Saipa", mahmole.DestinationName);
+        }
+
+        [TestMethod]
+        public void MahmoleEntityTest_AddProductNull_IsOk()
+        {
+
+            MahmoleEntity mahmole = new MahmoleEntity();
+
+            mahmole.AddProduct(null);
+
+            Assert.IsNotNull(mahmole.Products);
+            Assert.AreEqual(0, mahmole.Products.Count);
+            Assert.AreEqual(0, mahmole.getMahmoleVazn());
+        }
+
+        [TestMethod]
+        public void MahmoleEntityTest_AddDestinationNull_IsOk()
+        {
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getDestination());
+
+            mahmole.Destination = null;
+
+            Assert.IsNull(mahmole.Destination);
+            Assert.AreEqual("", mahmole.DestinationName);
         }
 
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void MahmoleEntityTest_Add_IsOk()
+        public void MahmoleEntityTest_AddProductDuplicate_ExpectedException()
         {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList());
 
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-
-            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p });
-
-            m.AddProduct(new List<ProductEntity>() { p });
+            mahmole.AddProduct(Ultility.getProductList());
         }
     }
 }

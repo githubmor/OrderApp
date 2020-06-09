@@ -87,5 +87,20 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new PalletEntity("GP8", 200);
         }
+
+        public static DestinationEntity getDestination()
+        {
+            return new DestinationEntity("Saipa");
+        }
+
+        public static List<ProductEntity> getProductList()
+        {
+            PalletEntity pallet = new PalletEntity("GP8", 200);
+
+            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
+                pallet, 120, 10, 800);
+
+            return new List<ProductEntity>(){ new ProductEntity(kala, 120)};
+        }
     }
 }
