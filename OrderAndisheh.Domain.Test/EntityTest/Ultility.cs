@@ -102,5 +102,53 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             return new List<ProductEntity>(){ new ProductEntity(kala, 120)};
         }
+
+        public static List<CabinEntity> getCabinList()
+        {
+            PalletEntity pallet = new PalletEntity("GP8", 200);
+
+            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
+                pallet, 120, 10, 800);
+
+            ProductEntity p = new ProductEntity(kala, 120);
+            DestinationEntity de = new DestinationEntity("Saipa");
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
+
+            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
+
+            return new List<CabinEntity>(){ new CabinEntity(new List<MahmoleEntity>() { m }, d)};
+        }
+
+        public static List<CabinEntity> getCabinList2()
+        {
+            PalletEntity pallet2 = new PalletEntity("GP8", 200);
+
+            KalaEntity kala2 = new KalaEntity("name", "codeAnbar2", "fani", "jens",
+                pallet2, 120, 10, 800);
+
+            ProductEntity p2 = new ProductEntity(kala2, 120);
+            DestinationEntity de2 = new DestinationEntity("Saipa");
+            MahmoleEntity m2 = new MahmoleEntity(new List<ProductEntity>() { p2 }, de2);
+
+            DriverEntity d2 = new DriverEntity("name2", "mobile", "codeMeli", "pelak");
+
+            return new List<CabinEntity>(){ new CabinEntity(new List<MahmoleEntity>() { m2 }, d2)};
+        }
+
+        public static List<CabinEntity> getCabinList3()
+        {
+            PalletEntity pallet = new PalletEntity("GP8", 200);
+
+            KalaEntity kala2 = new KalaEntity("name2", "codeAnbar2", "fani", "jens",
+                pallet, 120, 10, 800);
+
+            ProductEntity p = new ProductEntity(kala2, 120);
+            DestinationEntity de = new DestinationEntity("Saipa");
+            MahmoleEntity m = new MahmoleEntity(new List<ProductEntity>() { p }, de);
+
+            DriverEntity d = new DriverEntity("name", "mobile", "codeMeli", "pelak");
+
+            return new List<CabinEntity>() { new CabinEntity(new List<MahmoleEntity>() { m }, d) };
+        }
     }
 }

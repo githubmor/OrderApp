@@ -8,35 +8,38 @@ namespace OrderAndisheh.Domain.Entity
         public OrderEntity(int tarikh, int version = 0, bool isAccepted = false)
             : base(tarikh, version, isAccepted)
         {
-            Cabins = new System.Collections.Generic.List<CabinEntity>();
+            Cabins = new List<CabinEntity>();
         }
 
-        public OrderEntity(int tarikh, System.Collections.Generic.List<CabinEntity> cabins,
+        public OrderEntity(int tarikh, List<CabinEntity> cabins,
             int version = 0, bool isAccepted = false)
             : this(tarikh, version, isAccepted)
         {
             Cabins = cabins;
         }
 
-        public System.Collections.Generic.List<CabinEntity> Cabins { get; private set; }
+        public List<CabinEntity> Cabins { get; private set; }
 
         public void AddCabin(List<CabinEntity> cabins)
         {
-            cabins.ForEach(it =>
+            if (cabins != null)
             {
-                var re = HasDuplicateDriver(it);
-                if (re != null)
+                cabins.ForEach(it =>
                 {
-                    re.AddMahmole(it.Mahmoles);
-                }
-                else
-                {
-                    Cabins.Add(it);
-                }
-            });
+                    var re = HasDuplicateDriverOrNull(it);
+                    if (re != null)
+                    {
+                        re.AddMahmole(it.Mahmoles);
+                    }
+                    else
+                    {
+                        Cabins.Add(it);
+                    }
+                });
+            }
         }
 
-        private CabinEntity HasDuplicateDriver(CabinEntity cabin)
+        private CabinEntity HasDuplicateDriverOrNull(CabinEntity cabin)
         {
             return Cabins.SingleOrDefault(it => it.Drivername == cabin.Drivername);
         }
