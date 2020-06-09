@@ -9,11 +9,11 @@ namespace OrderAndisheh.Domain.Entity
         {
             if (ersaliSherkat.Count == 0)
             {
-                throw new ArgumentNullException("ارسالي شركت در شاخص كالا نمي تواند تهي باشد");
+                throw new ArgumentNullException("ارسالي شركت در شاخص كالا نمي تواند تهي باشد", "ersaliSherkat");
             }
             if (customerTolidi.Count == 0)
             {
-                throw new ArgumentNullException("توليدي مشتري در شاخص كالا نبايد صفر باشد");
+                throw new ArgumentNullException("توليدي مشتري در شاخص كالا نبايد صفر باشد", "customerTolidi");
             }
 
             ErsaliSherkat = ersaliSherkat;
@@ -28,17 +28,17 @@ namespace OrderAndisheh.Domain.Entity
 
             var CustomerTolid = getCustormerTolidiByCustomer(customer);
 
-            var KalaErsali = ErsaliSherkat.getKalaErsaliByCustomer(customer);
+            var KalaErsali = ErsaliSherkat.getKalaErsaliToCustomer(customer);
 
             return getShakhesAvreg(getShakhesKala(CustomerTolid, KalaErsali));
         }
 
-        private static int getShakhesAvreg(List<ShakhesKalaEntity> shakhesKala)
+        private int getShakhesAvreg(List<ShakhesKalaEntity> shakhesKala)
         {
             return (int)shakhesKala.Average(p => p.getDarsadSahm());
         }
 
-        private static List<ShakhesKalaEntity> getShakhesKala(CustomerTolidiEntity selectedCustomer, List<ErsalKalaEntity> kalaha)
+        private List<ShakhesKalaEntity> getShakhesKala(CustomerTolidiEntity selectedCustomer, List<ErsalKalaEntity> kalaha)
         {
             List<ShakhesKalaEntity> shakhesKala = new List<ShakhesKalaEntity>();
 

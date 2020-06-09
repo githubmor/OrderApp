@@ -25,7 +25,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ErsaliSherkatEntity ersaliSherkat =
                 new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
 
-            var re = ersaliSherkat.getKalaErsaliByCustomer(null);
+            var re = ersaliSherkat.getKalaErsaliToCustomer(null);
 
             Assert.AreEqual(0, re.Count);
         }
@@ -36,7 +36,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ErsaliSherkatEntity ersaliSherkat =
                 new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
 
-            var re = ersaliSherkat.getKalaErsaliByCustomer(Ultility.getCustomer2());
+            var re = ersaliSherkat.getKalaErsaliToCustomer(Ultility.getCustomer2());
 
             Assert.AreEqual(0, re.Count);
         }
@@ -47,7 +47,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ErsaliSherkatEntity ersaliSherkat =
                 new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
 
-            var re = ersaliSherkat.getKalaErsaliByCustomer(Ultility.getCustomer());
+            var re = ersaliSherkat.getKalaErsaliToCustomer(Ultility.getCustomer());
 
             Assert.AreEqual(1, re.Count);
         }

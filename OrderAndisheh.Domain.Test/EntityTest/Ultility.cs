@@ -73,7 +73,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
         public static List<ErsalKalaEntity> getErsali()
         {
-            return new List<ErsalKalaEntity>() { new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2,
+            return new List<ErsalKalaEntity>() { new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 200, 2,
                 getKhodroList(), getCustomer()) };
         }
 
@@ -164,6 +164,16 @@ namespace OrderAndisheh.Domain.Test.EntityTest
 
             return new KalaEntity("name", "codeAnbar", "fani", "jens",
                 pallet, 120, 0, 800);
+        }
+
+        internal static List<ErsaliSherkatEntity> getErsaliSherkat()
+        {
+            return new List<ErsaliSherkatEntity>() { new ErsaliSherkatEntity("Andisheh", getErsali()) };
+        }
+
+        internal static List<CustomerTolidiEntity> getCustomerTolidi()
+        {
+            return new List<CustomerTolidiEntity>() { new CustomerTolidiEntity("Sapco", getAmarTolids()) };
         }
     }
 }
