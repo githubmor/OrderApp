@@ -37,7 +37,6 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         public void TolidMahaneEntity_EmptyAmarTolid_IsOk()
         {
             TolidMahaneEntity tolidMahane = new TolidMahaneEntity(1, new List<AmarTolidKhodroEntity>());
-
         }
     }
 }

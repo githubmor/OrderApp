@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
 using System;
-using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -35,8 +34,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_SetDestinationAndProducts_IsOk()
         {
-
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default(), Ultility.getDestination());
 
             Assert.IsNotNull(mahmole.Destination);
             Assert.AreEqual("Saipa", mahmole.DestinationName);
@@ -47,8 +45,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_getMahmolePalletChobiCount_IsOk()
         {
-
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default(), Ultility.getDestination());
 
             var re = mahmole.getMahmolePalletChobiCount();
 
@@ -58,8 +55,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_getMahmolePalletCount_IsOk()
         {
-
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default(), Ultility.getDestination());
 
             var re = mahmole.getMahmolePalletCount();
 
@@ -69,8 +65,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_getMahmolePalletFeleziCount_IsOk()
         {
-
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default(), Ultility.getDestination());
 
             var re = mahmole.getMahmolePalletFeleziCount();
 
@@ -80,8 +75,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_getMahmoleVazn_IsOk()
         {
-
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList(), Ultility.getDestination());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default(), Ultility.getDestination());
 
             var re = mahmole.getMahmoleVazn();
 
@@ -91,7 +85,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_SetProducts_IsOk()
         {
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default());
 
             Assert.IsNull(mahmole.Destination);
             Assert.AreEqual("", mahmole.DestinationName);
@@ -103,10 +97,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_AddProduct_IsOk()
         {
-           
             MahmoleEntity mahmole = new MahmoleEntity();
 
-            mahmole.AddProduct(Ultility.getProductList());
+            mahmole.AddProduct(Ultility.getProductList_Default());
 
             Assert.IsNotNull(mahmole.Products);
             Assert.AreEqual(1, mahmole.Products.Count);
@@ -116,7 +109,6 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_AddDestination_IsOk()
         {
-
             MahmoleEntity mahmole = new MahmoleEntity();
 
             mahmole.Destination = Ultility.getDestination();
@@ -128,7 +120,6 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_AddProductNull_IsOk()
         {
-
             MahmoleEntity mahmole = new MahmoleEntity();
 
             mahmole.AddProduct(null);
@@ -153,9 +144,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void MahmoleEntityTest_AddProductDuplicate_ExpectedException()
         {
-            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList());
+            MahmoleEntity mahmole = new MahmoleEntity(Ultility.getProductList_Default());
 
-            mahmole.AddProduct(Ultility.getProductList());
+            mahmole.AddProduct(Ultility.getProductList_Default());
         }
     }
 }

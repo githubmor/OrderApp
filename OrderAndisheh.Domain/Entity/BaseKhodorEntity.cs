@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class BaseKhodorEntity
@@ -11,6 +12,7 @@ namespace OrderAndisheh.Domain.Entity
             }
             Name = name;
         }
+
         public string Name { get; private set; }
     }
 }

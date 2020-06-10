@@ -21,6 +21,5 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             BaseKhodorEntity baseKhodor = new BaseKhodorEntity("");
         }
-
     }
 }

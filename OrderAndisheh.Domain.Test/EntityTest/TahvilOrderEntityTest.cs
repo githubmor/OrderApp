@@ -21,7 +21,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void TahvilOrderEntity_SetEmptyNullTahvilFroshs_IsOk()
         {
-            TahvilOrderEntity tahvilOrder = new TahvilOrderEntity(13990208,new List<TahvilFroshEntity>());
+            TahvilOrderEntity tahvilOrder = new TahvilOrderEntity(13990208, new List<TahvilFroshEntity>());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]

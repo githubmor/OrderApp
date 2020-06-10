@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
     {
         public ShakhesKalaEntity(ErsalKalaEntity ersalKala, List<AmarTolidKhodroEntity> amarTolids)
         {
-            if (amarTolids==null ||amarTolids.Count == 0 )
+            if (amarTolids == null || amarTolids.Count == 0)
             {
                 throw new ArgumentNullException("آمار توليد در شاخص كالا نمي تواند تهي باشد");
             }

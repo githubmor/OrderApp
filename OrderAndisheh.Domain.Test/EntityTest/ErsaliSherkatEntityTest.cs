@@ -36,7 +36,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ErsaliSherkatEntity ersaliSherkat =
                 new ErsaliSherkatEntity("Andisheh", Ultility.getErsali());
 
-            var re = ersaliSherkat.getKalaErsaliToCustomer(Ultility.getCustomer2());
+            var re = ersaliSherkat.getKalaErsaliToCustomer(Ultility.getCustomer("Sazeh"));
 
             Assert.AreEqual(0, re.Count);
         }

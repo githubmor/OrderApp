@@ -10,7 +10,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void PalletEntityTest_SetProperty_IsOk()
         {
-            PalletEntity pallet = new PalletEntity("name", 200,true);
+            PalletEntity pallet = new PalletEntity("name", 200, true);
 
             Assert.AreEqual("name", pallet.Name);
             Assert.AreEqual(200, pallet.Vazn);

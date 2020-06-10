@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
@@ -15,9 +15,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
                 Ultility.getAmarTolids());
 
             Assert.IsNotNull(shakhesKala.AmarTolids);
-            Assert.AreEqual(1,shakhesKala.AmarTolids.Count);
+            Assert.AreEqual(1, shakhesKala.AmarTolids.Count);
             Assert.IsNotNull(shakhesKala.ErsalKala);
-            Assert.AreEqual(5,shakhesKala.getKalaDarsadSahm());
+            Assert.AreEqual(5, shakhesKala.getKalaDarsadSahm());
         }
 
         [TestMethod]
@@ -45,6 +45,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
                 new List<AmarTolidKhodroEntity>());
         }
+
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesKalaEntity_NullTolidi_ExpectedException()
@@ -52,6 +53,5 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
                 null);
         }
-       
     }
 }

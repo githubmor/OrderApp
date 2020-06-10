@@ -60,7 +60,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_SetMahmoleAndDriver_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
             Assert.IsNotNull(cabin.Driver);
             Assert.IsNotNull(cabin.Mahmoles);
@@ -72,7 +72,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_getCabinJaighah_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
             var re = cabin.getCabinJaighah();
 
@@ -82,7 +82,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_getCabinPalletCount_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
             var re = cabin.getCabinPalletCount();
 
@@ -92,7 +92,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_getCabinVazn_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
             var re = cabin.getCabinVazn();
 
@@ -102,7 +102,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_SetMahmole_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default());
 
             Assert.IsNull(cabin.Driver);
             Assert.IsNotNull(cabin.Mahmoles);
@@ -140,7 +140,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             CabinEntity cabin = new CabinEntity(Ultility.getDriver());
 
-            cabin.AddMahmole(Ultility.getMahmoleList());
+            cabin.AddMahmole(Ultility.getMahmoleList_Default());
 
             Assert.IsNotNull(cabin.Driver);
             Assert.IsNotNull(cabin.Mahmoles);
@@ -180,9 +180,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_AddMahmoleWithSameDestination_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
-            cabin.AddMahmole(Ultility.getMahmoleList2());
+            cabin.AddMahmole(Ultility.getMahmoleList_DifProduct_SameDestination());
 
             Assert.IsNotNull(cabin.Driver);
             Assert.IsNotNull(cabin.Mahmoles);
@@ -194,9 +194,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void CabinEntity_AddMahmoleWithDiffrentDestination_IsOk()
         {
-            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList(), Ultility.getDriver());
+            CabinEntity cabin = new CabinEntity(Ultility.getMahmoleList_Default(), Ultility.getDriver());
 
-            cabin.AddMahmole(Ultility.getMahmoleList3());
+            cabin.AddMahmole(Ultility.getMahmoleList_SameProduct_DifDestination());
 
             Assert.IsNotNull(cabin.Driver);
             Assert.IsNotNull(cabin.Mahmoles);

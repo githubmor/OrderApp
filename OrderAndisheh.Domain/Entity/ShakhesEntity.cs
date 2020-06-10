@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace OrderAndisheh.Domain.Entity
 {
     public class ShakhesEntity
@@ -19,6 +20,7 @@ namespace OrderAndisheh.Domain.Entity
             ErsaliSherkat = ersaliSherkat;
             CustomerTolidi = customerTolidi;
         }
+
         public List<ErsaliSherkatEntity> ErsaliSherkat { get; private set; }
         public List<CustomerTolidiEntity> CustomerTolidi { get; private set; }
 
@@ -29,8 +31,8 @@ namespace OrderAndisheh.Domain.Entity
             {
                 CustomerTolidi.ForEach(customer =>
                 {
-                    var key = new Dictionary<BaseSherkatEntity,BaseCustomerEntity>();
-                    key.Add(sherkat,customer);
+                    var key = new Dictionary<BaseSherkatEntity, BaseCustomerEntity>();
+                    key.Add(sherkat, customer);
                     re.Add(key, getDarsadSahm(sherkat, customer));
                 });
             });
@@ -38,8 +40,8 @@ namespace OrderAndisheh.Domain.Entity
             return re;
         }
 
-        public int getDarsadSahm(BaseSherkatEntity sherkat,BaseCustomerEntity customer){
-
+        public int getDarsadSahm(BaseSherkatEntity sherkat, BaseCustomerEntity customer)
+        {
             var ErsaliSherkat = getErsaliSherkatBySherkat(sherkat);
 
             var CustomerTolid = getCustormerTolidiByCustomer(customer);
@@ -74,8 +76,5 @@ namespace OrderAndisheh.Domain.Entity
         {
             return ErsaliSherkat.Single(p => p.SherkatName == sherkat.SherkatName);
         }
-        
     }
-
-
 }

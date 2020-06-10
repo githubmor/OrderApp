@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -15,13 +15,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual("Sapco", customer.CustomerName);
         }
 
-
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void BaseCustomerEntityTest_NullProperty_IsOk()
         {
             BaseCustomerEntity customer = new BaseCustomerEntity("");
         }
-
     }
 }

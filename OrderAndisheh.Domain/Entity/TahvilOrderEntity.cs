@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
         public TahvilOrderEntity(int tarikh, List<TahvilFroshEntity> tahvilFroshs)
             : base(tarikh)
         {
-            if (tahvilFroshs == null || tahvilFroshs.Count==0)
+            if (tahvilFroshs == null || tahvilFroshs.Count == 0)
             {
                 throw new ArgumentNullException("تحويل فروش به تاريخ " + Tarikh + " نمي تواند تهي باشد", "tahvilFroshs");
             }
@@ -16,6 +16,5 @@ namespace OrderAndisheh.Domain.Entity
         }
 
         public List<TahvilFroshEntity> TahvilFroshs { get; private set; }
-
     }
 }

@@ -12,7 +12,7 @@ namespace OrderAndisheh.Domain.Entity
             Destination = destination;
         }
 
-        public MahmoleEntity(List<ProductEntity> product,DestinationEntity destination = null)
+        public MahmoleEntity(List<ProductEntity> product, DestinationEntity destination = null)
             : this(destination)
         {
             Products = product;

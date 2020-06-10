@@ -8,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
            PalletEntity pallet, int tedadDarPallet, int tedadDarBaste, int weighWithPallet)
             : base(name, codeAnbar, faniCode, codeJense)
         {
-            if (tedadDarPallet <= 0 )
+            if (tedadDarPallet <= 0)
             {
                 throw new ArgumentNullException("تعداد در پالت در كالاي " + name
                     + " نبايد صفر باشد", "tedadDarPallet");
@@ -37,6 +37,7 @@ namespace OrderAndisheh.Domain.Entity
         {
             return Pallet.Vazn;
         }
+
         public bool IsFeleziPallet()
         {
             return Pallet.IsFelezi;

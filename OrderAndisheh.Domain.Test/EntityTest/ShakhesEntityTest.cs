@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
+using System;
 using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
@@ -11,7 +11,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_SetDafult_IsOk()
         {
-            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(), 
+            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
                 Ultility.getCustomerTolidi());
 
             Assert.IsNotNull(shakhes.CustomerTolidi);
@@ -23,9 +23,9 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
                 Ultility.getCustomerTolidi());
-             var re = shakhes.getDarsadSahm(new BaseSherkatEntity("Andisheh"), new BaseCustomerEntity("Sapco"));
+            var re = shakhes.getDarsadSahm(new BaseSherkatEntity("Andisheh"), new BaseCustomerEntity("Sapco"));
 
-            Assert.AreEqual(5,re );
+            Assert.AreEqual(5, re);
         }
 
         [TestMethod]
@@ -38,12 +38,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual(1, re.Count);
         }
 
-
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesEntity_emptyAll_ExpectedException()
         {
-            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
+            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(),
                 new List<CustomerTolidiEntity>());
         }
 
@@ -51,7 +50,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesEntity_EmptyErsali_ExpectedException()
         {
-            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(), 
+            ShakhesEntity shakhes = new ShakhesEntity(new List<ErsaliSherkatEntity>(),
                 Ultility.getCustomerTolidi());
         }
 
@@ -62,7 +61,5 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
                 new List<CustomerTolidiEntity>());
         }
-
-
     }
 }

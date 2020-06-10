@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OrderAndisheh.Domain.Entity;
-using System;
-using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Test.EntityTest
 {
@@ -18,6 +16,5 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.IsTrue(orderState.IsTahvilSet);
             Assert.IsTrue(orderState.IsTedadSet);
         }
-        
     }
 }

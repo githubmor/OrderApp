@@ -64,6 +64,5 @@ namespace OrderAndisheh.Domain.Entity
 
             return (palletFelezi / 2) + palletChobi;
         }
-
     }
 }

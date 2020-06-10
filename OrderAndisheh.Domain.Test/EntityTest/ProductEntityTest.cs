@@ -22,7 +22,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_NoBasteii_TedadEqual_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 120);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 120);
 
             Assert.IsNotNull(product.Kala);
             Assert.AreEqual(120, product.Tedad);
@@ -34,7 +34,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_NoBasteii_TedadLowerHalf_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 50);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 50);
 
             Assert.AreEqual("", product.TedadBaste);
             Assert.AreEqual(0, product.TedadPallet);
@@ -64,7 +64,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_NoBasteii_TedadBiggerHalf_SetProperty_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 70);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 70);
 
             Assert.AreEqual("", product.TedadBaste);
             Assert.AreEqual(1, product.TedadPallet);
@@ -74,7 +74,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_NoBasteii_TedadNotBatch_SetProperty_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 195);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 195);
 
             Assert.AreEqual("", product.TedadBaste);
             Assert.AreEqual(2, product.TedadPallet);
@@ -104,7 +104,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_NoBasteii_NoTedad_SetProperty_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 0);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 0);
 
             Assert.AreEqual("", product.TedadBaste);
             Assert.AreEqual(0, product.TedadPallet);
@@ -114,7 +114,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_SetTedad_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 100);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 100);
             product.Tedad = 120;
 
             Assert.AreEqual("", product.TedadBaste);
@@ -125,7 +125,7 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ProductEntityTest_SetTedadPallet_IsOk()
         {
-            ProductEntity product = new ProductEntity(Ultility.getkalaNoBastei(), 120);
+            ProductEntity product = new ProductEntity(Ultility.getkalaBastei(isbastei: false), 120);
             product.TedadPallet = 2;
 
             Assert.AreEqual("", product.TedadBaste);
