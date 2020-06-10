@@ -7,13 +7,13 @@ namespace OrderAndisheh.Domain.Entity
     {
         public TahvilFroshEntity(List<ProductEntity> products, int tahvilNumber)
         {
-            if (products.Count==0)
+            if (products==null || products.Count==0)
             {
-                throw new ArgumentNullException("كالاهاي تحويل فروش نمي تواند تهي باشد");
+                throw new ArgumentNullException("كالاهاي در تحويل فروش نمي تواند تهي باشد");
             }
             if (tahvilNumber<1)
             {
-                throw new ArgumentNullException("شماره تحويل فروش نميتواند صفر باشد");
+                throw new ArgumentNullException("شماره تحويل فروش در تحويل فروش نميتواند صفر باشد");
             }
             Products = products;
             TahvilNumber = tahvilNumber;
