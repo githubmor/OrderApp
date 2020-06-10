@@ -9,41 +9,26 @@ namespace OrderAndisheh.Domain.Test.EntityTest
     public class TahvilOrderEntityTest
     {
         [TestMethod]
-        public void TahvilOrderEntity_SetProperty_IsOk()
+        public void TahvilOrderEntity_SetAll_IsOk()
         {
-            TahvilOrderEntity b = new TahvilOrderEntity(13990208);
+            TahvilOrderEntity tahvilOrder = new TahvilOrderEntity(13990208, Ultility.getTahvilList());
 
-            Assert.AreEqual(13990208, b.Tarikh);
-            Assert.AreEqual(0, b.TahvilFroshs.Count);
-            Assert.IsNotNull( b.TahvilFroshs);
+            Assert.AreEqual(1, tahvilOrder.TahvilFroshs.Count);
+            Assert.IsNotNull(tahvilOrder.TahvilFroshs);
         }
 
+        [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
-        public void TahvilOrderEntity_AddVersion_IsOk()
+        public void TahvilOrderEntity_SetEmptyNullTahvilFroshs_IsOk()
         {
-
-            TahvilOrderEntity b = new TahvilOrderEntity(13990208,getTahvilList());
-
-            Assert.AreEqual(1, b.TahvilFroshs.Count);
-            Assert.IsNotNull(b.TahvilFroshs);
+            TahvilOrderEntity tahvilOrder = new TahvilOrderEntity(13990208,new List<TahvilFroshEntity>());
         }
 
-        private List<TahvilFroshEntity> getTahvilList()
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void TahvilOrderEntity_SetNullTahvilFroshs_IsOk()
         {
-            TahvilFroshEntity t = new TahvilFroshEntity(getProductList(), 15);
-            return new List<TahvilFroshEntity>() { t };
+            TahvilOrderEntity tahvilOrder = new TahvilOrderEntity(13990208, null);
         }
-        private static List<ProductEntity> getProductList()
-        {
-            PalletEntity pallet = new PalletEntity("GP8", 200);
-
-            KalaEntity kala = new KalaEntity("name", "codeAnbar", "fani", "jens",
-                pallet, 120, 10, 800);
-
-            ProductEntity p = new ProductEntity(kala, 120);
-            return new List<ProductEntity>() { p };
-        }
-
-        
     }
 }

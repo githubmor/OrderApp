@@ -181,5 +181,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             return new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 200, 2,
                 getKhodroList(), getCustomer());
         }
+
+        internal static List<TahvilFroshEntity> getTahvilList()
+        {
+            TahvilFroshEntity t = new TahvilFroshEntity(getProductList(), 15);
+            return new List<TahvilFroshEntity>() { t };
+        }
     }
 }
