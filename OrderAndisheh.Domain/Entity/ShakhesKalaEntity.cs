@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OrderAndisheh.Domain.Entity
 {
@@ -10,7 +8,7 @@ namespace OrderAndisheh.Domain.Entity
     {
         public ShakhesKalaEntity(ErsalKalaEntity ersalKala, List<AmarTolidKhodroEntity> amarTolids)
         {
-            if (amarTolids.Count == 0)
+            if (amarTolids==null ||amarTolids.Count == 0 )
             {
                 throw new ArgumentNullException("آمار توليد در شاخص كالا نمي تواند تهي باشد");
             }
@@ -18,19 +16,29 @@ namespace OrderAndisheh.Domain.Entity
             {
                 throw new ArgumentNullException("كالاي ارسالي در شاخص كالا نمي تواند تهي باشد");
             }
+            amarTolids.ForEach(it =>
+            {
+                var amartoliNotUsed = ersalKala.Khodors.Exists(p => p.Name != it.Name);
+                if (amartoliNotUsed)
+                {
+                    throw new IndexOutOfRangeException("آمار توليد خودرو " + it.Name + " در خودرهاي كالاي ارسالي " + ersalKala.Name + " وجود ندارد");
+                }
+            });
             ErsalKala = ersalKala;
             AmarTolids = amarTolids;
         }
+
         public ErsalKalaEntity ErsalKala { get; private set; }
         public List<AmarTolidKhodroEntity> AmarTolids { get; private set; }
 
-        public int getDarsadSahm()
+        public int getKalaDarsadSahm()
         {
             var sum = AmarTolids.Sum(p => p.TedadTolid);
+
             if (sum == 0)
                 return 0;
             else
-            return ((ErsalKala.TedadErsali / ErsalKala.ZaribMasrafDarKhodro) * 100) / sum;
+                return (ErsalKala.getTedadInKhodro() * 100) / sum;
         }
     }
 }

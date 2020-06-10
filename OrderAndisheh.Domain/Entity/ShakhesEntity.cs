@@ -35,7 +35,7 @@ namespace OrderAndisheh.Domain.Entity
 
         private int getShakhesAvreg(List<ShakhesKalaEntity> shakhesKala)
         {
-            return (int)shakhesKala.Average(p => p.getDarsadSahm());
+            return (int)shakhesKala.Average(p => p.getKalaDarsadSahm());
         }
 
         private List<ShakhesKalaEntity> getShakhesKala(CustomerTolidiEntity selectedCustomer, List<ErsalKalaEntity> kalaha)

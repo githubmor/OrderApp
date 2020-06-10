@@ -34,5 +34,10 @@ namespace OrderAndisheh.Domain.Entity
         public int ZaribMasrafDarKhodro { get; private set; }
         public List<BaseKhodorEntity> Khodors { get; private set; }
         public BaseCustomerEntity Customer { get; private set; }
+
+        internal int getTedadInKhodro()
+        {
+            return TedadErsali / ZaribMasrafDarKhodro;
+        }
     }
 }

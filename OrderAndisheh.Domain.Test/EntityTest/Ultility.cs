@@ -175,5 +175,11 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         {
             return new List<CustomerTolidiEntity>() { new CustomerTolidiEntity("Sapco", getAmarTolids()) };
         }
+
+        internal static ErsalKalaEntity getOneErsali()
+        {
+            return new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 200, 2,
+                getKhodroList(), getCustomer());
+        }
     }
 }

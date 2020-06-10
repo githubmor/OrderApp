@@ -11,47 +11,47 @@ namespace OrderAndisheh.Domain.Test.EntityTest
         [TestMethod]
         public void ShakhesKalaEntity_SetDafult_IsOk()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), getAmarTolids());
+            ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
+                Ultility.getAmarTolids());
 
-            Assert.IsNotNull(s.AmarTolids);
-            Assert.AreEqual(1,s.AmarTolids.Count);
-            Assert.IsNotNull(s.ErsalKala);
-            Assert.AreEqual(5,s.getDarsadSahm());
+            Assert.IsNotNull(shakhesKala.AmarTolids);
+            Assert.AreEqual(1,shakhesKala.AmarTolids.Count);
+            Assert.IsNotNull(shakhesKala.ErsalKala);
+            Assert.AreEqual(5,shakhesKala.getKalaDarsadSahm());
         }
 
+        [TestMethod]
+        public void ShakhesKalaEntity_getKalaDarsadSahm_IsOk()
+        {
+            ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
+                Ultility.getAmarTolids());
+
+            var re = shakhesKala.getKalaDarsadSahm();
+
+            Assert.AreEqual(5, re);
+        }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesKalaEntity_NullErsali_ExpectedException()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(null, getAmarTolids());
+            ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(null, Ultility.getAmarTolids());
         }
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
         public void ShakhesKalaEntity_EmptyTolidi_ExpectedException()
         {
-            ShakhesKalaEntity s = new ShakhesKalaEntity(getErsali(), new List<AmarTolidKhodroEntity>());
+            ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
+                new List<AmarTolidKhodroEntity>());
         }
-
-        private List<AmarTolidKhodroEntity> getAmarTolids()
+        [ExpectedException(typeof(ArgumentNullException))]
+        [TestMethod]
+        public void ShakhesKalaEntity_NullTolidi_ExpectedException()
         {
-            return new List<AmarTolidKhodroEntity>() { new AmarTolidKhodroEntity("206", 200) };
+            ShakhesKalaEntity shakhesKala = new ShakhesKalaEntity(Ultility.getOneErsali(),
+                null);
         }
-
-        private List<BaseKhodorEntity> getKhodroList()
-        {
-            return new List<BaseKhodorEntity>() { new BaseKhodorEntity("206") };
-        }
-        private BaseCustomerEntity getCustomer()
-        {
-            return new BaseCustomerEntity("Sapco");
-        }
-
-        private ErsalKalaEntity getErsali()
-        {
-            return new ErsalKalaEntity("name", "codeAnbar", "fani", "jens", 20, 2, 
-                getKhodroList(), getCustomer()) ;
-        }
+       
     }
 }
