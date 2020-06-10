@@ -22,6 +22,22 @@ namespace OrderAndisheh.Domain.Entity
         public List<ErsaliSherkatEntity> ErsaliSherkat { get; private set; }
         public List<CustomerTolidiEntity> CustomerTolidi { get; private set; }
 
+        public Dictionary<Dictionary<BaseSherkatEntity, BaseCustomerEntity>, int> getDarsadSahmDic()
+        {
+            var re = new Dictionary<Dictionary<BaseSherkatEntity, BaseCustomerEntity>, int>();
+            ErsaliSherkat.ForEach(sherkat =>
+            {
+                CustomerTolidi.ForEach(customer =>
+                {
+                    var key = new Dictionary<BaseSherkatEntity,BaseCustomerEntity>();
+                    key.Add(sherkat,customer);
+                    re.Add(key, getDarsadSahm(sherkat, customer));
+                });
+            });
+
+            return re;
+        }
+
         public int getDarsadSahm(BaseSherkatEntity sherkat,BaseCustomerEntity customer){
 
             var ErsaliSherkat = getErsaliSherkatBySherkat(sherkat);

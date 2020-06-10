@@ -28,6 +28,16 @@ namespace OrderAndisheh.Domain.Test.EntityTest
             Assert.AreEqual(5,re );
         }
 
+        [TestMethod]
+        public void ShakhesEntity_getDarsadSahmDic_IsOk()
+        {
+            ShakhesEntity shakhes = new ShakhesEntity(Ultility.getErsaliSherkat(),
+                Ultility.getCustomerTolidi());
+            var re = shakhes.getDarsadSahmDic();
+
+            Assert.AreEqual(1, re.Count);
+        }
+
 
         [ExpectedException(typeof(ArgumentNullException))]
         [TestMethod]
