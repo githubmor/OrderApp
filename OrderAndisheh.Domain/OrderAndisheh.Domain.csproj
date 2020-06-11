@@ -50,7 +50,7 @@
     <Compile Include="Entity\BaseSherkatEntity.cs" />
     <Compile Include="Entity\DestinationEntity.cs" />
     <Compile Include="Entity\DriverEntity.cs" />
-    <Compile Include="Entity\SalMali.cs" />
+    <Compile Include="Entity\SalMaliEntity.cs" />
     <Compile Include="Entity\ShakhesEntity.cs" />
     <Compile Include="Entity\KalaEntity.cs" />
     <Compile Include="Entity\BaseKhodorEntity.cs" />
