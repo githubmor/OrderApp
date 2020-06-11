@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EntityTest\SalMaliEntityTest.cs" />
     <Compile Include="EntityTest\AmarTolidKhodroEntityTest.cs" />
     <Compile Include="EntityTest\CustomerTolidiEntityTest.cs" />
     <Compile Include="EntityTest\BaseKalaEntityTest.cs" />

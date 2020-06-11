@@ -1,11 +1,16 @@
-﻿using OrderAndisheh.Domain.Interfaces;
+﻿using OrderAndisheh.Domain.Entity;
+using System.Collections.Generic;
 
 namespace OrderAndisheh.Domain.Repository
 {
-    public interface IDatabaseRepository
+    public interface ISalMaliRepository
     {
-        bool ChangeSalMali(ISalMali data);
+        bool ChangeSalMali(SalMaliEntity data);
 
-        bool BackUpDataBase(IFile data);
+        bool CreateNewSalMali(SalMaliEntity data);
+
+        List<Entity.SalMaliEntity> GetAllSalMali();
+
+        Entity.SalMaliEntity GetCurrentSalMali();
     }
 }

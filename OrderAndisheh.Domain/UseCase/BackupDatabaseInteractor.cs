@@ -5,9 +5,9 @@ namespace OrderAndisheh.Domain.UseCase
 {
     public class BackupDatabaseInteractor : IRequestHandler<IFile, bool>
     {
-        private IDatabaseRepository _repository;
+        private IBackUpRepository _repository;
 
-        public BackupDatabaseInteractor(IDatabaseRepository repository)
+        public BackupDatabaseInteractor(IBackUpRepository repository)
         {
             _repository = repository;
         }
