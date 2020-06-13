@@ -12,9 +12,9 @@ namespace OrderAndisheh.Domain.UseCase
             _repository = repository;
         }
 
-        public bool Handle(TolidMahaneEntity data)
+        public bool Handle(TolidMahaneEntity tolidMahane)
         {
-            return _repository.SetAmarTolid(data);
+            return _repository.SetAmarTolid(tolidMahane);
         }
     }
 }
