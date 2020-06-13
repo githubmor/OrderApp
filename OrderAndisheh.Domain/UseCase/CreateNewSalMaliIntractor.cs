@@ -16,12 +16,13 @@ namespace OrderAndisheh.Domain.UseCase
 
         public bool Handle(SalMaliEntity data)
         {
-            var result = _repository.CreateNewSalMali(data);
+            return _repository.CreateNewSalMali(data);
 
-            if (result)
-                return _repository.ChangeSalMali(data);
-            else
-                return false;
+            //چون هر يوزكيس يك كار بايد انجام دهد . شايد نخواهيم با ايجاد سال مالي بهش تغيير كنيم
+            //if (result)
+            //    return _repository.ChangeSalMali(data);
+            //else
+            //    return false;
         }
     }
 }
