@@ -90,7 +90,7 @@
     <Compile Include="UseCase\GetDestinationListInteractor.cs" />
     <Compile Include="UseCase\GetDriverListInteractor.cs" />
     <Compile Include="UseCase\GetKalaListInteractor.cs" />
-    <Compile Include="UseCase\GetShakhesListInteractor.cs" />
+    <Compile Include="UseCase\GetShakhesInteractor.cs" />
     <Compile Include="UseCase\IRequestHandler.cs" />
     <Compile Include="UseCase\RemoveOrderIntractor.cs" />
     <Compile Include="UseCase\OpenOrderIntractor.cs" />
