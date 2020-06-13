@@ -11,8 +11,6 @@ namespace OrderAndisheh.Domain.Repository
 
         bool SaveOrder(OrderEntity data);
 
-        //bool UpdateAcceptance(BaseOrderEntity data);
-
         bool RemoveOrder(BaseOrderEntity data);
     }
 }

@@ -79,7 +79,6 @@
     <Compile Include="Repository\ISalMaliRepository.cs" />
     <Compile Include="Repository\IShakhesRepository.cs" />
     <Compile Include="Repository\ITahvilRepository.cs" />
-    <Compile Include="UseCase\AcceptOrderInteractor.cs" />
     <Compile Include="UseCase\AddAmarTolidInteractor.cs" />
     <Compile Include="UseCase\ChangeDatabaseBackUpAddressInteractor.cs" />
     <Compile Include="UseCase\RestoreDatabaseInteractor.cs" />
