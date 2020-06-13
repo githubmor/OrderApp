@@ -75,12 +75,14 @@
     <Compile Include="Repository\IKalaRepository.cs" />
     <Compile Include="Repository\IOrderRepository.cs" />
     <Compile Include="Repository\IReportRepository.cs" />
-    <Compile Include="Repository\IBackUpRepository.cs" />
+    <Compile Include="Repository\IDataBaseRepository.cs" />
     <Compile Include="Repository\ISalMaliRepository.cs" />
     <Compile Include="Repository\IShakhesRepository.cs" />
     <Compile Include="Repository\ITahvilRepository.cs" />
     <Compile Include="UseCase\AcceptOrderInteractor.cs" />
     <Compile Include="UseCase\AddAmarTolidInteractor.cs" />
+    <Compile Include="UseCase\ChangeDatabaseBackUpAddressInteractor.cs" />
+    <Compile Include="UseCase\RestoreDatabaseInteractor.cs" />
     <Compile Include="UseCase\BackupDatabaseInteractor.cs" />
     <Compile Include="UseCase\GetCurrentSalMaliIntractor.cs" />
     <Compile Include="UseCase\GetAllSalMaliIntractor.cs" />
