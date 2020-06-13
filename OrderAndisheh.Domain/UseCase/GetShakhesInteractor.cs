@@ -1,10 +1,11 @@
 ﻿using OrderAndisheh.Domain.Entity;
+using OrderAndisheh.Domain.Interfaces;
 using OrderAndisheh.Domain.Repository;
 using System;
 
 namespace OrderAndisheh.Domain.UseCase
 {
-    public class GetShakhesInteractor : IRequestHandler<int, ShakhesEntity>
+    public class GetShakhesInteractor : IRequestHandler<IShakhesRange, ShakhesEntity>
     {
         private IShakhesRepository _repository;
 
@@ -13,18 +14,10 @@ namespace OrderAndisheh.Domain.UseCase
             _repository = repository;
         }
 
-        public ShakhesEntity Handle(int mah)
+        public ShakhesEntity Handle(IShakhesRange range)
         {
-            if (IsMahInRagne(mah))
-            {
-                throw new ArgumentException("ماه در ساخص گيري در محدوده مشخص نمي باشد", "mah");
-            }
-            return _repository.getShakhesh(mah);
+            return _repository.getShakhesh(range);
         }
 
-        private bool IsMahInRagne(int mah)
-        {
-            return mah > 0 && mah < 13;
-        }
     }
 }

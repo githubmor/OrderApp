@@ -69,6 +69,7 @@
     <Compile Include="Interfaces\IKalaType.cs" />
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IReport.cs" />
+    <Compile Include="Interfaces\IShakhesRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IDestinationRepository.cs" />
     <Compile Include="Repository\IDriverRepository.cs" />

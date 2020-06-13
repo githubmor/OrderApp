@@ -1,8 +1,9 @@
-﻿namespace OrderAndisheh.Domain.Repository
+﻿using OrderAndisheh.Domain.Interfaces;
+namespace OrderAndisheh.Domain.Repository
 {
     public interface IShakhesRepository
     {
-        Entity.ShakhesEntity getShakhesh(int mah);
+        Entity.ShakhesEntity getShakhesh(IShakhesRange mah);
 
         bool SetAmarTolid(Entity.TolidMahaneEntity data);
     }
